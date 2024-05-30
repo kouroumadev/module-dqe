@@ -20,7 +20,7 @@ class ReclamationController extends Controller
      */
     public function create()
     {
-        //
+        return view('reclamation.create');
     }
 
     /**

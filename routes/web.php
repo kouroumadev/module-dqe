@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/reclamation/create', [App\Http\Controllers\ReclamationController::class, 'create'])->name('reclamation.create');
+
