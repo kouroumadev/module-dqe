@@ -53,6 +53,7 @@
                                         <label >Etes-vous ? <span class="text-danger">*</span></label>
                                         <select required id="type" class="custom-select col-12">
                                             <option selected value="null">-- Aucune selecion --</option>
+                                            <option value="Nouveau">Nouveau</option>
                                             <option value="Assure">Assuré</option>
                                             <option value="Employeur">Employeur</option>
                                             <option value="Retraite">Retraite</option>
@@ -61,9 +62,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Adresse Email<span class="text-danger">*</span></label>
-                                        <input required type="email" id="mail" class="form-control">
+                                    <div class="form-group" id="numDiv" style="display:none;">
+                                        <label id="num">N° <span class="text-danger">*</span></label>
+                                        <input required type="text" id="numero" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -75,9 +76,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group" id="numDiv" style="display:none;">
-                                        <label id="num">N° <span class="text-danger">*</span></label>
-                                        <input required type="text" id="numero" class="form-control">
+                                    <div class="form-group">
+                                        <label>Adresse Email<span class="text-danger">*</span></label>
+                                        <input required type="email" id="mail" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +109,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Adresse Email</label>
-                                        <input id="add_email" readonly type="text" class="form-control">
+                                        <input id="add_email" readonly type="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -120,7 +121,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Adresse</label>
-                                        <input id="adresse" type="text" class="form-control">
+                                        <input id="adresse" readonly type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -132,50 +133,53 @@
                         <h5>Prestation concernée</h5>
                         <section>
                             <div class="row">
+                                {{-- <div class="col-md-4">
+                                    <label class="weight-600">Custom Radio</label>
+                                </div> --}}
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-1">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-1">
                                             <label class="custom-control-label" for="customCheck1-1">Retraite personnelle</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-2">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-2">
                                             <label class="custom-control-label" for="customCheck1-2">Retraite de réversion</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-3">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-3">
                                             <label class="custom-control-label" for="customCheck1-3">Allocation de solidarité aux personnes agées</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-4">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-4">
                                             <label class="custom-control-label" for="customCheck1-4">Régulation de carrière</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-5">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-5">
                                             <label class="custom-control-label" for="customCheck1-5">Retraite de anticipée</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-6">
+                                        <div class="custom-control custom-radio mb-5">
+                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-6">
                                             <label class="custom-control-label" for="customCheck1-6">Autre</label>
                                         </div>
                                     </div>
@@ -285,6 +289,7 @@
             var num = $(this).val();
             var type = $("#type").val();
 
+
             $.ajax({
                 url: '/reclamation/getInfo',
                 type: 'GET',
@@ -297,13 +302,15 @@
                     $('#loading-spinner').show(); // Show the loading spinner
                 },
                 success: function(data) {
+                    var tel = $("telephone").val();
+                    var mail = $("mail").val();
                     console.log('valueeee:', data);
                     $('#nom').val(data[0]);
                     $('#prenom').val(data[1]);
                     $('#date_naiss').val(data[2]);
                     $('#adresse').val(data[3]);
-                    $('#tel').val($("telephone").val());
-                    $('#add_email').val($("mail").val());
+                    $('#tel').val(tel);
+                    $('#add_email').val(mail);
 
                     $('#loading-spinner').hide();
                 }
@@ -312,11 +319,11 @@
         });
 
 
-        $('#mail').blur(function() {
-            var inputValue = $(this).val();
-            $('#small-modal-test').modal('show');
-            console.log(inputValue);
-        });
+        // $('#mail').blur(function() {
+        //     var inputValue = $(this).val();
+        //     $('#small-modal-test').modal('show');
+        //     console.log(inputValue);
+        // });
 
         $('#type').change(function() {
             var type = $(this).val();
