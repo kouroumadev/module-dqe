@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/reclamation/create', [App\Http\Controllers\ReclamationController::class, 'create'])->name('reclamation.create');
+Route::get('/reclamation/getInfo', [App\Http\Controllers\ReclamationController::class, 'getInfo']);
 
