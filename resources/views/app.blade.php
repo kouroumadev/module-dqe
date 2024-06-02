@@ -21,30 +21,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- CSS -->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/styles/core.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/styles/icon-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/switchery/switchery.min.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/jquery-steps/jquery.steps.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/vendors/styles/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/styles/flaticon.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/sweetalert2/sweetalert2.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}">
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4- toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4- toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         .loading-spinner {
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
             position: fixed;
             top: 50%;
             left: 50%;
@@ -56,14 +68,15 @@
     {{-- sweetAlert --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script> --}}
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jqc-1.12.4/dt-1.11.4/b-2.2.2/r-2.2.9/sc-2.0.5/sp-1.4.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/jqc-1.12.4/dt-1.11.4/b-2.2.2/r-2.2.9/sc-2.0.5/sp-1.4.0/datatables.min.css" />
 
     {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jqc-1.12.4/dt-1.11.4/b-2.2.2/r-2.2.9/sc-2.0.5/sp-1.4.0/datatables.min.js"></script> --}}
 
 
 
-{{-- Ajax --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
+    {{-- Ajax --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
 
 
 
@@ -75,11 +88,14 @@
 
 <body>
     {{-- @include('sweetalert::alert') --}}
+
     @yield('content')
 
 
 
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <!-- js -->
     {{-- <script src="{{ asset('theme/src/scripts/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('theme/vendors/scripts/core.js') }}"></script>
@@ -103,27 +119,27 @@
     <script src="{{ asset('theme/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
 
     <script src="{{ asset('theme/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/buttons.print.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/buttons.html5.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
 
     <!-- Datatable Setting js -->
-	<script src="{{ asset('theme/vendors/scripts/datatable-setting.js') }}"></script>
+    <script src="{{ asset('theme/vendors/scripts/datatable-setting.js') }}"></script>
 
     <!-- add sweet alert js & css in footer -->
-	<script src="{{ asset('theme/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
-	<script src="{{ asset('theme/src/plugins/sweetalert2/sweet-alert.init.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
+    <script src="{{ asset('theme/src/plugins/sweetalert2/sweet-alert.init.js') }}"></script>
 
     {{-- Ajax --}}
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script> --}}
 
 
 
     {{-- <script src="{{ asset('theme/vendors/scripts/datatable-setting.js') }}"></script> --}}
-     <script>
+    <script>
         // setting CSRF token in head section //
         $.ajaxSetup({
             headers: ({
@@ -131,8 +147,24 @@
             })
         })
 
+        function returnRef() {
+            // var mission_id = document.getElementById('mission_id').value;
+            // var mission_id = $("#miss_id").val();
+            //alert(id);
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('rendezvous.prendre') }}",
+                dataType: 'json',
+                // data: {
+                //     id: id
+                // },
+                success: function() {
+
+                }
+            })
 
 
+        }
     </script>
 </body>
 
