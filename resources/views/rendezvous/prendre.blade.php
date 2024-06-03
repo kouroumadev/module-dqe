@@ -46,7 +46,7 @@
                 <form action="{{ route('rendezvous.recap') }}" method="post">
                     @csrf
                     <div class="card-box m-auto p-5" style=" width:70%">
-                        <h2 class="text-center"> Choix du creneau</h2>
+                        <h2 class="text-center" style="margin-bottom: 35px"> Choix du creneau</h2>
                         <div class="row align-items-center">
 
                             <table>
@@ -65,7 +65,7 @@
                             </table>
                         </div>
 
-                        <div class="row" style="margin-top:20px">
+                        <div class="row" style="margin-top:30px">
                             <div class="col-md-6">
                                 <div class="mb-20">
                                     <div class="form-group">
@@ -107,10 +107,10 @@
                 <form action="{{ route('rendezvous.conf') }}" method="post">
                     @csrf
                     <div class="card-box m-auto p-5" style=" width:70%">
-                        <h2 class="text-center"> Recaputilatif de votre rendez-vous</h2>
+                        <h2 class="text-center" style="margin-bottom: 35px"> Recaputilatif de votre rendez-vous</h2>
                         <div class="row align-items-center">
 
-                            <table>
+                            <table style="margin-left: 15px; margin-bottom:10px;">
                                 <tr>
                                     <th>Agence:</th>
                                     <td>Conakry</td>
@@ -129,7 +129,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <h2 class="text-center"> Infos Personnelles</h2>
+                        <h4 class=""> Infos Personnelles</h4>
                         <div class="row" style="margin-top:20px">
 
 
@@ -248,6 +248,7 @@
                 </form>
             </div>
         @endif
+
 
     </div>
 @endsection
