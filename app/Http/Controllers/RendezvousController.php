@@ -6,6 +6,7 @@ use App\Models\NatureRendevou;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RendezvousController extends Controller
 {
