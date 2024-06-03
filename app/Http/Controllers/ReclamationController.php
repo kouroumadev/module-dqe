@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReclamationController extends Controller
 {
@@ -38,7 +39,7 @@ class ReclamationController extends Controller
         $rep = array();
         if($type == 'Assure'){
             $data = DB::connection('metier')->table('employe')->where('no_employe', $value)->get(); #130030000771 #2004054840400
-            // dd($data);
+            dd(count($data));
             foreach($data as $d){
                 $rep[] = $d->nom;
                 $rep[] = $d->prenoms;
