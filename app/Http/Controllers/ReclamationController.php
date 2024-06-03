@@ -39,7 +39,12 @@ class ReclamationController extends Controller
         $rep = array();
         if($type == 'Assure'){
             $data = DB::connection('metier')->table('employe')->where('no_employe', $value)->get(); #130030000771 #2004054840400
-            dd(count($data));
+            if(count($data)<= 0){
+                $rep[] = "non";
+                $rep[] = "Ce N° d'immatriculation n'est pas associé à un employé de la CNSS, veuillez entrer le bon numéro d'immatriculation.";
+                return response()->json($rep);
+            }
+
             foreach($data as $d){
                 $rep[] = $d->nom;
                 $rep[] = $d->prenoms;
@@ -48,7 +53,12 @@ class ReclamationController extends Controller
             }
         } else if($type == 'Employeur'){
             $data = DB::connection('metier')->table('employeur')->where('no_employeur', $value)->get(); #8204000010400 #6104000050400
-            // dd($data);
+            if(count($data)<= 0){
+                $rep[] = "non";
+                $rep[] = "Ce N° d'immatriculation n'est pas associé à un employeur de la CNSS, veuillez entrer le bon numéro d'immatriculation.";
+                return response()->json($rep);
+            }
+
             foreach($data as $d){
                 $rep[] = $d->nom_demandeur;
                 $rep[] = $d->prenom_demandeur;
@@ -57,7 +67,11 @@ class ReclamationController extends Controller
             }
         } else {
             $data = DB::connection('metier')->table('pensionne')->where('no_pensionne', $value)->get(); #PI-0001/010 #I-0001/2008
-            // dd($data);
+            if(count($data)<= 0){
+                $rep[] = "non";
+                $rep[] = "Ce N° de pension n'est pas associé à un pensionnaire de la CNSS, veuillez entrer le bon numéro de pension.";
+                return response()->json($rep);
+            }
             foreach($data as $d){
                 $rep[] = $d->nom;
                 $rep[] = $d->prenoms;

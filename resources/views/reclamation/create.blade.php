@@ -216,12 +216,19 @@
                                 </div>
 
                             </div>
+                            <div class="row justify-content-start">
+                                <div class="col-md-6">
+                                    <button class="btn btn-success">Soumettre ma reclamation</button>
+                                </div>
+                            </div>
                         </section>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 </div>
 
@@ -230,48 +237,72 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <script>
     $(document).ready(function() {
 
+
         $('#numero').blur(function() {
             var num = $(this).val();
-            var type = $("#type").val();
+            if(num == '' || num == '0'){
+                swal({
+                    title: "Oops!",
+                    text: "Le champ Immatriculation/Pension est obligatoire !!",
+                    icon: "error",
+                    button: "OK",
+                });
+                $(this).addClass("form-control-danger");
 
+            } else {
+                $(this).removeClass("form-control-danger");
 
-            $.ajax({
-                url: '/reclamation/getInfo',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    num: num,
-                    type: type,
-                 },
-                 beforeSend: function() {
-                    $('#loading-spinner').show(); // Show the loading spinner
-                },
-                success: function(data) {
-                    var tel = $("telephone").val();
-                    var mail = $("mail").val();
-                    console.log('valueeee:', data);
-                    $('#nom').val(data[0]);
-                    $('#prenom').val(data[1]);
-                    $('#date_naiss').val(data[2]);
-                    $('#adresse').val(data[3]);
-                    $('#tel').val(tel);
-                    $('#add_email').val(mail);
+                var type = $("#type").val();
 
-                    $('#loading-spinner').hide();
-                }
+                $.ajax({
+                    url: '/reclamation/getInfo',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        num: num,
+                        type: type,
+                    },
+                    beforeSend: function() {
+                        $('#loading-spinner').show(); // Show the loading spinner
+                    },
+                    success: function(data) {
+                        if(data[0] == "non"){
+                            swal({
+                                title: "Oops!",
+                                text: data[1],
+                                icon: "error",
+                                button: "OK",
+                            });
+                            $(this).addClass("form-control-danger");
+                        }
+                        $(this).removeClass("form-control-danger");
+
+                        $('#nom').val(data[0]);
+                        $('#prenom').val(data[1]);
+                        $('#date_naiss').val(data[2]);
+                        $('#adresse').val(data[3]);
+
+                        $('#loading-spinner').hide();
+                    },
+
+                });
+            }
+
         });
 
-        });
 
-
-        // $('#mail').blur(function() {
-        //     var inputValue = $(this).val();
-        //     $('#small-modal-test').modal('show');
-        //     console.log(inputValue);
-        // });
+         $('#mail').blur(function() {
+            var tel = $("#telephone").val();
+            var mail = $("#mail").val();
+            $('#tel').val(tel);
+            $('#add_email').val(mail);
+         });
 
         $('#type').change(function() {
             var type = $(this).val();
@@ -289,6 +320,7 @@
         });
     });
 </script>
+
 
 
 
