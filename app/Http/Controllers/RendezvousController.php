@@ -6,7 +6,6 @@ use App\Models\NatureRendevou;
 use App\Models\Prestation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class RendezvousController extends Controller
 {
@@ -26,7 +25,7 @@ class RendezvousController extends Controller
         $nature = NatureRendevou::all();
         // dd($agence);
 
-        return view('rendezvous.prendre', compact('flag_ref', 'flag_creneau', 'flag_recap', 'flag_conf', 'nature'));
+        return view('rendezvous.prendre', compact('flag_ref', 'flag_creneau', 'flag_recap', 'flag_conf', 'nature', 'agence'));
     }
 
     public function Reference(Request $request)
