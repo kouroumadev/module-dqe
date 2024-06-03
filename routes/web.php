@@ -26,3 +26,4 @@ Route::get('/rendezvous/prendre', [App\Http\Controllers\RendezvousController::cl
 Route::post('/rendezvous/ref', [App\Http\Controllers\RendezvousController::class, 'Reference'])->name('rendezvous.reference');
 Route::post('/rendezvous/recap', [App\Http\Controllers\RendezvousController::class, 'Recap'])->name('rendezvous.recap');
 Route::post('/rendezvous/conf', [App\Http\Controllers\RendezvousController::class, 'Conf'])->name('rendezvous.conf');
+Route::get('/rendezvous/get-prestation', [App\Http\Controllers\RendezvousController::class, 'GetPrestation'])->name('prestation.ajax');

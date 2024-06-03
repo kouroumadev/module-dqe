@@ -165,6 +165,32 @@
 
 
         }
+
+        function getPrestation() {
+            // var mission_id = document.getElementById('mission_id').value;
+            var nature = $("#nature").val();
+            //alert(mission_id);
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('prestation.ajax') }}",
+                dataType: 'json',
+                data: {
+                    nature: nature
+                },
+
+                success: function(data) {
+                    // console.log(data);
+                    $('select[name="subsubcategory_id"]').html('');
+                    var d = $('select[name="prestation"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="prestation"]').append('<option value="' + value.id + '">' +
+                            value.libelle + '</option>')
+                    })
+                }
+            })
+
+
+        }
     </script>
 </body>
 
