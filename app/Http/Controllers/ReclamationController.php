@@ -25,7 +25,10 @@ class ReclamationController extends Controller
             // $data = DB::connection('metier')->table('pensionne')->where('no_pensionne', 'PI-0001')->get(); #PI-0001/010 #I-0001/2008
 
             // dd($pensionne);
-        return view('reclamation.create');
+
+        $motifs = DB::table('motifs')->get();
+            // dd($data);
+        return view('reclamation.create', compact('motifs'));
     }
      public function getInfo(Request $request)
     {

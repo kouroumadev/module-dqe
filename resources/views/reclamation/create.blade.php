@@ -193,76 +193,24 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="weight-600">Motif(s)</label>
+                                    @foreach ($motifs as $m)
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-7">
-                                            <label class="custom-control-label" for="customCheck1-7">Je me perçois plus ma prestation.</label>
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1-{{ $m->id }}">
+                                            <label class="custom-control-label" for="customCheck1-{{ $m->id }}">{{ $m->value }}</label>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-8">
-                                            <label class="custom-control-label" for="customCheck1-8">J'attends ma prestation et je suis pas encore payé.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-9">
-                                            <label class="custom-control-label" for="customCheck1-9">Le montant de ma prestation a été modifié.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-10">
-                                            <label class="custom-control-label" for="customCheck1-10">La mise à jour de ma carrière ne me convient pas.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-11">
-                                            <label class="custom-control-label" for="customCheck1-11">Mon changement de situation n'a pas été pris en compte.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-12">
-                                            <label class="custom-control-label" for="customCheck1-12">Je ne suis pas satisfait de l'information donnée.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-13">
-                                            <label class="custom-control-label" for="customCheck1-13">Je n'ai pas eu de réponse à ma demande.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-14">
-                                            <label class="custom-control-label" for="customCheck1-14">Je ne suis pas satisfait des services en ligne.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-15">
-                                            <label class="custom-control-label" for="customCheck1-15">Je ne suis pas satisfait de la qualité de vos documents.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-16">
-                                            <label class="custom-control-label" for="customCheck1-16">Je ne suis pas satisfait de la qualité de votre accueil.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-17">
-                                            <label class="custom-control-label" for="customCheck1-17">Autre.</label>
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1-100">
+                                            <label class="custom-control-label" for="customCheck1-100">Autre</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <label class="weight-600">Details de la demande</label>
                                     <div class="form-group">
-                                        <label class="weight-600">Details de la demande</label>
                                         <textarea class="form-control"></textarea>
                                     </div>
                                 </div>
