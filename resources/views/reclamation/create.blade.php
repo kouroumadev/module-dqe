@@ -196,8 +196,8 @@
                                     @foreach ($motifs as $m)
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-{{ $m->id }}">
-                                            <label class="custom-control-label" for="customCheck1-{{ $m->id }}">{{ $m->value }}</label>
+                                            <input type="checkbox" class="custom-control-input" id="{{ $m->id }}">
+                                            <label class="custom-control-label" for="{{ $m->id }}">{{ $m->value }}</label>
                                         </div>
                                     </div>
                                     @endforeach
