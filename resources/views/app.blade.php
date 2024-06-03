@@ -87,7 +87,7 @@
 </head>
 
 <body>
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
 
     @yield('content')
 
