@@ -44,7 +44,8 @@
                     <p class="mb-30"></p>
                 </div>
                 <div class="wizard-content">
-                    <form class="tab-wizard wizard-circle wizard vertical">
+                    <form method="POST" action="{{ route('reclamation.store') }}" class="tab-wizard wizard-circle wizard vertical">
+                        @csrf
                         <h5>Mon identité</h5>
                         <section>
                             <div class="row">
@@ -79,6 +80,9 @@
                                     <div class="form-group">
                                         <label>Adresse Email<span class="text-danger">*</span></label>
                                         <input required type="email" id="mail" class="form-control">
+                                        <small class="form-text text-muted">
+                                           Cette adresse e-mail sera utliser pour vous envoyez des informations relatives à votre reclamation.
+                                        </small>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +222,7 @@
                             </div>
                             <div class="row justify-content-start">
                                 <div class="col-md-6">
-                                    <button class="btn btn-success">Soumettre ma reclamation</button>
+                                    <button type="submit" class="btn btn-success">Soumettre ma reclamation</button>
                                 </div>
                             </div>
                         </section>

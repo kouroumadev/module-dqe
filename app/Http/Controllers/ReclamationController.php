@@ -31,6 +31,7 @@ class ReclamationController extends Controller
             // dd($data);
         return view('reclamation.create', compact('motifs'));
     }
+
      public function getInfo(Request $request)
     {
         $value = $request->get('num');
@@ -91,7 +92,7 @@ class ReclamationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
