@@ -44,7 +44,7 @@
                     <p class="mb-30"></p>
                 </div>
                 <div class="wizard-content">
-                    <form method="POST" action="{{ route('reclamation.store') }}" class="tab-wizard wizard-circle wizard vertical">
+                    <form method="POST" action="{{ route('reclamation.store') }}" id="reclamation_frm" class="tab-wizard wizard-circle wizard vertical">
                         @csrf
                         <h5>Mon identité</h5>
                         <section>
@@ -52,9 +52,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Etes-vous ? <span class="text-danger">*</span></label>
-                                        <select required id="type" class="custom-select col-12">
+                                        <select name="type" required id="type" class="custom-select col-12">
                                             <option selected value="null">-- Aucune selecion --</option>
-                                            <option value="Nouveau">Nouveau</option>
                                             <option value="Assure">Assuré</option>
                                             <option value="Employeur">Employeur</option>
                                             <option value="Retraite">Retraite</option>
@@ -65,7 +64,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group" id="numDiv" style="display:none;">
                                         <label id="num">N° <span class="text-danger">*</span></label>
-                                        <input required type="text" id="numero" class="form-control">
+                                        <input name="numero" required type="text" id="numero" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -95,37 +94,37 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nom</label>
-                                        <input id="nom" readonly type="text" class="form-control">
+                                        <input name="nom" id="nom" readonly type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Prenom</label>
-                                        <input id="prenom" readonly type="text" class="form-control">
+                                        <input name="prenom" id="prenom" readonly type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date de naissance</label>
-                                        <input id="date_naiss" readonly type="text" class="form-control">
+                                        <input name="date_naiss" id="date_naiss" readonly type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Adresse Email</label>
-                                        <input id="add_email" readonly type="email" class="form-control">
+                                        <input name="add_email" id="add_email" readonly type="email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Téléphone</label>
-                                        <input id="tel" readonly type="text" class="form-control">
+                                        <input name="tel" id="tel" readonly type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Adresse</label>
-                                        <input id="adresse" readonly type="text" class="form-control">
+                                        <input name="adresse" id="adresse" readonly type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -137,54 +136,21 @@
                         <h5>Prestation concernée</h5>
                         <section>
                             <div class="row">
-                                {{-- <div class="col-md-4">
-                                    <label class="weight-600">Custom Radio</label>
-                                </div> --}}
+                               @foreach ($prestations as $p)
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-1">
-                                            <label class="custom-control-label" for="customCheck1-1">Retraite personnelle</label>
+                                            <input type="radio" class="custom-control-input" name="prestation" value="{{ $p->id }}" id="{{ $p->id }}">
+                                            <label class="custom-control-label" for="{{ $p->id }}">{{ $p->value }}</label>
                                         </div>
                                     </div>
                                 </div>
+                               @endforeach
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-2">
-                                            <label class="custom-control-label" for="customCheck1-2">Retraite de réversion</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-3">
-                                            <label class="custom-control-label" for="customCheck1-3">Allocation de solidarité aux personnes agées</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-4">
-                                            <label class="custom-control-label" for="customCheck1-4">Régulation de carrière</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-5">
-                                            <label class="custom-control-label" for="customCheck1-5">Retraite de anticipée</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" class="custom-control-input" name="prestation" id="customCheck1-6">
-                                            <label class="custom-control-label" for="customCheck1-6">Autre</label>
+                                            <input checked type="radio" class="custom-control-input" value="0" name="prestation" id="customCheck1-666">
+                                            <label class="custom-control-label" for="customCheck1-666">Autre</label>
                                         </div>
                                     </div>
                                 </div>
@@ -200,14 +166,14 @@
                                     @foreach ($motifs as $m)
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="{{ $m->id }}">
+                                            <input type="checkbox" name="motifs[]" value="{{ $m->id }}" class="custom-control-input" id="{{ $m->id }}">
                                             <label class="custom-control-label" for="{{ $m->id }}">{{ $m->value }}</label>
                                         </div>
                                     </div>
                                     @endforeach
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1-100">
+                                            <input type="checkbox" name="motifs[]" value="0" class="custom-control-input" id="customCheck1-100">
                                             <label class="custom-control-label" for="customCheck1-100">Autre</label>
                                         </div>
                                     </div>
@@ -215,14 +181,14 @@
                                 <div class="col-md-6">
                                     <label class="weight-600">Details de la demande</label>
                                     <div class="form-group">
-                                        <textarea class="form-control"></textarea>
+                                        <textarea name="details" class="form-control"></textarea>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="row justify-content-start">
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success">Soumettre ma reclamation</button>
+                                    <button id="btn_send_form" type="button" class="btn btn-success">Soumettre ma reclamation</button>
                                 </div>
                             </div>
                         </section>
@@ -246,6 +212,49 @@
 
 <script>
     $(document).ready(function() {
+       var flag = 0;
+
+        $('#btn_send_form').click(function() {
+            if(flag == 1){
+                swal({
+                    title: "Oops!",
+                    text: "Veuillez entrer le bon numero d'Immatriculation/Pension",
+                    icon: "error",
+                    button: "OK",
+                });
+            } else {
+
+                var type = $("#type").val();
+                var numero = $("#numero").val();
+                var nom = $("#nom").val();
+                var prenom = $("#prenom").val();
+                var date_naiss = $("#date_naiss").val();
+                var add_email = $("#add_email").val();
+                var tel = $("#tel").val();
+                var adresse = $("#adresse").val();
+                var motifs = $("input[type='checkbox']").is(":checked");
+
+                if(type=="null" || numero=="" || nom=="" || prenom==""
+                    || date_naiss=="" || add_email=="" || tel ==""
+                    || adresse=="" || motifs==false
+                ){
+                    swal({
+                        title: "Oops!",
+                        text: "Veuillez remplir tous les champs obligatoires !!",
+                        icon: "error",
+                        button: "OK",
+                    });
+                } else {
+                    $("#reclamation_frm").submit();
+                }
+            }
+        });
+
+        // $('#telephone').focus(function() {
+        //     console.log('INNNNN');
+        // });
+
+
 
 
         $('#numero').blur(function() {
@@ -257,10 +266,11 @@
                     icon: "error",
                     button: "OK",
                 });
-                $(this).addClass("form-control-danger");
+                $('#numero').addClass("form-control-danger");
+                flag = 1;
 
             } else {
-                $(this).removeClass("form-control-danger");
+                // $('#numero').removeClass("form-control-danger");
 
                 var type = $("#type").val();
 
@@ -283,14 +293,20 @@
                                 icon: "error",
                                 button: "OK",
                             });
-                            $(this).addClass("form-control-danger");
+                            $('#numero').addClass("form-control-danger");
+                            flag = 1;
+                        } else {
+                            $('#numero').removeClass("form-control-danger");
+                            $('#numero').addClass("form-control-success");
+                            $('#nom').val(data[0]);
+                            $('#prenom').val(data[1]);
+                            $('#date_naiss').val(data[2]);
+                            $('#adresse').val(data[3]);
+                            flag = 0;
                         }
-                        $(this).removeClass("form-control-danger");
+                        // $('#numero').removeClass("form-control-danger");
 
-                        $('#nom').val(data[0]);
-                        $('#prenom').val(data[1]);
-                        $('#date_naiss').val(data[2]);
-                        $('#adresse').val(data[3]);
+
 
                         $('#loading-spinner').hide();
                     },

@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//// Routes reclamations //////////
 Route::get('/reclamation/create', [App\Http\Controllers\ReclamationController::class, 'create'])->name('reclamation.create');
 Route::post('/reclamation/store', [App\Http\Controllers\ReclamationController::class, 'store'])->name('reclamation.store');
 Route::get('/reclamation/getInfo', [App\Http\Controllers\ReclamationController::class, 'getInfo']);
+
+Route::get('/reclamation/dqe', [App\Http\Controllers\ReclamationController::class, 'dqe'])->name('reclamation.dqe');
+
 
 //// Routes rendez-vous //////////
 Route::get('/rendezvous/index', [App\Http\Controllers\RendezvousController::class, 'Index'])->name('rendezvous.index');
