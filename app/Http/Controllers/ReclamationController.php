@@ -23,13 +23,14 @@ class ReclamationController extends Controller
     public function create()
     {
             // $pensionne = DB::connection('metier')->table('pensionne')->limit(10)->get();
-            // $data = DB::connection('metier')->table('pensionne')->where('no_pensionne', 'PI-0001')->get(); #PI-0001/010 #I-0001/2008
+            // // $data = DB::connection('metier')->table('pensionne')->where('no_pensionne', 'PI-0001')->get(); #PI-0001/010 #I-0001/2008
 
-            // dd($pensionne);
+            //  dd($pensionne);
 
         $motifs = DB::table('motifs')->get();
+        $prestations = DB::table('prestations')->get();
             // dd($data);
-        return view('reclamation.create', compact('motifs'));
+        return view('reclamation.create', compact('motifs','prestations'));
     }
 
      public function getInfo(Request $request)
@@ -92,15 +93,33 @@ class ReclamationController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd(json_encode($request->motifs));
+
+        $recla = new Reclamation();
+        $recla->type = $request->type;
+        $recla->numero = $request->numero;
+        $recla->nom = $request->nom;
+        $recla->prenom = $request->prenom;
+        $recla->date_naiss = $request->date_naiss;
+        $recla->add_email = $request->add_email;
+        $recla->tel = $request->tel;
+        $recla->adresse = $request->adresse;
+        $recla->prestation_id = $request->prestation;
+        $recla->motifs_id = json_encode($request->motifs);
+        $recla->details = $request->details;
+        $recla->save();
+        // Alert::success('', "Reclamation effectué avec succès");
+        return redirect()->back()->with('showModal', true);;
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Reclamation $reclamation)
+    public function dqe()
     {
-        //
+       $reclamations = Reclamation::all();
+       return view('reclamation.dqe', compact('reclamations'));
     }
 
     /**
