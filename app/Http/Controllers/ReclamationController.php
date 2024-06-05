@@ -108,8 +108,8 @@ class ReclamationController extends Controller
         $recla->motifs_id = json_encode($request->motifs);
         $recla->details = $request->details;
         $recla->save();
-        Alert::success('', "Reclamation effectué avec succès");
-        return redirect()->back();
+        // Alert::success('', "Reclamation effectué avec succès");
+        return redirect()->back()->with('showModal', true);;
 
     }
 

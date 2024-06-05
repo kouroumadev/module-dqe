@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Date de naissance</label>
+                                        <label id="naiss">Date de naissance</label>
                                         <input name="date_naiss" id="date_naiss" readonly type="text" class="form-control">
                                     </div>
                                 </div>
@@ -198,27 +198,60 @@
         </div>
     </div>
 
+    <!-- Success modal -->
+
+    <div class="modal fade" id="success-modal-reclamation-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center font-18">
+                    <h3 class="mb-20">Réclamation effectué!</h3>
+                    <div class="mb-30 text-center"><img src="{{ asset('theme/vendors/images/success.png') }}"></div>
+                    Votre réclatation a été reçu avec succès à la CNSS.
+                    Vous pouvez eventuellement predre rendez-vous en cliqant sur
+                    <a href="{{ route('rendezvous.index') }}" class="text-danger">Prendre un rendez-vous</a>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Terminer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>
+
+
 
 <div id="loading-spinner" class="loading-spinner">
     <img src="{{ asset('theme/gif/Spinner-2.gif') }}" alt="Loading...">
 </div>
 
+
+
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if(session('showModal'))
+    <script>
+    $(function() {
+        $('#success-modal-reclamation-0').modal('show');
+    });
+</script>
+@endif
 
 
 <script>
     $(document).ready(function() {
+        // $('#success-modal-reclamation-0').modal('show');
        var flag = 0;
+       var title = "";
 
         $('#btn_send_form').click(function() {
             if(flag == 1){
                 swal({
                     title: "Oops!",
-                    text: "Veuillez entrer le bon numero d'Immatriculation/Pension",
+                    text: title,
                     icon: "error",
                     button: "OK",
                 });
@@ -296,6 +329,7 @@
                             $('#numero').addClass("form-control-danger");
                             flag = 1;
                         } else {
+                            console.log(data);
                             $('#numero').removeClass("form-control-danger");
                             $('#numero').addClass("form-control-success");
                             $('#nom').val(data[0]);
@@ -303,6 +337,15 @@
                             $('#date_naiss').val(data[2]);
                             $('#adresse').val(data[3]);
                             flag = 0;
+
+                            if(data[0] == null)
+                                $('#nom').attr('readonly', false);
+                            if(data[1] == null)
+                                $('#prenom').attr('readonly', false);
+                            if(data[2] == null)
+                                $('#date_naiss').attr('readonly', false);
+                            if(data[2] == null)
+                                $('#adresse').attr('readonly', false);
                         }
                         // $('#numero').removeClass("form-control-danger");
 
@@ -326,11 +369,16 @@
 
         $('#type').change(function() {
             var type = $(this).val();
-            console.log(type);
-            if (type == 'Assure' || type == 'Employeur')
+            // console.log(type);
+            if (type == 'Assure' || type == 'Employeur'){
+                title = "Veuillez entrer le bon numero d'Immatriculation";
                 $('#num').text('N° Immatriculation');
-            else
+                $('#naiss').text('Date de création');
+            }else {
+                title = "Veuillez entrer le bon numero de Pension";
                 $('#num').text('N° Pension');
+                $('#naiss').text('Date de naissance');
+            }
 
             $('#numDiv').show();
 

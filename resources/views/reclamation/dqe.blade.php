@@ -4,7 +4,7 @@
 
 
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-10">
         <h2 class="text-center">ESPACE DQE</h2>
         <div class="pb-20 shadow-lg p-3 mb-5 bg-white rounded">
             <div class="pd-20">
@@ -15,15 +15,15 @@
                 <thead class="bg-success">
                     <tr>
                         <th class="table-plus text-white">N° Immat/Pension</th>
-                        <th class="text-white">Prenom & Nom</th>
-                        <th class="text-white">Date Naissance</th>
+                        <th class="text-white">Prenom & Nom/Employeur</th>
+                        {{-- <th class="text-white">Date Naissance</th>
                         <th class="text-white">Email</th>
                         <th class="text-white">Adresse</th>
-                        <th class="text-white">Telephone</th>
+                        <th class="text-white">Telephone</th> --}}
                         <th class="text-white">Type</th>
                         <th class="text-white">Prestation</th>
-                        <th class="text-white">Motif(s)</th>
-                        <th class="text-white">Details</th>
+                        {{-- <th class="text-white">Motif(s)</th>
+                        <th class="text-white">Details</th> --}}
                         <th class="datatable-nosort text-white">Action</th>
                     </tr>
                 </thead>
@@ -36,16 +36,16 @@
                         <tr>
                             <td class="">{{ $rec->numero }}</td>
                             <td class="">{{ $rec->prenom }} <span class="text-uppercase">{{ $rec->nom }}</span></td>
-                            <td>{{ $data[0] }}</td>
+                            {{-- <td>{{ $data[0] }}</td>
                             <td>{{ $rec->add_email }}</td>
                             <td>{{ $rec->adresse }}</td>
-                            <td>{{ $rec->tel }}</td>
+                            <td>{{ $rec->tel }}</td> --}}
                             <td>{{ $rec->type }}</td>
                             <td>{{ DB::table('prestations')->where('id',$rec->prestation_id)->value('value') }}</td>
-                            <td>{{ $rec->motifs_id }}</td>
-                            <td>{{ $rec->details }}</td>
+                            {{-- <td>{{ $rec->motifs_id }}</td>
+                            <td>{{ $rec->details }}</td> --}}
                             <td>
-                                <a href="#" class="btn btn-success">Job</a>
+                                <a href="#" class="btn btn-success">Traitement</a>
                             </td>
 
                             {{-- <div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
