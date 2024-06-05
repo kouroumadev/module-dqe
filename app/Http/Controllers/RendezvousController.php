@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\NatureRendevou;
-use App\Models\Prestation;
+use App\Models\PrestaRendevou;
+use App\Models\Rendezvou;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,19 +51,34 @@ class RendezvousController extends Controller
 
     public function Conf(Request $request)
     {
-        $flag_ref = 0;
-        $flag_creneau = 0;
-        $flag_recap = 0;
-        $flag_conf = 1;
 
-        return view('rendezvous.prendre', compact('flag_ref', 'flag_creneau', 'flag_recap', 'flag_conf'));
+        $nature = NatureRendevou::find($request->nature);
+        //dd($request->region);
+        $conf_id = uniqid();
+        $rendezvous = new Rendezvou();
+        $rendezvous->no_conf = $conf_id;
+        $rendezvous->nom = $request->nom;
+        $rendezvous->prenom = $request->prenom;
+        $rendezvous->no_employe = $request->no_employe;
+        $rendezvous->adresse = $request->adresse;
+        $rendezvous->agence = $request->region;
+        $rendezvous->nature = $nature->libelle;
+        $rendezvous->prestation = $request->prestation;
+        $rendezvous->date_rendezvous = $request->date_rendezvous;
+        $rendezvous->heure_rendezvous = $request->heure_rendezvous;
+        $rendezvous->telephone = $request->telephone;
+        $rendezvous->email = $request->email;
+        $rendezvous->save();
+
+        return view('rendezvous.confirmation', compact('conf_id'));
     }
 
     public function GetPrestation(Request $request)
     {
 
-        $prestation = Prestation::where('nature_id', $request->nature)->get();
-        // dd($prestation);
+        //dd($request->nature);
+        $prestation = PrestaRendevou::where('nature_id', $request->nature_val)->get();
+        //dd($prestation);
         // $data = $prestation;
 
         return response()->json($prestation, 200);

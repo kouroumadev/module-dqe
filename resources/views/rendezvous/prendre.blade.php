@@ -318,7 +318,10 @@
                 <div class="pd-20 mb-30">
 
                     <div class="wizard-content">
-                        <form class="tab-wizard wizard-circle wizard horizontal">
+                        <form class="tab-wizard wizard-circle wizard horizontal" action="{{ route('rendezvous.conf') }}"
+                            method="post">
+                            @csrf
+
                             <h5>Choix de la Prestation</h5>
                             <section>
                                 <h2 class="text-center" style="margin-bottom: 35px"> Choix de la Prestation</h2>
@@ -343,11 +346,10 @@
 
                                         <div class="form-group  ml-2">
                                             <label>Nature du rendez-vous</label>
-                                            <select class="custom-select" name="nature" id="nature"
-                                                onchange="getPrestation()">
-
+                                            <select class="custom-select" name="nature" id="nature">
                                                 @foreach ($nature as $value)
-                                                    <option value="{{ $value->id }}">{{ $value->libelle }}</option>
+                                                    <option value="{{ $value->id }}" selected>{{ $value->libelle }}
+                                                    </option>
                                                 @endforeach
 
 
@@ -365,8 +367,6 @@
                                                 <select class="custom-select" name="prestation" id="prestation">
 
 
-
-
                                                 </select>
                                             </div>
                                         </div>
@@ -382,7 +382,7 @@
                                 <hr>
                                 <div class="row align-items-center" style="margin-left: 15px">
 
-                                    <table>
+                                    {{-- <table>
                                         <tr>
                                             <th>Agence:</th>
                                             <td id="agence_disp_creneau"></td>
@@ -395,7 +395,7 @@
                                             <th>Prestation:</th>
                                             <td id="prestation_disp_creneau"></td>
                                         </tr>
-                                    </table>
+                                    </table> --}}
                                 </div>
 
                                 <div class="row" style="margin-top:30px">
@@ -432,19 +432,19 @@
                                     <table style="margin-left: 15px; margin-bottom:10px;">
                                         <tr>
                                             <th>Agence:</th>
-                                            <td>Conakry</td>
+                                            <td id="agence_disp_valide"></td>
                                         </tr>
                                         <tr>
                                             <th>Nature du rendez-vous:</th>
-                                            <td>Demande d'attestations non editable en ligne</td>
+                                            <td id="nature_disp_valide"></td>
                                         </tr>
                                         <tr>
                                             <th>Prestation:</th>
-                                            <td>Demande des attestations non editable</td>
+                                            <td id="prestation_disp_valide"></td>
                                         </tr>
                                         <tr>
                                             <th>Horaire:</th>
-                                            <td>Jeudi 27/06/2024 a 09:15</td>
+                                            <td> <span id="date_disp"></span> <span id="heure_disp"></span> </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -502,6 +502,11 @@
                                     </div>
                                 </div>
 
+                                <div class="row justify-content-start">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-success">Valider le RDV</button>
+                                    </div>
+                                </div>
                             </section>
 
                         </form>
@@ -520,18 +525,45 @@
     <script>
         $(document).ready(function() {
 
-            $('#region').change(function() {
-                var region = $(this).val();
-                var prestation = $("#prestation").val();
-                var nature = $("#nature").text();
-                alert(prestation)
-                $("#agence_disp_creneau").html(region);
-                $("#prestation_disp_creneau").html(prestation);
-                $("#nature_disp_creneau").html(nature);
-                // alert(region)
+            $('#nature').change(function() {
+
+                //alert(prestation)
+                var nature_val = $("#nature").val();
+                // alert(nature_val);
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('prestation.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        nature_val: nature_val
+                    },
+                    success: function(data) {
+                        // console.log(data);
+                        $('select[name="prestation"]').html('');
+                        var d = $('select[name="prestation"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="prestation"]').append('<option value="' +
+                                value.libelle + '">' +
+                                value.libelle + '</option>')
+                        })
+                    }
+                })
 
 
+            });
+            $('#heure_rendezvous').blur(function() {
+                var region = $("#region").val();
+                var prestation = $("#prestation option:selected").text();
+                var nature = $("#nature option:selected").text();
+                var date_rendezvous = $("#date_rendezvous").val();
+                var heure_rendezvous = $("#heure_rendezvous").val();
 
+                $("#agence_disp_valide").html(region);
+                $("#prestation_disp_valide").html(prestation);
+                $("#nature_disp_valide").html(nature);
+                $("#date_disp").html(date_rendezvous);
+                $("#heure_disp").html(heure_rendezvous);
+                // alert(prestation)
             });
 
 
