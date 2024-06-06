@@ -2,6 +2,10 @@
 @section('content')
     @include('header')
 
+    @php
+        $info = App\Models\Rendezvou::where('no_conf', $conf_id)->get();
+        // dd($info);
+    @endphp
     <div style="margin-top: 100px">
         <form action="{{ route('rendezvous.recap') }}" method="post">
             @csrf
@@ -15,14 +19,11 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <h6 class="mb-20"> Code de confirmation: <span class="text-info">0948765534.</span> <span
+                <h6 class="mb-20"> Code de confirmation: <span class="text-info">{{ $info[0]->no_conf }}.</span> <span
                         class="text-danger">NB: veillez garder soigneusement ce code, il vous sera demandé le jour
                         de votre rendez-vous.</span></h6>
                 <div class="row align-items-center">
-                    @php
-                        $info = App\Models\Rendezvou::where('no_conf', $conf_id)->get();
-                        // dd($info);
-                    @endphp
+
                     <table>
                         <tr>
                             <th>Nom:</th>
@@ -67,8 +68,8 @@
 
                     </div>
                     <div class="form-group" style="margin-top: 30px">
-                        <button type="submit" class="btn btn-success"> <i class="icon-copy fa fa-print"
-                                aria-hidden="true"></i> Imprimer</button>
+                        <a href="{{ route('recap.pdf', $info[0]->no_conf) }}" type="submit" class="btn btn-success"> <i
+                                class="icon-copy fa fa-print" aria-hidden="true"></i> Imprimer</a>
 
                     </div>
                 </div>

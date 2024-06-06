@@ -7,6 +7,7 @@ use App\Models\PrestaRendevou;
 use App\Models\Rendezvou;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class RendezvousController extends Controller
 {
@@ -82,5 +83,15 @@ class RendezvousController extends Controller
         // $data = $prestation;
 
         return response()->json($prestation, 200);
+    }
+
+    public function RecapPdf($id)
+    {
+        $data = [];
+        $data['rendezvous'] = Rendezvou::where('no_conf', $id)->get();
+        $pdf = PDF::loadView('pdf.recap', $data);
+
+        return $pdf->stream('document.pdf');
+
     }
 }
