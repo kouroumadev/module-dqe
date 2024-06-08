@@ -32,6 +32,8 @@
                     @foreach ($reclamations as $rec)
                     @php
                         $data = explode(" ", $rec->date_naiss);
+                        $motifs = json_decode($rec->motifs_id);
+                        $prestation = DB::table('prestations')->where('id',$rec->prestation_id)->value('value');
                     @endphp
                         <tr>
                             <td class="">{{ $rec->numero }}</td>
@@ -41,12 +43,98 @@
                             <td>{{ $rec->adresse }}</td>
                             <td>{{ $rec->tel }}</td> --}}
                             <td>{{ $rec->type }}</td>
-                            <td>{{ DB::table('prestations')->where('id',$rec->prestation_id)->value('value') }}</td>
+                            <td>{{ $prestation }}</td>
                             {{-- <td>{{ $rec->motifs_id }}</td>
                             <td>{{ $rec->details }}</td> --}}
                             <td>
-                                <a href="#" class="btn btn-success">Traitement</a>
+                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-procla-{{ $rec->id }}" type="button">
+                                    Traitement
+                                </a>
                             </td>
+                            <div class="modal fade bs-example-modal-lg" id="modal-procla-{{ $rec->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myLargeModalLabel">Type de Prestation: {{ $prestation }}</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                           <div class="row mt-2 m-2 justify-content-center">
+                                                <div class="col-md-12 bg-success p-1">
+                                                    <h5 class="text-center text-white">Détails sur le l'applicant(e)</h5>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-bold">Type d'Applicant(e):</span>
+                                                    <span class="float-right">{{ $rec->type }}</span> <br>
+
+                                                    <span class="font-weight-bold">N° Immatriculation:</span>
+                                                    <span class="float-right">{{ $rec->numero }}</span> <br>
+
+                                                    <span class="font-weight-bold">Nom:</span>
+                                                    <span class="float-right">{{ $rec->nom }}</span> <br>
+
+                                                    <span class="font-weight-bold">Prenom:</span>
+                                                    <span class="float-right">{{ $rec->prenom }}</span> <br>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-bold">Date de naissance:</span>
+                                                    <span class="float-right">{{ $rec->date_naiss }}</span> <br>
+
+                                                    <span class="font-weight-bold">Adresse e-mail:</span>
+                                                    <span class="float-right">{{ $rec->add_email }}</span> <br>
+
+                                                    <span class="font-weight-bold">Téléphone:</span>
+                                                    <span class="float-right">{{ $rec->tel }}</span> <br>
+
+                                                    <span class="font-weight-bold">Adresse:</span>
+                                                    <span class="float-right">{{ $rec->adresse }}</span> <br>
+                                                </div>
+                                           </div>
+
+                                           <div class="row m-2 justify-content-center">
+                                                <div class="col-md-12 bg-success p-1">
+                                                    <h5 class="text-center text-white">Détails sur la réclamation</h5>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="pd-20 card-box height-100-p">
+                                                        <h4 class="mb-20 h6 font-weight-bold">Motif(s):</h4>
+                                                        <ul class="list-group">
+                                                            @foreach ($motifs as $motif)
+                                                            <li class="list-group-item">{{ DB::table('motifs')->where('id',$motif)->value('value') }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="pd-20 card-box height-100-p">
+                                                        <h4 class="mb-20 h6 font-weight-bold">Détails:</h4>
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item">{{ $rec->details }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                           </div>
+
+                                           <div class="row m-2 justify-content-center">
+                                                <div class="col-md-12 bg-success p-1">
+                                                    <h5 class="text-center text-white">Feedback après traitement du dossier</h5>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="weight-600 text-danger">(Ce champs est obligatoire !)</label>
+                                                    <div class="form-group">
+                                                        <textarea name="details" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                           </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cloturer le dossier</button>
+                                            <button type="button" class="btn btn-success">Voir la fiche de reclamation <i class="fa fa-print" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             {{-- <div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -149,7 +237,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>  --}}
                         </tr>
                     @endforeach
                 </tbody>
