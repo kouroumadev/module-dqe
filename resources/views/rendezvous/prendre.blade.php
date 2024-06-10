@@ -1,5 +1,27 @@
 @extends('app')
 @section('content')
+    <style>
+        .employe {
+            font-family: "Inter", sans-serif;
+            color: #131e22;
+            font-weight: 400;
+            height: 45px;
+            border-color: #d4d4d4;
+            letter-spacing: 0.035em;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+
+        }
+    </style>
     @include('header')
 
     {{-- <div style="margin-top: 100px;">
@@ -455,14 +477,16 @@
 
                                         <div class="form-group  ml-2">
                                             <label>No employe/employeur</label>
-                                            <input type="text" name="no_employe" id="no_employe" class="form-control">
+                                            <input type="text" name="no_employe" id="no_employe" value=""
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-6">
 
                                         <div class="form-group  ml-2">
                                             <label>Nom</label>
-                                            <input type="text" name="nom" id="nom" class="form-control">
+                                            <input type="text" name="nom" id="nom" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -471,14 +495,16 @@
 
                                         <div class="form-group  ml-2">
                                             <label>Prenom</label>
-                                            <input type="text" name="prenom" id="prenom" class="form-control">
+                                            <input type="text" name="prenom" id="prenom" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-6">
 
                                         <div class="form-group  ml-2">
                                             <label>Telephone</label>
-                                            <input type="text" name="telephone" id="telephone" class="form-control">
+                                            <input type="text" name="telephone" id="telephone" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +514,8 @@
                                     <div class="col-6">
                                         <div class="form-group  ml-2">
                                             <label>email</label>
-                                            <input type="text" name="email" id="email" class="form-control">
+                                            <input type="text" name="email" id="email" class="form-control"
+                                                required>
                                         </div>
 
                                     </div>
@@ -496,7 +523,7 @@
 
                                         <div class="form-group  ml-2">
                                             <label>adresse</label>
-                                            <textarea type="text" name="adresse" id="adresse" class="form-control"></textarea>
+                                            <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
                                         </div>
 
                                     </div>
@@ -504,7 +531,8 @@
 
                                 <div class="row justify-content-start">
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success">Valider le RDV</button>
+                                        <button type="submit" class="btn btn-success" id="send-rdv">Valider le
+                                            RDV</button>
                                     </div>
                                 </div>
                             </section>
@@ -524,6 +552,29 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $('#send-rdv').prop('disabled', true);
+            $('.form-control').on('change', function() {
+                var region = $("#region").val();
+                var nature = $("#nature").val();
+                var prestation = $("#prestation").val();
+                var date_rendezvous = $("#date_rendezvous").val();
+                var heure_rendezvous = $("#heure_rendezvous").val();
+                var no_employe = $("#no_employe").val();
+                var nom = $("#nom").val();
+                var prenom = $("#prenom").val();
+                var telephone = $("#telephone").val();
+                var email = $("#email").val();
+                var adresse = $('#adresse').val();
+                if (region != '' && nature != '' && prestation != '' && date_rendezvous != '' &&
+                    heure_rendezvous != '' &&
+                    no_employe != '' && nom != '' && prenom != '' && telephone != '' && email != '' &&
+                    adresse != '') {
+                    $('#send-rdv').prop('disabled', false);
+                } else {
+                    $('#send-rdv').prop('disabled', true);
+                }
+            });
 
             $('#nature').change(function() {
 
