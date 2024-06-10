@@ -10,6 +10,7 @@ class Reclamation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'num_dossier',
         'type',
         'numero',
         'nom',
@@ -21,5 +22,6 @@ class Reclamation extends Model
         'prestation_id',
         'motifs_id',
         'details',
+        'status',
     ];
 }
