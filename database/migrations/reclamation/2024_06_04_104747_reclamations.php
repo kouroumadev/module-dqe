@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
+            $table->string('num_dossier')->nullable();
             $table->string('type')->nullable();
             $table->string('numero')->nullable();
             $table->string('nom')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('prestation_id')->nullable();
             $table->json('motifs_id')->nullable();
             $table->string('details')->nullable();
+            $table->string('is_done')->nullable();
             $table->timestamps();
         });
     }
@@ -35,5 +36,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('reclamations');
     }
-
 };

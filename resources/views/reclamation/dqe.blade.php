@@ -14,6 +14,7 @@
                 role="grid" aria-describedby="DataTables_Table_0_info">
                 <thead class="bg-success">
                     <tr>
+                        <th class="table-plus text-white">N° Dossier</th>
                         <th class="table-plus text-white">N° Immat/Pension</th>
                         <th class="text-white">Prenom & Nom/Employeur</th>
                         {{-- <th class="text-white">Date Naissance</th>
@@ -34,8 +35,21 @@
                         $data = explode(" ", $rec->date_naiss);
                         $motifs = json_decode($rec->motifs_id);
                         $prestation = DB::table('prestations')->where('id',$rec->prestation_id)->value('value');
+
+                        if($rec->type == 'Employeur'){
+                            $date = "Date de création";
+                            $num = "N° Immatriculation";
+                        } else if($rec->type == 'Assure'){
+                            $date = "Date de naissance";
+                            $num = "N° Immatriculation";
+                        } else {
+                            $date = "Date de naissance";
+                            $num = "N° Pension";
+                        }
+
                     @endphp
                         <tr>
+                            <td class="font-weight-bold">{{ $rec->num_dossier }}</td>
                             <td class="">{{ $rec->numero }}</td>
                             <td class="">{{ $rec->prenom }} <span class="text-uppercase">{{ $rec->nom }}</span></td>
                             {{-- <td>{{ $data[0] }}</td>
@@ -55,29 +69,39 @@
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title text-center" id="myLargeModalLabel">Type de Prestation: {{ $prestation }}</h4>
+                                            <h4 class="modal-title text-center" id="myLargeModalLabel">DETAILS SUR LA RECLAMATION N° {{ $rec->num_dossier }}</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
                                            <div class="row mt-2 m-2 justify-content-center">
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-bold">N° DOSSIER:</span>
+                                                    <span class="float-right font-weight-bold">{{ $rec->num_dossier }}</span> <br> <hr>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-bold">TYPE DE PRESTATION:</span>
+                                                    <span class="float-right font-weight-bold">{{ $prestation }}</span> <br> <hr>
+                                                </div>
                                                 <div class="col-md-12 bg-success p-1">
-                                                    <h5 class="text-center text-white">Détails sur le l'applicant(e)</h5>
+                                                    <h5 class="text-center text-white">Détails sur l'applicant(e)</h5>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <span class="font-weight-bold">Type d'Applicant(e):</span>
-                                                    <span class="float-right">{{ $rec->type }}</span> <br>
+                                                    <span class="float-right text-uppercase">{{ $rec->type }}</span> <br>
 
-                                                    <span class="font-weight-bold">N° Immatriculation:</span>
+                                                    <span class="font-weight-bold">{{ $num }}:</span>
                                                     <span class="float-right">{{ $rec->numero }}</span> <br>
 
                                                     <span class="font-weight-bold">Nom:</span>
                                                     <span class="float-right">{{ $rec->nom }}</span> <br>
-
+                                                    @if ( $rec->type != 'Employeur')
                                                     <span class="font-weight-bold">Prenom:</span>
                                                     <span class="float-right">{{ $rec->prenom }}</span> <br>
+                                                    @endif
+
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <span class="font-weight-bold">Date de naissance:</span>
+                                                    <span class="font-weight-bold">{{ $date }}:</span>
                                                     <span class="float-right">{{ $rec->date_naiss }}</span> <br>
 
                                                     <span class="font-weight-bold">Adresse e-mail:</span>
@@ -130,114 +154,13 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-warning" data-dismiss="modal">Cloturer le dossier</button>
-                                            <button type="button" class="btn btn-success">Voir la fiche de reclamation <i class="fa fa-print" aria-hidden="true"></i></button>
+                                            <a href="{{ route('reclamation.home.pdf',$rec->id ) }}" class="btn btn-success">Voir la fiche de reclamation <i class="fa fa-print" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- <div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Tasks Add</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body pd-0">
 
-                                            <div class="profile-timeline">
-                                                <div class="timeline-month">
-                                                    <h5>Dossier en cours de traitement</h5>
-                                                </div>
-                                                <div class="profile-timeline-list">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="date">{{ $from_dept }}</div>
-
-
-                                                            <p>
-                                                                <span class="font-weight-bold text-success"><i class="icon-copy ion-folder"></i> Recu de: <span class="task-time">{{ $emp->deposants['0']->prenom_deposant }} {{ $emp->deposants['0']->nom_deposant }}</span></span> <br>
-                                                                <span class="font-weight-bold ml-2 text-success"><i class="ion-android-alarm-clock"></i> Date: <span class="task-time">{{ $emp->created_at->format('d M') }} {{ $emp->created_at->format('Y') }} à {{ $emp->created_at->format('H:i:s') }}</span></span>
-                                                            </p>
-                                                            <p>
-                                                                <span class="font-weight-bold text-success"><i class="icon-copy ion-folder"></i> Transmi à: <span class="task-time">{{ $to_dept }}</span></span> <br>
-                                                                <span class="font-weight-bold ml-2 text-success"><i class="ion-android-alarm-clock"></i> Date: <span class="task-time">{{ $emp->transfers['0']->created_at->format('d M') }} {{ $emp->transfers['0']->created_at->format('Y') }} à {{ $emp->transfers['0']->created_at->format('H:i:s') }}</span></span>
-                                                            </p>
-                                                            <p>
-                                                                <span class="font-weight-bold text-success"><i class="ion-ios-chatboxes"></i> Observation: <span class="task-time">{{ $emp->transfers['0']->note }}</span></span> <br>
-                                                            </p>
-
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 Aug</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 Aug</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="timeline-month">
-                                                    <h5>July, 2020</h5>
-                                                </div>
-                                                <div class="profile-timeline-list">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="date">12 July</div>
-                                                            <div class="task-name"><i class="ion-android-alarm-clock"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 July</div>
-                                                            <div class="task-name"><i class="ion-ios-chatboxes"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="timeline-month">
-                                                    <h5>June, 2020</h5>
-                                                </div>
-                                                <div class="profile-timeline-list">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="date">12 June</div>
-                                                            <div class="task-name"><i class="ion-android-alarm-clock"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 June</div>
-                                                            <div class="task-name"><i class="ion-ios-chatboxes"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 June</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Add</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  --}}
                         </tr>
                     @endforeach
                 </tbody>

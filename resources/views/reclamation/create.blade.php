@@ -370,11 +370,15 @@
         $('#type').change(function() {
             var type = $(this).val();
             // console.log(type);
-            if (type == 'Assure' || type == 'Employeur'){
+            if (type == 'Employeur'){
                 title = "Veuillez entrer le bon numero d'Immatriculation";
                 $('#num').text('N° Immatriculation');
                 $('#naiss').text('Date de création');
-            }else {
+            } else if(type == 'Assure'){
+                title = "Veuillez entrer le bon numero d'Immatriculation";
+                $('#num').text('N° Immatriculation');
+                $('#naiss').text('Date de naissance');
+            } else {
                 title = "Veuillez entrer le bon numero de Pension";
                 $('#num').text('N° Pension');
                 $('#naiss').text('Date de naissance');
