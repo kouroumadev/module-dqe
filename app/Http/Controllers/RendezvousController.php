@@ -24,7 +24,7 @@ class RendezvousController extends Controller
         $flag_recap = 0;
         $flag_conf = 0;
         $agence = DB::table('agence')->get();
-        $nature = NatureRendevou::all();
+        $nature = NatureRendevou::orderBy('id', 'DESC')->get();
         // dd($agence);
 
         return view('rendezvous.prendre', compact('flag_ref', 'flag_creneau', 'flag_recap', 'flag_conf', 'nature', 'agence'));
@@ -53,6 +53,7 @@ class RendezvousController extends Controller
     public function Conf(Request $request)
     {
 
+        dd($request->all());
         $nature = NatureRendevou::find($request->nature);
         //dd($request->region);
         $conf_id = uniqid();

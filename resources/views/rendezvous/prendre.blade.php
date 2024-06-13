@@ -21,6 +21,104 @@
             border-radius: .25rem;
 
         }
+
+        .form-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            padding: 5%;
+        }
+
+        .form-container {
+            min-width: 100vh;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .form-title {
+            padding: 10px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0;
+        }
+
+        .custom-progress-bar {
+            margin: 25px 0;
+            padding: 0;
+            overflow: hidden;
+            counter-reset: step;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+        }
+
+        .custom-progress-bar li {
+            list-style-type: none;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+        }
+
+        .custom-progress-bar li::before {
+            position: relative;
+            z-index: 2;
+            content: counter(step);
+            counter-increment: step;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 100%;
+            background-color: rgb(96, 198, 96);
+            margin: 0 auto 10px auto;
+            color: #f5f5f5;
+        }
+
+        .custom-progress-bar li::after {
+            content: " ";
+            width: 100%;
+            height: 6px;
+            background: rgb(96, 198, 96);
+            position: absolute;
+            left: -50%;
+            top: 17px;
+            z-index: 1;
+        }
+
+        .custom-progress-bar li.active::after,
+        .custom-progress-bar li.active::before {
+            background: linear-gradient(to right, rgb(96, 115, 198) 20%, rgb(96, 115, 198) 40%,
+                    rgb(96, 115, 198) 60%, rgb(96, 115, 198) 80%);
+            background-size: 200% auto;
+            animation: effect 1s linear infinite;
+            color: #f5f5f5;
+        }
+
+        @keyframes effect {
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        #step-group-2,
+        #step-group-3,
+        #step-group-4 {
+            display: none;
+        }
+
+        .error {
+            border-color: red;
+        }
     </style>
     @include('header')
 
@@ -348,53 +446,65 @@
                             <section>
                                 <h2 class="text-center" style="margin-bottom: 35px"> Choix de la Prestation</h2>
                                 <hr>
-                                <div class="row" style="margin-left: 15px">
-                                    <div class="col-5">
-                                        <div class="form-group  ml-2">
-                                            <label>Region</label>
-                                            <select class="custom-select" name="region" id="region">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row" style="margin-left: 15px">
+                                            <div class="col-10">
+                                                <div class="form-group  ml-2">
+                                                    <label>Region</label>
+                                                    <select class="custom-select" name="region" id="region">
 
-                                                @foreach ($agence as $value)
-                                                    <option value="{{ $value->libelle }}">{{ $value->libelle }}</option>
-                                                @endforeach
+                                                        @foreach ($agence as $value)
+                                                            <option value="{{ $value->libelle }}">{{ $value->libelle }}
+                                                            </option>
+                                                        @endforeach
 
-                                            </select>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
+                                        <div class="row" style="margin-left: 15px">
+                                            <div class="col-10">
 
-                                </div>
-                                <div class="row" style="margin-left: 15px">
-                                    <div class="col-5">
-
-                                        <div class="form-group  ml-2">
-                                            <label>Nature du rendez-vous</label>
-                                            <select class="custom-select" name="nature" id="nature">
-                                                @foreach ($nature as $value)
-                                                    <option value="{{ $value->id }}" selected>{{ $value->libelle }}
-                                                    </option>
-                                                @endforeach
+                                                <div class="form-group  ml-2">
+                                                    <label>Nature du rendez-vous</label>
+                                                    <select class="custom-select" name="nature" id="nature">
+                                                        @foreach ($nature as $value)
+                                                            <option value="{{ $value->id }}" selected>
+                                                                {{ $value->libelle }}
+                                                            </option>
+                                                        @endforeach
 
 
-                                            </select>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row" style="margin-left: 15px">
-                                    <div class="col-5">
-                                        <div class="form-group  mr-2">
-                                            <div class="form-group  ml-2">
-                                                <label>Prestation</label>
-                                                <select class="custom-select" name="prestation" id="prestation">
+                                        <div class="row" style="margin-left: 15px">
+                                            <div class="col-10">
+                                                <div class="form-group  mr-2">
+                                                    <div class="form-group  ml-2" id="prest_wrapper">
+                                                        <label>Prestation</label>
+                                                        <select class="custom-select" name="prestation" id="prestation">
 
 
-                                                </select>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group  ml-2" id="autre_wrapper" style="display: none">
+                                            <label>Autre choix</label>
+                                            <textarea type="text" name="autre" id="autre" class="form-control" required></textarea>
+                                        </div>
                                     </div>
                                 </div>
+
                             </section>
                             <!-- Step 2 -->
                             <h5>Choix du creneau</h5>
@@ -404,20 +514,7 @@
                                 <hr>
                                 <div class="row align-items-center" style="margin-left: 15px">
 
-                                    {{-- <table>
-                                        <tr>
-                                            <th>Agence:</th>
-                                            <td id="agence_disp_creneau"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nature du rendez-vous:</th>
-                                            <td id="nature_disp_creneau"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Prestation:</th>
-                                            <td id="prestation_disp_creneau"></td>
-                                        </tr>
-                                    </table> --}}
+
                                 </div>
 
                                 <div class="row" style="margin-top:30px">
@@ -540,6 +637,214 @@
                         </form>
                     </div>
                 </div>
+                {{-- <section class="form-wrapper">
+                    <div class="form-container">
+                        <form action="{{ route('rendezvous.conf') }}" method="post" id="multi-step-form">
+                            @csrf
+                            <div id="form-container-box">
+                                <h1 class="form-title">Multi Step Form</h1>
+                                <ul class="custom-progress-bar">
+                                    <li id="step1" class="active">User Info</li>
+                                    <li id="step2">Choix de la Prestation</li>
+                                    <li id="step3">Choix du creneau</li>
+                                    <li id="step4">Validation</li>
+                                </ul>
+
+                                <!-- =========== Step Group 1 =============== -->
+                                <div class="step-group" id="step-group-1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Etes-vous ? <span class="text-danger">*</span></label>
+                                                <select name="type2" required id="type2" class="custom-select col-12">
+                                                    <option selected value="null">-- Aucune selecion --</option>
+                                                    <option value="Assure">Assuré</option>
+                                                    <option value="Employeur">Employeur</option>
+                                                    <option value="Retraite">Retraite</option>
+                                                    <option value="Reversion">Reversion</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group" id="numDiv2" style="display:none">
+                                                <label id="num2"> <span class="text-danger">*</span></label>
+                                                <input name="numero2" required type="text" id="numero2"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+
+                                            <div class="form-group  ml-2">
+                                                <label>Prenom</label>
+                                                <input type="text" name="prenom" id="prenom" class="form-control"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+
+                                            <div class="form-group  ml-2">
+                                                <label>Telephone</label>
+                                                <input type="text" name="telephone" id="telephone" class="form-control"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-6">
+                                            <div class="form-group  ml-2">
+                                                <label>email</label>
+                                                <input type="text" name="email" id="email" class="form-control"
+                                                    required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+
+                                            <div class="form-group  ml-2">
+                                                <label>adresse</label>
+                                                <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-next-1">Suivant
+                                            &#65515;</button>
+                                    </div>
+                                </div>
+
+                                <!-- =========== Step Group 2 =============== -->
+                                <div class="step-group" id="step-group-2">
+                                    <div class="row" style="margin-left: 15px">
+                                        <div class="col-5">
+                                            <div class="form-group  ml-2">
+                                                <label>Region</label>
+                                                <select class="custom-select" name="region" id="region">
+
+                                                    @foreach ($agence as $value)
+                                                        <option value="{{ $value->libelle }}">{{ $value->libelle }}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-left: 15px">
+                                        <div class="col-5">
+
+                                            <div class="form-group  ml-2">
+                                                <label>Nature du rendez-vous</label>
+                                                <select class="custom-select" name="nature" id="nature">
+                                                    @foreach ($nature as $value)
+                                                        <option value="{{ $value->id }}" selected>{{ $value->libelle }}
+                                                        </option>
+                                                    @endforeach
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" style="margin-left: 15px">
+                                        <div class="col-5">
+                                            <div class="form-group  mr-2">
+                                                <div class="form-group  ml-2">
+                                                    <label>Prestation</label>
+                                                    <select class="custom-select" name="prestation" id="prestation">
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-1"> &#65513;
+                                            Precedent</button>
+                                        <button type="button" class="btn btn-primary " id="step-next-2">Suivant
+                                            &#65515;</button>
+                                    </div>
+                                </div>
+
+                                <!-- =========== Step Group 3 =============== -->
+                                <div class="step-group" id="step-group-3">
+                                    <div class="row" style="margin-top:30px">
+                                        <div class="col-md-6">
+                                            <div class="mb-20">
+                                                <div class="form-group">
+                                                    <label>Veuillez Selectionner la date souhaitee</label>
+
+                                                    <input class="form-control" placeholder="Date" type="date"
+                                                        name="date_rendezvous" id="date_rendezvous">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-20">
+                                                <div class="form-group">
+                                                    <label>Veuillez Selectionner un Horaire</label>
+
+                                                    <input class="form-control" placeholder="Heure" type="time"
+                                                        name="heure_rendezvous" id="heure_rendezvous">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-2"> &#65513;
+                                            Precedent</button>
+                                        <button type="button" class="btn btn-primary " id="step-next-3">suivant
+                                            &#65515;</button>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- =========== Step Group 4 =============== -->
+                                <div class="step-group" id="step-group-4">
+                                    <div class="row align-items-center">
+
+                                        <table style="margin-left: 15px; margin-bottom:10px;">
+                                            <tr>
+                                                <th>Agence:</th>
+                                                <td id="agence_disp_valide"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nature du rendez-vous:</th>
+                                                <td id="nature_disp_valide"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Prestation:</th>
+                                                <td id="prestation_disp_valide"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Horaire:</th>
+                                                <td> <span id="date_disp"></span> <span id="heure_disp"></span> </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-3"> &#65513;
+                                            Precedent</button>
+                                        <button type="submit" class="btn btn-primary " id="step-next-4">envoye
+                                            &#65515;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section> --}}
             </div>
         </div>
 
@@ -552,6 +857,62 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            // const form = document.getElementById("multi-step-form");
+            // const formContainerBox = document.getElementById("form-container-box");
+            // const step2 = document.getElementById("step2");
+            // const step3 = document.getElementById("step3");
+            // const stepGroup1 = document.getElementById("step-group-1");
+            // const stepGroup2 = document.getElementById("step-group-2");
+            // const stepGroup3 = document.getElementById("step-group-3");
+            // const stepGroup4 = document.getElementById("step-group-4");
+            // const stepNext1 = document.getElementById("step-next-1");
+            // const stepNext2 = document.getElementById("step-next-2");
+            // const stepNext3 = document.getElementById("step-next-3");
+            // const stepNext4 = document.getElementById("step-next-3");
+            // const stepPrev1 = document.getElementById("step-prev-1");
+            // const stepPrev2 = document.getElementById("step-prev-2");
+            // const stepPrev3 = document.getElementById("step-prev-3");
+            // ////////////// input Fields /////////////
+            // var numero = $("#numero2").val();
+            // const textArea = document.getElementById("area-example");
+            // stepNext1.addEventListener("click", () => {
+
+
+            //     stepGroup1.style.display = "none";
+            //     stepGroup2.style.display = "block";
+            //     step2.classList.add("active");
+
+
+
+
+            // })
+            // stepNext2.addEventListener("click", () => {
+            //     stepGroup2.style.display = "none";
+            //     stepGroup3.style.display = "block";
+            //     step3.classList.add("active");
+            // })
+            // stepNext3.addEventListener("click", () => {
+            //     stepGroup3.style.display = "none";
+            //     stepGroup4.style.display = "block";
+            //     step4.classList.add("active");
+            // })
+
+            // stepPrev1.addEventListener("click", () => {
+            //     stepGroup1.style.display = "block";
+            //     stepGroup2.style.display = "none";
+            //     step2.classList.remove("active");
+            // })
+            // stepPrev2.addEventListener("click", () => {
+            //     stepGroup2.style.display = "block";
+            //     stepGroup3.style.display = "none";
+            //     step3.classList.remove("active");
+            // })
+            // stepPrev3.addEventListener("click", () => {
+            //     stepGroup3.style.display = "block";
+            //     stepGroup4.style.display = "none";
+            //     step4.classList.remove("active");
+            // })
 
             $('#send-rdv').prop('disabled', true);
             $('.form-control').on('change', function() {
@@ -580,27 +941,41 @@
 
                 //alert(prestation)
                 var nature_val = $("#nature").val();
-                // alert(nature_val);
-                $.ajax({
-                    type: 'GET',
-                    url: "{{ route('prestation.ajax') }}",
-                    dataType: 'json',
-                    data: {
-                        nature_val: nature_val
-                    },
-                    success: function(data) {
-                        // console.log(data);
-                        $('select[name="prestation"]').html('');
-                        var d = $('select[name="prestation"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="prestation"]').append('<option value="' +
-                                value.libelle + '">' +
-                                value.libelle + '</option>')
-                        })
-                    }
-                })
+                if (nature_val == 3) {
+                    $("#prest_wrapper").hide();
+                    $("#autre_wrapper").show();
+                } else {
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('prestation.ajax') }}",
+                        dataType: 'json',
+                        data: {
+                            nature_val: nature_val
+                        },
+                        success: function(data) {
+                            // console.log(data);
+                            $('select[name="prestation"]').html('');
+                            var d = $('select[name="prestation"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="prestation"]').append(
+                                    '<option value="' +
+                                    value.libelle + '">' +
+                                    value.libelle + '</option>')
+                            })
+                        }
+                    })
+                }
+                //alert(nature_val);
 
 
+
+            });
+            $('#prestation').change(function() {
+                var prestation_val = $("#prestation").val();
+                if (prestation_val == "Autres") {
+
+                    $("#autre_wrapper").show();
+                }
             });
             $('#heure_rendezvous').blur(function() {
                 var region = $("#region").val();
@@ -626,7 +1001,7 @@
 
             $('#type').change(function() {
                 var type = $(this).val();
-                console.log(type);
+                // console.log(type);
                 if (type == 'Assure' || type == 'Employeur')
                     $('#num').text('N° Immatriculation');
                 else
@@ -636,6 +1011,21 @@
 
                 if (type == "null")
                     $('#numDiv').hide();
+
+            });
+
+            $('#type2').change(function() {
+                var type2 = $(this).val();
+                console.log(type2);
+                if (type2 == 'Assure' || type2 == 'Employeur')
+                    $('#num2').text('N° Immatriculation');
+                else
+                    $('#num2').text('N° Pension');
+
+                $('#numDiv2').show();
+
+                if (type2 == "null")
+                    $('#numDiv2').hide();
 
             });
         });
