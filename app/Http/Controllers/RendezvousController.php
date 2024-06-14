@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Rendezvous;
 use App\Models\NatureRendevou;
 use App\Models\PrestaRendevou;
 use App\Models\Rendezvou;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 class RendezvousController extends Controller
@@ -53,26 +55,61 @@ class RendezvousController extends Controller
     public function Conf(Request $request)
     {
 
-        dd($request->all());
+        //dd($request->all());
         $nature = NatureRendevou::find($request->nature);
-        //dd($request->region);
-        $conf_id = uniqid();
-        $rendezvous = new Rendezvou();
-        $rendezvous->no_conf = $conf_id;
-        $rendezvous->nom = $request->nom;
-        $rendezvous->prenom = $request->prenom;
-        $rendezvous->no_employe = $request->no_employe;
-        $rendezvous->adresse = $request->adresse;
-        $rendezvous->agence = $request->region;
-        $rendezvous->nature = $nature->libelle;
-        $rendezvous->prestation = $request->prestation;
-        $rendezvous->date_rendezvous = $request->date_rendezvous;
-        $rendezvous->heure_rendezvous = $request->heure_rendezvous;
-        $rendezvous->telephone = $request->telephone;
-        $rendezvous->email = $request->email;
-        $rendezvous->save();
+        $prestation = $request->prestation;
+        if ($prestation == 'Autres') {
+            $conf_id = uniqid();
+            $rendezvous = new Rendezvou();
+            $rendezvous->no_conf = $conf_id;
+            $rendezvous->nom = $request->nom;
+            $rendezvous->prenom = $request->prenom;
+            $rendezvous->no_employe = $request->no_employe;
+            $rendezvous->adresse = $request->adresse;
+            $rendezvous->agence = $request->region;
+            $rendezvous->nature = $nature->libelle;
+            $rendezvous->prestation = $request->autre;
+            $rendezvous->date_rendezvous = $request->date_rendezvous;
+            $rendezvous->heure_rendezvous = $request->heure_rendezvous;
+            $rendezvous->telephone = $request->telephone;
+            $rendezvous->email = $request->email;
+            $rendezvous->save();
 
-        return view('rendezvous.confirmation', compact('conf_id'));
+            $email = $request->email;
+            $nom = $request->nom;
+            $prenom = $request->prenom;
+            $code = $conf_id;
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+
+            return view('rendezvous.confirmation', compact('conf_id'));
+        } else {
+            $conf_id = uniqid();
+            $rendezvous = new Rendezvou();
+            $rendezvous->no_conf = $conf_id;
+            $rendezvous->nom = $request->nom;
+            $rendezvous->prenom = $request->prenom;
+            $rendezvous->no_employe = $request->no_employe;
+            $rendezvous->adresse = $request->adresse;
+            $rendezvous->agence = $request->region;
+            $rendezvous->nature = $nature->libelle;
+            $rendezvous->prestation = $request->prestation;
+            $rendezvous->date_rendezvous = $request->date_rendezvous;
+            $rendezvous->heure_rendezvous = $request->heure_rendezvous;
+            $rendezvous->telephone = $request->telephone;
+            $rendezvous->email = $request->email;
+            $rendezvous->save();
+
+            $email = $request->email;
+            $nom = $request->nom;
+            $prenom = $request->prenom;
+            $code = $conf_id;
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+
+            return view('rendezvous.confirmation', compact('conf_id'));
+        }
+
+        //dd($request->region);
+
     }
 
     public function GetPrestation(Request $request)

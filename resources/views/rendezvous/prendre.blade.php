@@ -500,7 +500,7 @@
                                     <div class="col-6">
                                         <div class="form-group  ml-2" id="autre_wrapper" style="display: none">
                                             <label>Autre choix</label>
-                                            <textarea type="text" name="autre" id="autre" class="form-control" required></textarea>
+                                            <textarea type="text" name="autre" id="autre" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -548,7 +548,7 @@
                                 <hr>
                                 <div class="row align-items-center">
 
-                                    <table style="margin-left: 15px; margin-bottom:10px;">
+                                    <table style="margin-left: 15px; margin-bottom:10px; width:100%">
                                         <tr>
                                             <th>Agence:</th>
                                             <td id="agence_disp_valide"></td>
@@ -572,11 +572,29 @@
                                 <div class="row" style="margin-top:20px">
                                     <div class="col-6">
 
-                                        <div class="form-group  ml-2">
-                                            <label>No employe/employeur</label>
-                                            <input type="text" name="no_employe" id="no_employe" value=""
-                                                class="form-control">
+                                        <div class="row">
+                                            <div class="col-ms-6" style="margin-left:15px;">
+                                                <p>Etes vous ? un(e) assuré(e) ou employeur</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="oui" value="oui">
+                                                    <label class="form-check-label" for="oui">OUI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="non" value="non">
+                                                    <label class="form-check-label" for="non">NON</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-ms-6">
+                                                <div class="form-group  ml-2" id="no_emp_wrapper" style="display: none">
+                                                    {{-- <label>No employe/employeur</label> --}}
+                                                    <input type="text" name="no_employe" id="no_employe"
+                                                        value="" class="form-control">
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div class="col-6">
 
@@ -928,8 +946,7 @@
                 var email = $("#email").val();
                 var adresse = $('#adresse').val();
                 if (region != '' && nature != '' && prestation != '' && date_rendezvous != '' &&
-                    heure_rendezvous != '' &&
-                    no_employe != '' && nom != '' && prenom != '' && telephone != '' && email != '' &&
+                    heure_rendezvous != '' && nom != '' && prenom != '' && telephone != '' && email != '' &&
                     adresse != '') {
                     $('#send-rdv').prop('disabled', false);
                 } else {
@@ -1027,6 +1044,12 @@
                 if (type2 == "null")
                     $('#numDiv2').hide();
 
+            });
+            $("#non").click(function() {
+                $("#no_emp_wrapper").hide();
+            });
+            $("#oui").click(function() {
+                $("#no_emp_wrapper").show();
             });
         });
     </script>
