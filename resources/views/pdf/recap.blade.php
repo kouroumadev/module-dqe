@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notification</title>
+    <title>recap</title>
     <style>
         @page {
             margin: 0cm 0cm;
@@ -50,7 +50,7 @@
     <header>
         <div style="display: flex">
             <div style="width: 35%">
-                <img src="{{ asset('logo.svg') }}" width="200" height="100">
+                <img src="{{ public_path('logo.svg') }}" width="200" height="100">
             </div>
             <div style="width: 40%; margin-top:15px; text-align:center">
                 <span style="font-size: 20px">RÉPUBLIQUE DE GUINNÉE</span>
@@ -73,138 +73,97 @@
 
             </div>
             <div style="width: 35%">
-                <img src="{{ asset('branding.png') }}" width="100" height="50" style="float: right; padding:10px">
+                <img src="{{ public_path('branding.png') }}" width="100" height="50"
+                    style="float: right; padding:10px">
             </div>
         </div>
 
     </header>
-
     <main style="font-size: 14px">
         <div
-            style="width: 70%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
-            <h1>QUITTANCE COTISATION</h1>
+            style="width: 50%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
+            <h1>QUITUS</h1>
+        </div>
+        <table style="width: 100%; margin-top:30px">
+            <tbody>
+                <tr style=" " ;>
+                    <td style="">Référence:</td>
+                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:60%; padding:10px  ">
+                        CNSS/DIRGA/5208/JANVIER-FEVRIER-MARS 24</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <p>Je soussigné Monsieur le DIRECTEUR GÉNÉRAL de la Caisse Nationale de Sécurité Sociale - CNSS - atteste
+                que la société</p>
+        </div>
+        <div
+            style="width: 100%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
+            <h2>ENTREPRISE DE CONSTRUCTION ET GESTION IMMOBILIERE</h2>
         </div>
 
-
-        <table style=" margin-top:15px;">
+        <p>déclare et paye ses cotisations sociales à bonne date tous les mois ou tous les trimestres, et au plus tard à
+            la date</p>
+        <table style="width: 100%; margin-top:30px">
             <tbody>
                 <tr>
-                    <td style="width:25%; padding-bottom:10px"> N° QUITTANCE:</td>
-                    <td style="width:60%">3004181920400202405</td>
+                    <td style="padding-bottom:10px; ">d'exigibilité.</td>
+                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%">
+                        17/02/2024</td>
                 </tr>
-                <tr style="">
-                    <td style="padding-bottom:10px">RAISON SOCIALE:</td>
-                    <td>CAISSE NATIONALE DE SECURITE SOCIALE</td>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">La dernière date d'acquittement de ses cotisations sociales est:
+                    </td>
+                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
+                        17/02/2024</td>
                 </tr>
-                <tr style="">
-                    <td style="padding-bottom:10px">ADRESSE:</td>
-                    <td>KALOUM CENTRE VILLE</td>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">Date d'expiration:</td>
+                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
+                        17/02/2024</td>
                 </tr>
-                <tr style="">
-                    <td style="padding-bottom:10px">N°EMPLOYEUR:</td>
-                    <td>3004181920400</td>
-                </tr>
-                <tr style="">
-                    <td style="padding-bottom:10px">CATEGORIE:</td>
-                    <td>E+20</td>
-                </tr>
-                <tr style="">
-                    <td style="padding-bottom:10px">SALARIÉS:</td>
-                    <td>1000</td>
-                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">En foi de quoi le présent Quitus lui est établi pour servir et
+                        valoir ce que de droit.</td>
 
-            </tbody>
-        </table>
-        <div style="display: flex;">
-            <div style="width: 35%">
-                <span>EMAIL:</span>
-            </div>
-            <div style="width: 35%">
-                <span>contact@gmail.com</span>
-            </div>
-            <div style="width: 35%">
-                <span>TÉLÉPHONE:</span>
-            </div>
-            <div style="width: 35%">
-                <span>+225 623 67 78 90</span>
-            </div>
-
-        </div>
-        <hr style="margin-bottom:0">
-        <hr style="margin-top:1px">
-        <table style=" width:100%;">
-            <tbody>
-
-                <tr style=" " ;>
-                    <td style="padding-bottom:10px">MONTANT À PAYER</td>
-                    <td style=" text-align:right ">
-                        1 098 0987 0987 GNF</td>
                 </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">PAIEMENT SUR</td>
-                    <td style=" text-align:right ">
-                        FACTURATION SUR PRINCIPAL</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">MONTANT PAYÉ</td>
-                    <td style=" text-align:right ">
-                        1 098 0987 0987 GNF</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">RESTE À PAYÉ</td>
-                    <td style=" text-align:right ">
-                        1 098 0987 0987 GNF</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">DATE DE PAIEMENT</td>
-                    <td style=" text-align:right ">
-                        03/05/2024</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">PERIODE DE PAIEMENT</td>
-                    <td style=" text-align:right ">
-                        03/05/2024</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">DATE LIMITE PAIEMENT</td>
-                    <td style=" text-align:right ">
-                        -</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">MODE DE PAIEMENT</td>
-                    <td style=" text-align:right ">
-                        VIREMENT</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">REFERENCE</td>
-                    <td style=" text-align:right ">
-                        CNSS20240503.1909.BS344R</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">BANQUE</td>
-                    <td style=" text-align:right ">
-                        UBA</td>
-                </tr>
-                <tr style=" ">
-                    <td style="padding-bottom:10px">MAJORATION DUE SUR LA PÉRIODE</td>
-                    <td style=" text-align:right ">
-                        0 GNF</td>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">Ce document est valable pour une période de:</td>
+                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
+                        2 Mois</td>
                 </tr>
             </tbody>
         </table>
-        <div style=" ">
-            <div style="">
-                <P>EN TOUTE LETTRE</P>
-            </div>
-            <div style="">
-                <P>CINQ CENT SOIXANTE-QUINZE MILLE FRANCS GUINÉENS</P>
-            </div>
 
-
-        </div>
-        <div style="display: flex">
-            <div style="text-align: left; width: 75%">
-                <img src="{{ asset('qrcode.svg') }}" width="200" height="100">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="display: flex;margin-top:60px">
+            <div style="text-align: left; width: 75%; ">
+                <img src="{{ public_path('qrcode.svg') }}" width="200" height="100">
             </div>
             <div style="text-align: right">
                 <p>Conakry 03 mai, 2024.</p>
