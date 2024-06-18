@@ -54,10 +54,10 @@
                                         <label >Etes-vous ? <span class="text-danger">*</span></label>
                                         <select name="type" required id="type" class="custom-select col-12">
                                             <option selected value="null">-- Aucune selecion --</option>
-                                            <option value="Assure">Assuré</option>
-                                            <option value="Employeur">Employeur</option>
-                                            <option value="Retraite">Retraite</option>
-                                            <option value="Reversion">Reversion</option>
+                                            <option value="Assure">ASSURE</option>
+                                            <option value="Employeur">EMPLOYEUR</option>
+                                            <option value="Retraite">RETRAITE</option>
+                                            <option value="Reversion">RTEVERSION</option>
                                         </select>
                                     </div>
                                 </div>
@@ -146,14 +146,14 @@
                                     </div>
                                 </div>
                                @endforeach
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio mb-5">
                                             <input checked type="radio" class="custom-control-input" value="0" name="prestation" id="customCheck1-666">
                                             <label class="custom-control-label" for="customCheck1-666">Autre</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </section>
@@ -165,18 +165,18 @@
                                     <label class="weight-600">Motif(s)</label>
                                     @foreach ($motifs as $m)
                                     <div class="form-group">
-                                        <div class="custom-control custom-checkbox mb-5">
+                                        <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="motifs[]" value="{{ $m->id }}" class="custom-control-input" id="{{ $m->id }}">
                                             <label class="custom-control-label" for="{{ $m->id }}">{{ $m->value }}</label>
                                         </div>
                                     </div>
                                     @endforeach
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <div class="custom-control custom-checkbox mb-5">
                                             <input type="checkbox" name="motifs[]" value="0" class="custom-control-input" id="customCheck1-100">
                                             <label class="custom-control-label" for="customCheck1-100">Autre</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-md-6">
                                     <label class="weight-600">Details de la demande</label>
@@ -269,7 +269,7 @@
 
                 if(type=="null" || numero=="" || nom=="" || prenom==""
                     || date_naiss=="" || add_email=="" || tel ==""
-                    || adresse=="" || motifs==false
+                     || motifs==false
                 ){
                     swal({
                         title: "Oops!",
