@@ -48,7 +48,48 @@
 <body>
 
     <header>
-        <div style="display: flex">
+        <table style="width: 100%;margin-bottom:10px">
+            <tbody>
+                <tr style="margin-top: 0 !important">
+
+                    <td style="width:35%">
+                        <img src="{{ public_path('logo.svg') }}" width="200" height="100">
+
+                    </td>
+                    <td>
+
+                        <table style="width:100%">
+                            <tr style="width: 100%">>
+                                <td style="width: 100%; font-size: 14px; text-align:center;">RÉPUBLIQUE DE GUINNÉE</td>
+                            </tr>
+                            <tr style="width: 100%">
+                                <td style="width: 100%; text-align:center; font-size: 12px;">Travail - Justice -
+                                    Solidarité</td>
+                            </tr>
+                            <tr style="width: 100%">
+                                <td style="width: 100%; font-size: 12px; text-align:center;">Caisse Nationale de
+                                    Sécurité Sociale</td>
+                            </tr>
+
+                        </table>
+                        <table style="width:100%">
+                            <tr>
+                                <td style="background-color: red; width:5%; height:2px"></td>
+                                <td style="background-color: yellow; width:5%"></td>
+                                <td style="background-color: green; width:5%"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:35%;">
+                        <img src="{{ public_path('branding.png') }}" width="100" height="70"
+                            style="position: relative; left:60px">
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        {{-- <div style="display: flex; flex-direction:row">
             <div style="width: 35%">
                 <img src="{{ public_path('logo.svg') }}" width="200" height="100">
             </div>
@@ -76,40 +117,30 @@
                 <img src="{{ public_path('branding.png') }}" width="100" height="50"
                     style="float: right; padding:10px">
             </div>
-        </div>
+        </div> --}}
 
     </header>
     <main style="font-size: 14px">
         <div
             style="width: 50%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
-            <h1>QUITUS</h1>
+            <h1>Reçu pour le Rendez-vous</h1>
         </div>
         <table style="width: 100%; margin-top:30px">
             <tbody>
                 <tr style=" " ;>
                     <td style="">Référence:</td>
-                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:60%; padding:10px  ">
-                        CNSS/DIRGA/5208/JANVIER-FEVRIER-MARS 24</td>
+                    <td style=" text-align:center; width:60%; padding:10px  ">
+                        {{ $rendezvous[0]->no_conf }}</td>
                 </tr>
             </tbody>
         </table>
-        <div>
-            <p>Je soussigné Monsieur le DIRECTEUR GÉNÉRAL de la Caisse Nationale de Sécurité Sociale - CNSS - atteste
-                que la société</p>
-        </div>
-        <div
-            style="width: 100%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
-            <h2>ENTREPRISE DE CONSTRUCTION ET GESTION IMMOBILIERE</h2>
-        </div>
 
-        <p>déclare et paye ses cotisations sociales à bonne date tous les mois ou tous les trimestres, et au plus tard à
-            la date</p>
         <table style="width: 100%; margin-top:30px">
             <tbody>
                 <tr>
-                    <td style="padding-bottom:10px; ">d'exigibilité.</td>
-                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%">
-                        17/02/2024</td>
+                    <td style="padding-bottom:10px; ">Prenom et Nom:</td>
+                    <td style=" text-align:center; width:35%">
+                        {{ $rendezvous[0]->prenom }} {{ $rendezvous[0]->nom }}</td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
@@ -117,10 +148,10 @@
                 <tr></tr>
                 <tr></tr>
                 <tr>
-                    <td style="padding-bottom:10px">La dernière date d'acquittement de ses cotisations sociales est:
+                    <td style="padding-bottom:10px">Adresse:
                     </td>
-                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
-                        17/02/2024</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->adresse }}</td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
@@ -128,9 +159,9 @@
                 <tr></tr>
                 <tr></tr>
                 <tr>
-                    <td style="padding-bottom:10px">Date d'expiration:</td>
-                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
-                        17/02/2024</td>
+                    <td style="padding-bottom:10px">E-mail:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->email }}</td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
@@ -138,8 +169,11 @@
                 <tr></tr>
                 <tr></tr>
                 <tr>
-                    <td style="padding-bottom:10px">En foi de quoi le présent Quitus lui est établi pour servir et
-                        valoir ce que de droit.</td>
+                <tr>
+                    <td style="padding-bottom:10px">Telephone:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->telephone }}</td>
+                </tr>
 
                 </tr>
                 <tr></tr>
@@ -148,9 +182,39 @@
                 <tr></tr>
                 <tr></tr>
                 <tr>
-                    <td style="padding-bottom:10px">Ce document est valable pour une période de:</td>
-                    <td style=" text-align:center;background-color:rgb(108, 216, 108); width:20%  ">
-                        2 Mois</td>
+                    <td style="padding-bottom:10px">Lieu de Rendez-vous:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->agence }}</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">Nature du Rendez-vous:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->nature }}</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">Prestation:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->prestation }}</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="padding-bottom:10px">Date et heure du Rendez-vous:</td>
+                    <td style=" text-align:center; width:35%  ">
+                        {{ $rendezvous[0]->date_rendezvous }} à {{ $rendezvous[0]->heure_rendezvous }}</td>
                 </tr>
             </tbody>
         </table>
@@ -163,12 +227,12 @@
         <br>
         <div style="display: flex;margin-top:60px">
             <div style="text-align: left; width: 75%; ">
-                <img src="{{ public_path('qrcode.svg') }}" width="200" height="100">
+                <img src="{{ public_path('qrcode.svg') }}" width="100" height="100">
             </div>
-            <div style="text-align: right">
+            {{-- <div style="text-align: right">
                 <p>Conakry 03 mai, 2024.</p>
                 <p>Le Directeur Général</p>
-            </div>
+            </div> --}}
         </div>
 
     </main>

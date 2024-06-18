@@ -587,10 +587,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-ms-6">
-                                                <div class="form-group  ml-2" id="no_emp_wrapper" style="display: none">
+                                                <div class="form-group" id="no_emp_wrapper"
+                                                    style="display: none; margin-left:15px">
                                                     {{-- <label>No employe/employeur</label> --}}
                                                     <input type="text" name="no_employe" id="no_employe"
-                                                        value="" class="form-control">
+                                                        value="" placeholder="n° assuré(e)" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
