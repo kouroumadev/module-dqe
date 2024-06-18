@@ -7,6 +7,16 @@
         @page {
             margin: 40px;
         }
+
+        body {
+            /* margin-top: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm; */
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+
+        }
         .foot {
             position: fixed;
             bottom: -60px;

@@ -22,7 +22,7 @@
                         <th class="text-white">Adresse</th>
                         <th class="text-white">Telephone</th> --}}
                         <th class="text-white">Type</th>
-                        <th class="text-white">Prestation</th>
+                        {{-- <th class="text-white">Prestation</th> --}}
                         {{-- <th class="text-white">Motif(s)</th>
                         <th class="text-white">Details</th> --}}
                         <th class="datatable-nosort text-white">Action</th>
@@ -57,7 +57,7 @@
                             <td>{{ $rec->adresse }}</td>
                             <td>{{ $rec->tel }}</td> --}}
                             <td>{{ $rec->type }}</td>
-                            <td>{{ $prestation }}</td>
+                            {{-- <td>{{ $prestation }}</td> --}}
                             {{-- <td>{{ $rec->motifs_id }}</td>
                             <td>{{ $rec->details }}</td> --}}
                             <td>
