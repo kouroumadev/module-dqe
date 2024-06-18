@@ -125,21 +125,23 @@
             style="width: 50%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
             <h1>Reçu pour le Rendez-vous</h1>
         </div>
-        <table style="width: 100%; margin-top:30px">
-            <tbody>
-                <tr style=" " ;>
-                    <td style="">Référence:</td>
-                    <td style=" text-align:center; width:60%; padding:10px  ">
-                        {{ $rendezvous[0]->no_conf }}</td>
-                </tr>
-            </tbody>
-        </table>
 
         <table style="width: 100%; margin-top:30px">
             <tbody>
                 <tr>
+                    <td style="padding-bottom:10px; ">Référence:</td>
+                    <td style=" text-align:right; width:35%">
+                        <strong> {{ $rendezvous[0]->no_conf }}</strong>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
                     <td style="padding-bottom:10px; ">Prenom et Nom:</td>
-                    <td style=" text-align:center; width:35%">
+                    <td style=" text-align:right; width:35%">
                         {{ $rendezvous[0]->prenom }} {{ $rendezvous[0]->nom }}</td>
                 </tr>
                 <tr></tr>
@@ -150,7 +152,7 @@
                 <tr>
                     <td style="padding-bottom:10px">Adresse:
                     </td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->adresse }}</td>
                 </tr>
                 <tr></tr>
@@ -160,7 +162,7 @@
                 <tr></tr>
                 <tr>
                     <td style="padding-bottom:10px">E-mail:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->email }}</td>
                 </tr>
                 <tr></tr>
@@ -171,7 +173,7 @@
                 <tr>
                 <tr>
                     <td style="padding-bottom:10px">Telephone:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->telephone }}</td>
                 </tr>
 
@@ -183,7 +185,7 @@
                 <tr></tr>
                 <tr>
                     <td style="padding-bottom:10px">Lieu de Rendez-vous:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->agence }}</td>
                 </tr>
                 <tr></tr>
@@ -193,7 +195,7 @@
                 <tr></tr>
                 <tr>
                     <td style="padding-bottom:10px">Nature du Rendez-vous:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->nature }}</td>
                 </tr>
                 <tr></tr>
@@ -203,7 +205,7 @@
                 <tr></tr>
                 <tr>
                     <td style="padding-bottom:10px">Prestation:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->prestation }}</td>
                 </tr>
                 <tr></tr>
@@ -213,7 +215,7 @@
                 <tr></tr>
                 <tr>
                     <td style="padding-bottom:10px">Date et heure du Rendez-vous:</td>
-                    <td style=" text-align:center; width:35%  ">
+                    <td style=" text-align:right; width:35%  ">
                         {{ $rendezvous[0]->date_rendezvous }} à {{ $rendezvous[0]->heure_rendezvous }}</td>
                 </tr>
             </tbody>

@@ -126,7 +126,7 @@ class RendezvousController extends Controller
         $data['rendezvous'] = Rendezvou::where('no_conf', $id)->get();
         $pdf = PDF::loadView('pdf.recap', $data);
 
-        return $pdf->download('document.pdf');
+        return $pdf->stream('document.pdf');
 
     }
 }
