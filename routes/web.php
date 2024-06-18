@@ -25,6 +25,7 @@ Route::post('/reclamation/store', [
     App\Http\Controllers\ReclamationController::class,
     'store',
 ])->name('reclamation.store');
+
 Route::get('/reclamation/getInfo', [
     App\Http\Controllers\ReclamationController::class,
     'getInfo',
@@ -34,6 +35,7 @@ Route::get('/reclamation/dqe', [
     App\Http\Controllers\ReclamationController::class,
     'dqe',
 ])->name('reclamation.dqe');
+
 Route::get('/reclamation/home/pdf/{id}', [
     App\Http\Controllers\ReclamationController::class,
     'homePdf',
