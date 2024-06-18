@@ -269,7 +269,7 @@
 
                 if(type=="null" || numero=="" || nom=="" || prenom==""
                     || date_naiss=="" || add_email=="" || tel ==""
-                     || motifs==false
+                    || adresse=="" || motifs==false
                 ){
                     swal({
                         title: "Oops!",
