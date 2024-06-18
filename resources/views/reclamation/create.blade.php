@@ -4,8 +4,8 @@
 <div class="main-container px-5">
     <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
         <div class="col-md-6">
-            <div style="height: 100px; width: 422px;">
-                <img src="{{ asset('logos/logo-top-original.png') }}" class="img-fluid" alt="here logo" srcset="">
+            <div style="height: 109px; width: 286px;">
+                <img src="{{ asset('new logo.jpeg') }}" class="img-fluid" alt="here logo" srcset="">
             </div>
         </div>
         <div class="col-md-6 bg-success">

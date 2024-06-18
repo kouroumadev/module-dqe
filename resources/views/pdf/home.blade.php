@@ -64,7 +64,7 @@
                     </tr>
                     <tr style="">
                         <td style="width:100%; text-align:left;">
-                            <img src="{{ public_path('LOgo-CNSS.png') }}" width="260" height="100"> <br>
+                            <img src="{{ public_path('new logo.jpeg') }}" width="260" height="100"> <br>
                         </td>
                         <td style="width:100%; text-align:center;">
                             <span style="font-weight:bold"> REPUBLIQUE DE GUINEE</span>
