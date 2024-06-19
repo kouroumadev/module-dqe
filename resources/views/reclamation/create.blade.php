@@ -4,8 +4,8 @@
 <div class="main-container px-5">
     <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
         <div class="col-md-6">
-            <div style="height: 100px; width: 422px;">
-                <img src="{{ asset('logos/logo-top-original.png') }}" class="img-fluid" alt="here logo" srcset="">
+            <div style="height: 109px; width: 286px;">
+                <img src="{{ asset('new logo.jpeg') }}" class="img-fluid" alt="here logo" srcset="">
             </div>
         </div>
         <div class="col-md-6 bg-success">
@@ -59,6 +59,9 @@
                                             <option value="Retraite">RETRAITE</option>
                                             <option value="Reversion">RTEVERSION</option>
                                         </select>
+                                        <small class="form-text text-muted">
+                                            Vous n'etes ni pensioné ni immatruculé ? <a href="{{ route('rendezvous.index') }}" class="text-success">cliquez pour prendre un rendez-vous</a>
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -79,7 +82,7 @@
                                     <div class="form-group">
                                         <label>Adresse Email<span class="text-danger">*</span></label>
                                         <input required type="email" id="mail" class="form-control">
-                                        <small class="form-text text-muted">
+                                        <small class="form-text text-danger">
                                            Cette adresse e-mail sera utliser pour vous envoyez des informations relatives à votre reclamation.
                                         </small>
                                     </div>
@@ -344,7 +347,7 @@
                                 $('#prenom').attr('readonly', false);
                             if(data[2] == null)
                                 $('#date_naiss').attr('readonly', false);
-                            if(data[2] == null)
+                            if(data[3] == null)
                                 $('#adresse').attr('readonly', false);
                         }
                         // $('#numero').removeClass("form-control-danger");

@@ -7,6 +7,16 @@
         @page {
             margin: 40px;
         }
+
+        body {
+            /* margin-top: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm; */
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+
+        }
         .foot {
             position: fixed;
             bottom: -60px;
@@ -54,7 +64,7 @@
                     </tr>
                     <tr style="">
                         <td style="width:100%; text-align:left;">
-                            <img src="{{ public_path('LOgo-CNSS.png') }}" width="260" height="100"> <br>
+                            <img src="{{ public_path('new logo.jpeg') }}" width="260" height="100"> <br>
                         </td>
                         <td style="width:100%; text-align:center;">
                             <span style="font-weight:bold"> REPUBLIQUE DE GUINEE</span>
