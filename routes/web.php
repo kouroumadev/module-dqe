@@ -10,12 +10,22 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
 |
 */
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
+
 //// Routes reclamations //////////
 Route::get('/reclamation/create', [
     App\Http\Controllers\ReclamationController::class,
