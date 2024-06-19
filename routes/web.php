@@ -50,10 +50,22 @@ Route::get('/rendezvous/prendre', [
     App\Http\Controllers\RendezvousController::class,
     'Prendre',
 ])->name('rendezvous.prendre');
-Route::post('/rendezvous/ref', [
+Route::get('/rendezvous/gestion', [
     App\Http\Controllers\RendezvousController::class,
-    'Reference',
-])->name('rendezvous.reference');
+    'Gestion',
+])->name('rendezvous.gestion');
+Route::post('/rendezvous/edit', [
+    App\Http\Controllers\RendezvousController::class,
+    'Edit',
+])->name('rendezvous.edit');
+Route::get('/rendezvous/delete/{id}', [
+    App\Http\Controllers\RendezvousController::class,
+    'Delete',
+])->name('rendezvous.delete');
+// Route::post('/rendezvous/ref', [
+//     App\Http\Controllers\RendezvousController::class,
+//     'Reference',
+// ])->name('rendezvous.reference');
 Route::post('/rendezvous/recap', [
     App\Http\Controllers\RendezvousController::class,
     'Recap',

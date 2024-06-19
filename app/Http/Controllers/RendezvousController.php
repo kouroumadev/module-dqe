@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RendezvousController extends Controller
 {
@@ -27,6 +28,80 @@ class RendezvousController extends Controller
         // dd($agence);
 
         return view('rendezvous.prendre', compact('nature', 'agence'));
+    }
+
+    public function Gestion()
+    {
+
+        return view('rendezvous.gestion');
+    }
+
+    public function Edit(Request $request)
+    {
+        $email = $request->email;
+        $no_conf = $request->no_conf;
+        $telephone = $request->telephone;
+
+        if ($no_conf != null) {
+            $info = Rendezvou::where('no_conf', $no_conf)->get();
+            //dd(count($info));
+            if (count($info) == 0) {
+                Alert::error('error', 'Ce Numero est incorrect');
+
+                return redirect()->back();
+            } else {
+                return view('rendezvous.edit', compact('info'));
+            }
+        } elseif ($email != null) {
+            $info = Rendezvou::where('email', $email)->get();
+            //dd(count($info));
+            if (count($info) == 0) {
+                Alert::error('error', 'Cet email est incorrect');
+
+                return redirect()->back();
+            } elseif (count($info) > 1) {
+                //dd($info);
+
+                return view('rendezvous.liste', compact('info'));
+            } else {
+                return view('rendezvous.edit', compact('info'));
+            }
+        } elseif ($telephone != null) {
+            $info = Rendezvou::where('telephone', $telephone)->get();
+
+            if (count($info) == 0) {
+                Alert::error('error', 'Ce Numero est incorrect');
+
+                return redirect()->back();
+            } elseif (count($info) > 1) {
+                return view('rendezvous.liste', compact('info'));
+            } else {
+                return view('rendezvous.edit', compact('info'));
+            }
+        } elseif ($telephone != null && $email != null && $telephone != null) {
+            $info = Rendezvou::where('telephone', $telephone)->where('email', $email)->where('no_conf', $no_conf)->get();
+
+            if (count($info) == 0) {
+                Alert::error('error', 'Information incorrecte');
+
+                return redirect()->back();
+            } else {
+                return view('rendezvous.edit', compact('info'));
+            }
+        } else {
+            Alert::error('error', 'Les champs ne doivent pas etre vide');
+
+            return redirect()->back();
+        }
+
+    }
+
+    public function Delete($id)
+    {
+        $delete = Rendezvou::where('no_conf', $id)->delete();
+
+        return view('rendezvous.delete');
+
     }
 
     // public function Reference(Request $request)

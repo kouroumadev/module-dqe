@@ -28,6 +28,11 @@
                 <div class="modal-footer m-auto" style="border-top: none">
                     <a href="{{ route('rendezvous.prendre') }}" type="button" class="btn btn-success" data-dismiss="modal">
                         <i class="icon-copy fa fa-calendar" aria-hidden="true"></i> Prise de rendez-vous</a>
+
+                    <a href="{{ route('rendezvous.gestion') }}" type="button" class="btn btn-success" data-dismiss="modal"
+                        style="margin-left:30px">
+                        <i class="icon-copy fa fa-edit" aria-hidden="true"></i> Gérer mes
+                        rendez-vous</a>
                 </div>
             </div>
         </div>
