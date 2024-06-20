@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 RewriteEngine On
 RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+
 |
 */
 
@@ -22,9 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/foo', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/foo', function () {
+//     Artisan::call('storage:link');
+// });
 
 //// Routes reclamations //////////
 Route::get('/reclamation/create', [
