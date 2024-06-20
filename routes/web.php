@@ -52,7 +52,7 @@ Route::get('/reclamation/home/pdf/{id}', [
 ])->name('reclamation.home.pdf');
 
 //// Routes rendez-vous //////////
-Route::get('/rendezvous/index', [
+Route::get('/index', [
     App\Http\Controllers\RendezvousController::class,
     'Index',
 ])->name('rendezvous.index');

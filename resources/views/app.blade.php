@@ -48,7 +48,7 @@
         href="{{ asset('theme/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4- toggle@3.6.1/css/bootstrap4-toggle.min.css"
         rel="stylesheet">
-
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
@@ -191,6 +191,7 @@
 
         // }
     </script>
+   
 </body>
 
 </html>

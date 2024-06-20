@@ -429,7 +429,10 @@
 
 
     </div> --}}
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
 
     <div class="main-container px-5">
 
@@ -447,7 +450,7 @@
                                 <h2 class="text-center" style="margin-bottom: 35px"> Choix de la Prestation</h2>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="row" style="margin-left: 15px">
                                             <div class="col-10">
                                                 <div class="form-group  ml-2">
@@ -497,7 +500,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="form-group  ml-2" id="autre_wrapper" style="display: none">
                                             <label>Autre choix</label>
                                             <textarea type="text" name="autre" id="autre" class="form-control"></textarea>
@@ -523,7 +526,8 @@
                                             <div class="form-group">
                                                 <label>Veuillez Selectionner la date souhaitee</label>
 
-                                                <input class="form-control" placeholder="Date" type="date"
+
+                                                <input class="form-control" placeholder="Date" type="text"
                                                     name="date_rendezvous" id="date_rendezvous">
                                             </div>
                                         </div>
@@ -570,7 +574,7 @@
 
                                 <h5 class="">Pour confirmer le rendez vous, remplissez les champs ci-dessous :</h5>
                                 <div class="row" style="margin-top:20px">
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="row">
                                             <div class="col-ms-6" style="margin-left:15px;">
@@ -597,7 +601,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="form-group  ml-2">
                                             <label>Nom</label>
@@ -607,7 +611,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="form-group  ml-2">
                                             <label>Prenom</label>
@@ -615,7 +619,7 @@
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="form-group  ml-2">
                                             <label>Telephone</label>
@@ -627,7 +631,7 @@
 
                                 <div class="row">
 
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group  ml-2">
                                             <label>email</label>
                                             <input type="text" name="email" id="email" class="form-control"
@@ -635,7 +639,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="form-group  ml-2">
                                             <label>adresse</label>
@@ -963,6 +967,8 @@
                     $("#prest_wrapper").hide();
                     $("#autre_wrapper").show();
                 } else {
+                    $("#prest_wrapper").show();
+                    $("#autre_wrapper").hide();
                     $.ajax({
                         type: 'GET',
                         url: "{{ route('prestation.ajax') }}",
@@ -993,6 +999,8 @@
                 if (prestation_val == "Autres") {
 
                     $("#autre_wrapper").show();
+                } else {
+                    $("#autre_wrapper").hide();
                 }
             });
             $('#heure_rendezvous').blur(function() {
@@ -1051,6 +1059,13 @@
             });
             $("#oui").click(function() {
                 $("#no_emp_wrapper").show();
+            });
+        });
+
+        $(function() {
+            $("#date_rendezvous").datepicker({
+                minDate: -20,
+                maxDate: "+1M +10D"
             });
         });
     </script>

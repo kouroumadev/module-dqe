@@ -1226,7 +1226,7 @@ table.dataTable.dtr-inline.collapsed
 .header-left .menu-icon,
 .header-left .search-toggle-icon,
 .sidebar-light .brand-logo a .light-logo,
-.sidebar-menu .submenu li.dropdown:before {
+.sidebar-menu .submenu li.dropdown:before, .header-right .user-notification {
   display: none;
 }
 .header-left .header-search {
@@ -3870,7 +3870,7 @@ body.IE .register-page-wrap .container {
     padding-left: 0;
     padding-right: 0;
   }
-  .header-left .menu-icon {
+  .header-left .menu-icon , .header-right .user-notification {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3954,6 +3954,7 @@ body.IE .register-page-wrap .container {
     background: #fff;
     display: none;
   }
+ 
   .register-page-wrap .wizard-content .wizard {
     padding-left: 300px;
   }
