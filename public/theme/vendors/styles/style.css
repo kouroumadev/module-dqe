@@ -3875,8 +3875,12 @@ body.IE .register-page-wrap .container {
     display: -ms-flexbox;
     display: flex;
   }
+  
   .header {
     width: 100%;
+  }
+  .header .contact {
+    display: none;
   }
   .left-side-bar {
     left: -281px;

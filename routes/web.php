@@ -21,7 +21,7 @@ RewriteRule ^(.*)$ public/$1 [L]
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('rendezvous.index');
 });
 
 // Route::get('/foo', function () {
@@ -90,6 +90,14 @@ Route::get('/rendezvous/get-prestation', [
     App\Http\Controllers\RendezvousController::class,
     'GetPrestation',
 ])->name('prestation.ajax');
+Route::get('/rendezvous/get-date', [
+    App\Http\Controllers\RendezvousController::class,
+    'GetDate',
+])->name('date.ajax');
+Route::get('/rendezvous/get-horaire', [
+    App\Http\Controllers\RendezvousController::class,
+    'GetHoraire',
+])->name('horaire.ajax');
 Route::get('/rendezvous/recap-pdf/{id}', [
     App\Http\Controllers\RendezvousController::class,
     'RecapPdf',

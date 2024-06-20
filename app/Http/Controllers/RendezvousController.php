@@ -6,6 +6,7 @@ use App\Mail\Rendezvous;
 use App\Models\NatureRendevou;
 use App\Models\PrestaRendevou;
 use App\Models\Rendezvou;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -193,6 +194,28 @@ class RendezvousController extends Controller
         // $data = $prestation;
 
         return response()->json($prestation, 200);
+    }
+
+    public function GetDate(Request $request)
+    {
+        $current_date = Carbon::now()->format('Y-m-d');
+        $date = $request->date_val;
+        if ($date < $current_date) {
+            return response()->json('error', 200);
+        }
+
+    }
+
+    public function GetHoraire(Request $request)
+    {
+
+        $date = $request->date_rendezvous;
+        $heure = $request->heure_rendezvous;
+        $exist = Rendezvou::where('date_rendezvous', $date)->where('heure_rendezvous', $heure)->get();
+        if (count($exist) == 1) {
+            return response()->json('error', 200);
+        }
+
     }
 
     public function RecapPdf($id)

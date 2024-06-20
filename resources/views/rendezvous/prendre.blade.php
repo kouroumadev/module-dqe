@@ -445,9 +445,98 @@
                             method="post">
                             @csrf
 
-                            <h5>Choix de la Prestation</h5>
+                            <h5>Identification</h5>
                             <section>
-                                <h2 class="text-center" style="margin-bottom: 35px"> Choix de la Prestation</h2>
+                                <h2 class="text-center" style="margin-bottom: 35px"> Identification</h2>
+                                <hr>
+                                <div class="row" style="margin-top:20px">
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+                                        <div class="row">
+                                            <div class="col-ms-6" style="margin-left:15px;">
+                                                <p>Etes vous ? un(e) assuré(e) ou employeur</p>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="oui" value="oui">
+                                                    <label class="form-check-label" for="oui">OUI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="non" value="non">
+                                                    <label class="form-check-label" for="non">NON</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group  ml-2">
+                                            <label>Nom</label>
+                                            <input type="text" name="nom" id="nom" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group" id="no_emp_wrapper" style="display: none; margin-left:15px">
+                                            <label>No employe/employeur</label>
+                                            <input type="text" name="no_employe" id="no_employe" value=""
+                                                placeholder="n° assuré(e)" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+                                        <div class="form-group  ml-2">
+                                            <label>Prenom</label>
+                                            <input type="text" name="prenom" id="prenom" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+                                        <div class="form-group  ml-2">
+                                            <label>Telephone</label>
+                                            <input type="text" name="telephone" id="telephone" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group  ml-2">
+                                            <label>email</label>
+                                            <input type="text" name="email" id="email" class="form-control"
+                                                required>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+                                        <div class="form-group  ml-2">
+                                            <label>adresse</label>
+                                            <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </section>
+                            <!-- Step 2 -->
+                            <h5>Choix de Prestation</h5>
+                            <section>
+                                <h2 class="text-center" style="margin-bottom: 35px"> Choix de Prestation</h2>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
@@ -507,9 +596,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </section>
-                            <!-- Step 2 -->
+                            {{-- Step 3 --}}
                             <h5>Choix du creneau</h5>
                             <section>
 
@@ -527,7 +615,7 @@
                                                 <label>Veuillez Selectionner la date souhaitee</label>
 
 
-                                                <input class="form-control" placeholder="Date" type="text"
+                                                <input class="form-control" placeholder="Date" type="date"
                                                     name="date_rendezvous" id="date_rendezvous">
                                             </div>
                                         </div>
@@ -554,6 +642,22 @@
 
                                     <table style="margin-left: 15px; margin-bottom:10px; width:100%">
                                         <tr>
+                                            <th>Prénoms et Nom:</th>
+                                            <td> <span id="prenom_disp"></span> <span id="nom_disp"></span> </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email:</th>
+                                            <td id="email_disp_valide"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Telephone:</th>
+                                            <td id="telephone_disp_valide"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adresse:</th>
+                                            <td id="adresse_disp_valide"></td>
+                                        </tr>
+                                        <tr>
                                             <th>Agence:</th>
                                             <td id="agence_disp_valide"></td>
                                         </tr>
@@ -567,87 +671,12 @@
                                         </tr>
                                         <tr>
                                             <th>Horaire:</th>
-                                            <td> <span id="date_disp"></span> <span id="heure_disp"></span> </td>
+                                            <td> <span id="date_disp"></span> à <span id="heure_disp"></span> </td>
                                         </tr>
                                     </table>
                                 </div>
 
-                                <h5 class="">Pour confirmer le rendez vous, remplissez les champs ci-dessous :</h5>
-                                <div class="row" style="margin-top:20px">
-                                    <div class="col-6 col-md-6 col-sm-12">
 
-                                        <div class="row">
-                                            <div class="col-ms-6" style="margin-left:15px;">
-                                                <p>Etes vous ? un(e) assuré(e) ou employeur</p>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="oui" value="oui">
-                                                    <label class="form-check-label" for="oui">OUI</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="non" value="non">
-                                                    <label class="form-check-label" for="non">NON</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-ms-6">
-                                                <div class="form-group" id="no_emp_wrapper"
-                                                    style="display: none; margin-left:15px">
-                                                    {{-- <label>No employe/employeur</label> --}}
-                                                    <input type="text" name="no_employe" id="no_employe"
-                                                        value="" placeholder="n° assuré(e)" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-6 col-md-6 col-sm-12">
-
-                                        <div class="form-group  ml-2">
-                                            <label>Nom</label>
-                                            <input type="text" name="nom" id="nom" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 col-md-6 col-sm-12">
-
-                                        <div class="form-group  ml-2">
-                                            <label>Prenom</label>
-                                            <input type="text" name="prenom" id="prenom" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-6 col-sm-12">
-
-                                        <div class="form-group  ml-2">
-                                            <label>Telephone</label>
-                                            <input type="text" name="telephone" id="telephone" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-6 col-md-6 col-sm-12">
-                                        <div class="form-group  ml-2">
-                                            <label>email</label>
-                                            <input type="text" name="email" id="email" class="form-control"
-                                                required>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-6 col-md-6 col-sm-12">
-
-                                        <div class="form-group  ml-2">
-                                            <label>adresse</label>
-                                            <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
-                                        </div>
-
-                                    </div>
-                                </div>
 
                                 <div class="row justify-content-start">
                                     <div class="col-md-6">
@@ -881,61 +910,7 @@
     <script>
         $(document).ready(function() {
 
-            // const form = document.getElementById("multi-step-form");
-            // const formContainerBox = document.getElementById("form-container-box");
-            // const step2 = document.getElementById("step2");
-            // const step3 = document.getElementById("step3");
-            // const stepGroup1 = document.getElementById("step-group-1");
-            // const stepGroup2 = document.getElementById("step-group-2");
-            // const stepGroup3 = document.getElementById("step-group-3");
-            // const stepGroup4 = document.getElementById("step-group-4");
-            // const stepNext1 = document.getElementById("step-next-1");
-            // const stepNext2 = document.getElementById("step-next-2");
-            // const stepNext3 = document.getElementById("step-next-3");
-            // const stepNext4 = document.getElementById("step-next-3");
-            // const stepPrev1 = document.getElementById("step-prev-1");
-            // const stepPrev2 = document.getElementById("step-prev-2");
-            // const stepPrev3 = document.getElementById("step-prev-3");
-            // ////////////// input Fields /////////////
-            // var numero = $("#numero2").val();
-            // const textArea = document.getElementById("area-example");
-            // stepNext1.addEventListener("click", () => {
 
-
-            //     stepGroup1.style.display = "none";
-            //     stepGroup2.style.display = "block";
-            //     step2.classList.add("active");
-
-
-
-
-            // })
-            // stepNext2.addEventListener("click", () => {
-            //     stepGroup2.style.display = "none";
-            //     stepGroup3.style.display = "block";
-            //     step3.classList.add("active");
-            // })
-            // stepNext3.addEventListener("click", () => {
-            //     stepGroup3.style.display = "none";
-            //     stepGroup4.style.display = "block";
-            //     step4.classList.add("active");
-            // })
-
-            // stepPrev1.addEventListener("click", () => {
-            //     stepGroup1.style.display = "block";
-            //     stepGroup2.style.display = "none";
-            //     step2.classList.remove("active");
-            // })
-            // stepPrev2.addEventListener("click", () => {
-            //     stepGroup2.style.display = "block";
-            //     stepGroup3.style.display = "none";
-            //     step3.classList.remove("active");
-            // })
-            // stepPrev3.addEventListener("click", () => {
-            //     stepGroup3.style.display = "block";
-            //     stepGroup4.style.display = "none";
-            //     step4.classList.remove("active");
-            // })
 
             $('#send-rdv').prop('disabled', true);
             $('.form-control').on('change', function() {
@@ -1003,18 +978,75 @@
                     $("#autre_wrapper").hide();
                 }
             });
+            $('#date_rendezvous').blur(function() {
+                var date_val = $("#date_rendezvous").val();
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('date.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        date_val: date_val
+                    },
+                    success: function(data) {
+                        //console.log(data);
+                        if (data == 'error') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "La date ne doit pas etre inferieure à la date du jour.",
+                                icon: "error",
+                                button: "OK",
+                            });
+                            // $("#date_rendezvous").addClass('error');
+                        }
+
+                    }
+                })
+            });
             $('#heure_rendezvous').blur(function() {
                 var region = $("#region").val();
                 var prestation = $("#prestation option:selected").text();
                 var nature = $("#nature option:selected").text();
                 var date_rendezvous = $("#date_rendezvous").val();
                 var heure_rendezvous = $("#heure_rendezvous").val();
+                var nom = $("#nom").val();
+                var prenom = $("#prenom").val();
+                var email = $("#email").val();
+                var adresse = $("#adresse").val();
+                var telephone = $("#telephone").val();
 
+                $("#nom_disp").html(nom);
+                $("#prenom_disp").html(prenom);
+                $("#email_disp_valide").html(email);
+                $("#telephone_disp_valide").html(telephone);
+                $("#adresse_disp_valide").html(adresse);
                 $("#agence_disp_valide").html(region);
                 $("#prestation_disp_valide").html(prestation);
                 $("#nature_disp_valide").html(nature);
                 $("#date_disp").html(date_rendezvous);
                 $("#heure_disp").html(heure_rendezvous);
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('horaire.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        date_rendezvous: date_rendezvous,
+                        heure_rendezvous: heure_rendezvous,
+                    },
+                    success: function(data) {
+                        //console.log(data);
+                        if (data == 'error') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "Ce creneau à été déjà réservé",
+                                icon: "error",
+                                button: "OK",
+                            });
+                            // $("#date_rendezvous").addClass('error');
+                        }
+
+                    }
+                })
                 // alert(prestation)
             });
 
