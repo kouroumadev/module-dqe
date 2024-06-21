@@ -129,65 +129,70 @@ class RendezvousController extends Controller
     {
 
         //dd($request->nature);
-        $date = $request->date_rendezvous;
-        $heure = $request->heure_rendezvous;
+        // $date = $request->date_rendezvous;
+        // $heure = $request->heure_rendezvous;
         $nature = NatureRendevou::find($request->nature);
-        $current_date = Carbon::now()->format('Y-m-d');
-        $date = $request->date_rendezvous;
-        //dd($date);
-        if ($date < $current_date) {
-            return response()->json('error', 200);
-        }
+        // $current_date = Carbon::now()->format('Y-m-d');
+        // $date = $request->date_rendezvous;
         // $prestation = $request->prestation;
-        // if ($prestation == 'Autres') {
-        //     $conf_id = uniqid();
-        //     $rendezvous = new Rendezvou();
-        //     $rendezvous->no_conf = $conf_id;
-        //     $rendezvous->nom = $request->nom;
-        //     $rendezvous->prenom = $request->prenom;
-        //     $rendezvous->no_employe = $request->no_employe;
-        //     $rendezvous->adresse = $request->adresse;
-        //     $rendezvous->agence = $request->region;
-        //     $rendezvous->nature = $nature->libelle;
-        //     $rendezvous->prestation = $request->autre;
-        //     $rendezvous->date_rendezvous = $request->date_rendezvous;
-        //     $rendezvous->heure_rendezvous = $request->heure_rendezvous;
-        //     $rendezvous->telephone = $request->telephone;
-        //     $rendezvous->email = $request->email;
-        //     $rendezvous->save();
-
-        //     $email = $request->email;
-        //     $nom = $request->nom;
-        //     $prenom = $request->prenom;
-        //     $code = $conf_id;
-        //     Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
-
-        //     return view('rendezvous.confirmation', compact('conf_id'));
-        // } else {
-        //     $conf_id = uniqid();
-        //     $rendezvous = new Rendezvou();
-        //     $rendezvous->no_conf = $conf_id;
-        //     $rendezvous->nom = $request->nom;
-        //     $rendezvous->prenom = $request->prenom;
-        //     $rendezvous->no_employe = $request->no_employe;
-        //     $rendezvous->adresse = $request->adresse;
-        //     $rendezvous->agence = $request->region;
-        //     $rendezvous->nature = $nature->libelle;
-        //     $rendezvous->prestation = $request->prestation;
-        //     $rendezvous->date_rendezvous = $request->date_rendezvous;
-        //     $rendezvous->heure_rendezvous = $request->heure_rendezvous;
-        //     $rendezvous->telephone = $request->telephone;
-        //     $rendezvous->email = $request->email;
-        //     $rendezvous->save();
-
-        //     $email = $request->email;
-        //     $nom = $request->nom;
-        //     $prenom = $request->prenom;
-        //     $code = $conf_id;
-        //     Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
-
-        //     return view('rendezvous.confirmation', compact('conf_id'));
+        //dd($nature);
+        // $exist = Rendezvou::where('date_rendezvous', $date)->where('heure_rendezvous', $heure)->get();
+        // if (count($exist) == 1) {
+        //     return response()->json('error_exist', 200);
         // }
+        // if ($date < $current_date) {
+        //     return response()->json('error', 200);
+        // }
+        $prestation = $request->prestation;
+        if ($prestation == 'Autres') {
+            $conf_id = uniqid();
+            $rendezvous = new Rendezvou();
+            $rendezvous->no_conf = $conf_id;
+            $rendezvous->nom = $request->nom;
+            $rendezvous->prenom = $request->prenom;
+            $rendezvous->no_employe = $request->no_employe;
+            $rendezvous->adresse = $request->adresse;
+            $rendezvous->agence = $request->region;
+            $rendezvous->nature = $nature->libelle;
+            $rendezvous->prestation = $request->autre;
+            $rendezvous->date_rendezvous = $request->date_rendezvous;
+            $rendezvous->heure_rendezvous = $request->heure_rendezvous;
+            $rendezvous->telephone = $request->telephone;
+            $rendezvous->email = $request->email;
+            $rendezvous->save();
+
+            $email = $request->email;
+            $nom = $request->nom;
+            $prenom = $request->prenom;
+            $code = $conf_id;
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+
+            return view('rendezvous.confirmation', compact('conf_id'));
+        } else {
+            $conf_id = uniqid();
+            $rendezvous = new Rendezvou();
+            $rendezvous->no_conf = $conf_id;
+            $rendezvous->nom = $request->nom;
+            $rendezvous->prenom = $request->prenom;
+            $rendezvous->no_employe = $request->no_employe;
+            $rendezvous->adresse = $request->adresse;
+            $rendezvous->agence = $request->region;
+            $rendezvous->nature = $nature->libelle;
+            $rendezvous->prestation = $request->prestation;
+            $rendezvous->date_rendezvous = $request->date_rendezvous;
+            $rendezvous->heure_rendezvous = $request->heure_rendezvous;
+            $rendezvous->telephone = $request->telephone;
+            $rendezvous->email = $request->email;
+            $rendezvous->save();
+
+            $email = $request->email;
+            $nom = $request->nom;
+            $prenom = $request->prenom;
+            $code = $conf_id;
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+
+            return view('rendezvous.confirmation', compact('conf_id'));
+        }
 
         //dd($request->region);
 
