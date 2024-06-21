@@ -33,11 +33,18 @@ Route::get('/', function () {
 //     Artisan::call('storage:link');
 // });
 
+////ROUTES BACK OFFICE
+Route::get('/back', [
+    App\Http\Controllers\ReclamationController::class,
+    'back',
+])->name('reclamation.back');
+
 //// Routes reclamations //////////
 Route::get('/reclamation/create', [
     App\Http\Controllers\ReclamationController::class,
     'create',
 ])->name('reclamation.create');
+
 Route::post('/reclamation/store', [
     App\Http\Controllers\ReclamationController::class,
     'store',

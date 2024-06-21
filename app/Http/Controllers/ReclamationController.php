@@ -17,9 +17,9 @@ class ReclamationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function back()
     {
-        //
+        return view('reclamation.back');
     }
 
     /**
