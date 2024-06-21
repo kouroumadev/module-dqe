@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cloture;
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -136,8 +137,27 @@ class ReclamationController extends Controller
      */
     public function dqe()
     {
-        $reclamations = Reclamation::all();
-        return view('reclamation.dqe', compact('reclamations'));
+        $reclamations_process = Reclamation::where('is_done', '0')->get();
+        $reclamations_done = Reclamation::where('is_done', '1')->get();
+        return view(
+            'reclamation.dqe',
+            compact('reclamations_process', 'reclamations_done')
+        );
+    }
+    public function done(Request $request)
+    {
+        // dd($request->all());
+        $rec = Reclamation::find($request->reclamation_id);
+        $rec->is_done = '1';
+        $rec->save();
+
+        $cloture = new Cloture();
+        $cloture->reclamation_id = $request->reclamation_id;
+        $cloture->details = $request->details;
+        $cloture->save();
+
+        Alert::success('Succès', 'Dossier traité et cloturé avec succès !!');
+        return redirect(route('reclamation.dqe'));
     }
 
     /**
@@ -215,6 +235,40 @@ class ReclamationController extends Controller
         ];
 
         $pdf = PDF::loadView('pdf.home', $data);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('fetat-Payement.pdf');
+    }
+    public function donePdf(int $id)
+    {
+        $reclamation = Reclamation::find($id);
+        // $reclamation = Reclamation::find($id);
+        $prestation = DB::table('prestations')
+            ->where('id', $reclamation->prestation_id)
+            ->value('value');
+
+        $motifs = json_decode($reclamation->motifs_id);
+
+        if ($reclamation->type == 'Employeur') {
+            $date_text = 'Date de création';
+            $num = 'N° Immatriculation';
+        } elseif ($reclamation->type == 'Assure') {
+            $date_text = 'Date de naissance';
+            $num = 'N° Immatriculation';
+        } else {
+            $date_text = 'Date de naissance';
+            $num = 'N° Pension';
+        }
+
+        $data = [
+            'date' => $reclamation->clotures[0]->created_at,
+            'reclamation' => $reclamation,
+            'prestation' => $prestation,
+            'date_tex' => $date_text,
+            'num' => $num,
+            'motifs' => $motifs,
+        ];
+
+        $pdf = PDF::loadView('pdf.done', $data);
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('fetat-Payement.pdf');
     }

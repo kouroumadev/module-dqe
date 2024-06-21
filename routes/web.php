@@ -58,6 +58,16 @@ Route::get('/reclamation/home/pdf/{id}', [
     'homePdf',
 ])->name('reclamation.home.pdf');
 
+Route::get('/reclamation/home/pdfDone/{id}', [
+    App\Http\Controllers\ReclamationController::class,
+    'donePdf',
+])->name('reclamation.home.pdfDone');
+
+Route::post('/reclamation/home/done', [
+    App\Http\Controllers\ReclamationController::class,
+    'done',
+])->name('reclamation.home.done');
+
 //// Routes rendez-vous //////////
 Route::get('/index', [
     App\Http\Controllers\RendezvousController::class,

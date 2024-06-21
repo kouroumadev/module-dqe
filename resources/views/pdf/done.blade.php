@@ -77,7 +77,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="width:100%;text-align:center;font-weight:bold;font-size:18px;"><span style="background-color: green; color: white; padding: 4px;">FICHE DE RECLAMATION (Non Traité)</span></td>
+                        <td colspan="3" style="width:100%;text-align:center;font-weight:bold;font-size:18px;"><span style="background-color: green; color: white; padding: 4px;">FICHE DE RECLAMATION (Traité)</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -197,7 +197,9 @@
                     <td colspan="2" style="width:100%;text-align:center;font-weight:bold;font-size:18px;background-color:rgb(193, 190, 190);text-transform: uppercase">Feedback après traitement du dossier</td>
                 </tr>
                 <tr>
-                    <td class="gray-bordered-div" colspan="2" style="width:100%; height: 300px;"></td>
+                    <td class="gray-bordered-div" colspan="2" style="width:100%; height: 300px;vertical-align: text-top">
+                        {{ $reclamation->clotures[0]->details }}
+                    </td>
                 </tr>
             </table>
         </div>
@@ -206,7 +208,7 @@
             <table style="width:100%;">
                <tr>
                 <td style="width:50%">Le chef de service</td>
-                <td style="width:50%; text-align: right">Reçu, le {{ $date }}</td>
+                <td style="width:50%; text-align: right">Traité, le {{ $date }}</td>
                </tr>
             </table>
         </div>
