@@ -441,10 +441,10 @@
                 <div class="pd-20 mb-30">
 
                     <div class="wizard-content">
-                        <form class="tab-wizard wizard-circle wizard horizontal" action="{{ route('rendezvous.conf') }}"
-                            method="post">
-                            @csrf
-
+                        {{-- <form class="tab-wizard wizard-circle wizard horizontal" action="{{ route('rendezvous.conf') }}"
+                            method="post" id="rendezvous-form">
+                            @csrf --}}
+                        <form class="tab-wizard wizard-circle wizard horizontal" method="post" id="rendezvous-form">
                             <h5>Identification</h5>
                             <section>
                                 <h2 class="text-center" style="margin-bottom: 35px"> Identification</h2>
@@ -891,6 +891,55 @@
             if (checked) {
                 $("#no_emp_wrapper").show();
             }
+
+            $("#rendezvous-form").submit(function(e) {
+                e.preventDefault();
+                var region = $("#region").val();
+                var prestation = $("#prestation option:selected").text();
+                var nature = $("#nature option:selected").text();
+                var date_rendezvous = $("#date_rendezvous").val();
+                var heure_rendezvous = $("#heure_rendezvous").val();
+                var nom = $("#nom").val();
+                var prenom = $("#prenom").val();
+                var email = $("#email").val();
+                var adresse = $("#adresse").val();
+                var telephone = $("#telephone").val();
+                var autre = $("#autre").val();
+                var no_employe = $("#no_employe").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('rendezvous.conf') }}",
+                    dataType: 'json',
+                    data: {
+                        region: region,
+                        prestation: prestation,
+                        nature: nature,
+                        date_rendezvous: date_rendezvous,
+                        heure_rendezvous: heure_rendezvous,
+                        nom: nom,
+                        prenom: prenom,
+                        email: email,
+                        adresse: adresse,
+                        telephone: telephone,
+                        autre: autre,
+                        no_employe: no_employe,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (data == 'error') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "La date ne doit pas etre inferieure à la date du jour.",
+                                icon: "error",
+                                button: "OK",
+                            });
+                            $("#date_rendezvous").addClass('error');
+                        }
+
+                    }
+                })
+            });
         });
     </script>
 @endsection
