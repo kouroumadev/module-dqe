@@ -186,6 +186,10 @@
                                     <div class="form-group">
                                         <textarea name="details" class="form-control"></textarea>
                                     </div>
+                                    {{-- <div class="form-group">
+                                        <img src="{{ $captcha['image'] }}" alt="CAPTCHA">
+                                        <input type="text" name="captcha">
+                                    </div> --}}
                                 </div>
 
                             </div>
@@ -311,8 +315,7 @@
                 var type = $("#type").val();
 
                 $.ajax({
-                    url: '/reclamation/getInfo',
-                    type: 'GET',
+                    url: "{{ route('reclamation.getInfo') }}",                    type: 'GET',
                     dataType: 'json',
                     data: {
                         num: num,

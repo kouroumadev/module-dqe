@@ -46,7 +46,7 @@ Route::post('/reclamation/store', [
 Route::get('/reclamation/getInfo', [
     App\Http\Controllers\ReclamationController::class,
     'getInfo',
-]);
+])->name('reclamation.getInfo');
 
 Route::get('/reclamation/dqe', [
     App\Http\Controllers\ReclamationController::class,
