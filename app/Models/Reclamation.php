@@ -24,4 +24,9 @@ class Reclamation extends Model
         'details',
         'status',
     ];
+
+    public function clotures()
+    {
+        return $this->hasMany(Cloture::class, 'reclamation_id');
+    }
 }
