@@ -3,6 +3,61 @@
     @include('header')
     <div style="margin-top: 100px;">
 
+        <div class="row m-auto">
+            <div class="col-10 m-auto">
+                <div class="row">
+                    <div class="col-xl-4 mb-30">
+                        <a href="{{ route('reclamation.create') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        Faire une Réclamation
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-wheelchair fa-3x text-white" aria-hidden="true"></i>
+                                    </div>
+                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 mb-30">
+                        <a href="{{ route('rendezvous.prendre') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        Prise de rendez-vous
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-calendar fa-3x text-white"></i>
+                                    </div>
+                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 mb-30">
+                        <a href="{{ route('rendezvous.gestion') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        Gérer mes rendez-vous
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-edit fa-3x text-white"></i>
+                                    </div>
+                                    {{-- <small class="pl-1 text-white">Gestion des Reisques Professionels</small> --}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="card-box m-auto" style="font-size: 14px; width:70%">
             <div class="row align-items-center">
@@ -27,7 +82,7 @@
                         disponibilités et préférences. </p>
                 </div>
 
-                <div class="modal-footer m-auto" style="border-top: none">
+                {{-- <div class="modal-footer m-auto" style="border-top: none">
                     <a href="{{ route('rendezvous.prendre') }}" type="button" class="btn btn-success" data-dismiss="modal">
                         <i class="icon-copy fa fa-calendar"></i> Prise de rendez-vous</a>
 
@@ -39,7 +94,7 @@
                     <a href="{{ route('reclamation.create') }}" type="button" class="btn btn-danger" data-dismiss="modal"
                         style="margin-left:30px">
                         Faire une Réclamation</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -79,11 +79,11 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-5" style="margin-top: 10px">
+                <div class="col-md-3" style="margin-top: 15px">
 
 
                     <a href="{{ route('rendezvous.gestion') }}" type="button" class="btn btn-outline-success"
-                        style="margin-left:30px">Gérer mes rendez-vous</a>
+                        style="margin-left:10px; font-size:12px">Gestion rendez-vous</a>
 
 
                     {{-- <div class="dashboard-setting user-notification">
@@ -96,9 +96,14 @@
                         </div>
                     </div> --}}
                 </div>
-                <div class="col-md-4" style="margin-top: 10px">
+                <div class="col-md-3" style="margin-top: 15px">
                     <a href="{{ route('rendezvous.gestion') }}" type="button" class="btn btn-outline-success"
-                        style="margin-left:30px">Prendre rendez-vous</a>
+                        style="margin-left:10px; font-size:12px">Prendre rendez-vous</a>
+
+                </div>
+                <div class="col-md-3" style="margin-top: 15px">
+                    <a href="{{ route('reclamation.create') }}" type="button" class="btn btn-outline-success"
+                        style="margin-left:10px; font-size:12px">Reclamation</a>
 
                 </div>
             </div>
@@ -138,29 +143,29 @@
                 <span> Contactez-nous</span><br>
             </div>
         </div>
-        <div class="dashboard-setting user-notification" style="padding-top: 10px ">
+        <div class="dashboard-setting user-notification" style="padding-top: 5px; margin-top:10px ">
             <div class="dropdown" style="font-size: 12px; font-family:Poppins, sans-serif">
                 <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar"
-                    style="color: #4267B2">
-                    <i class="icon-copy fa fa-facebook-official" aria-hidden="true"></i>
+                    style="color: #4267B2;">
+                    <i class="icon-copy fa fa-facebook-official fa-lg" aria-hidden="true"></i>
                 </a>
 
             </div>
         </div>
-        <div class="dashboard-setting user-notification" style="padding-top: 10px ">
+        <div class="dashboard-setting user-notification" style="padding-top: 5px; margin-top:10px ">
             <div class="dropdown" style="font-size: 12px; font-family:Poppins, sans-serif">
                 <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar"
-                    style="color: #0078c7">
-                    <i class="icon-copy fa fa-linkedin-square" aria-hidden="true"></i>
+                    style="color: #0078c7;">
+                    <i class="icon-copy fa fa-linkedin-square  fa-lg"></i>
                 </a>
 
             </div>
         </div>
-        <div class="dashboard-setting user-notification" style="padding-top: 10px ">
+        <div class="dashboard-setting user-notification" style="padding-top: 5px; margin-top:10px ">
             <div class="dropdown" style="font-size: 12px; font-family:Poppins, sans-serif">
                 <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar"
-                    style="color: #CD201F">
-                    <i class="icon-copy fa fa-youtube-play" aria-hidden="true"></i>
+                    style="color: #CD201F;">
+                    <i class="icon-copy fa fa-youtube-play  fa-lg"></i>
                 </a>
 
             </div>

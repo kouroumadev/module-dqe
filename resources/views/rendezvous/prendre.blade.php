@@ -457,7 +457,7 @@
                                                 <p>Etes vous ? un(e) assuré(e) ou employeur</p>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="oui" value="oui">
+                                                        id="oui" value="oui" checked>
                                                     <label class="form-check-label" for="oui">OUI</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
@@ -689,214 +689,7 @@
                         </form>
                     </div>
                 </div>
-                {{-- <section class="form-wrapper">
-                    <div class="form-container">
-                        <form action="{{ route('rendezvous.conf') }}" method="post" id="multi-step-form">
-                            @csrf
-                            <div id="form-container-box">
-                                <h1 class="form-title">Multi Step Form</h1>
-                                <ul class="custom-progress-bar">
-                                    <li id="step1" class="active">User Info</li>
-                                    <li id="step2">Choix de la Prestation</li>
-                                    <li id="step3">Choix du creneau</li>
-                                    <li id="step4">Validation</li>
-                                </ul>
 
-                                <!-- =========== Step Group 1 =============== -->
-                                <div class="step-group" id="step-group-1">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Etes-vous ? <span class="text-danger">*</span></label>
-                                                <select name="type2" required id="type2" class="custom-select col-12">
-                                                    <option selected value="null">-- Aucune selecion --</option>
-                                                    <option value="Assure">Assuré</option>
-                                                    <option value="Employeur">Employeur</option>
-                                                    <option value="Retraite">Retraite</option>
-                                                    <option value="Reversion">Reversion</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group" id="numDiv2" style="display:none">
-                                                <label id="num2"> <span class="text-danger">*</span></label>
-                                                <input name="numero2" required type="text" id="numero2"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-
-                                            <div class="form-group  ml-2">
-                                                <label>Prenom</label>
-                                                <input type="text" name="prenom" id="prenom" class="form-control"
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-
-                                            <div class="form-group  ml-2">
-                                                <label>Telephone</label>
-                                                <input type="text" name="telephone" id="telephone" class="form-control"
-                                                    required>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-6">
-                                            <div class="form-group  ml-2">
-                                                <label>email</label>
-                                                <input type="text" name="email" id="email" class="form-control"
-                                                    required>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-
-                                            <div class="form-group  ml-2">
-                                                <label>adresse</label>
-                                                <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary " id="step-next-1">Suivant
-                                            &#65515;</button>
-                                    </div>
-                                </div>
-
-                                <!-- =========== Step Group 2 =============== -->
-                                <div class="step-group" id="step-group-2">
-                                    <div class="row" style="margin-left: 15px">
-                                        <div class="col-5">
-                                            <div class="form-group  ml-2">
-                                                <label>Region</label>
-                                                <select class="custom-select" name="region" id="region">
-
-                                                    @foreach ($agence as $value)
-                                                        <option value="{{ $value->libelle }}">{{ $value->libelle }}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row" style="margin-left: 15px">
-                                        <div class="col-5">
-
-                                            <div class="form-group  ml-2">
-                                                <label>Nature du rendez-vous</label>
-                                                <select class="custom-select" name="nature" id="nature">
-                                                    @foreach ($nature as $value)
-                                                        <option value="{{ $value->id }}" selected>{{ $value->libelle }}
-                                                        </option>
-                                                    @endforeach
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row" style="margin-left: 15px">
-                                        <div class="col-5">
-                                            <div class="form-group  mr-2">
-                                                <div class="form-group  ml-2">
-                                                    <label>Prestation</label>
-                                                    <select class="custom-select" name="prestation" id="prestation">
-
-
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary " id="step-prev-1"> &#65513;
-                                            Precedent</button>
-                                        <button type="button" class="btn btn-primary " id="step-next-2">Suivant
-                                            &#65515;</button>
-                                    </div>
-                                </div>
-
-                                <!-- =========== Step Group 3 =============== -->
-                                <div class="step-group" id="step-group-3">
-                                    <div class="row" style="margin-top:30px">
-                                        <div class="col-md-6">
-                                            <div class="mb-20">
-                                                <div class="form-group">
-                                                    <label>Veuillez Selectionner la date souhaitee</label>
-
-                                                    <input class="form-control" placeholder="Date" type="date"
-                                                        name="date_rendezvous" id="date_rendezvous">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="mb-20">
-                                                <div class="form-group">
-                                                    <label>Veuillez Selectionner un Horaire</label>
-
-                                                    <input class="form-control" placeholder="Heure" type="time"
-                                                        name="heure_rendezvous" id="heure_rendezvous">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary " id="step-prev-2"> &#65513;
-                                            Precedent</button>
-                                        <button type="button" class="btn btn-primary " id="step-next-3">suivant
-                                            &#65515;</button>
-                                    </div>
-
-
-                                </div>
-
-                                <!-- =========== Step Group 4 =============== -->
-                                <div class="step-group" id="step-group-4">
-                                    <div class="row align-items-center">
-
-                                        <table style="margin-left: 15px; margin-bottom:10px;">
-                                            <tr>
-                                                <th>Agence:</th>
-                                                <td id="agence_disp_valide"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Nature du rendez-vous:</th>
-                                                <td id="nature_disp_valide"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Prestation:</th>
-                                                <td id="prestation_disp_valide"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Horaire:</th>
-                                                <td> <span id="date_disp"></span> <span id="heure_disp"></span> </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                    <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary " id="step-prev-3"> &#65513;
-                                            Precedent</button>
-                                        <button type="submit" class="btn btn-primary " id="step-next-4">envoye
-                                            &#65515;</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </section> --}}
             </div>
         </div>
 
@@ -1086,19 +879,18 @@
                     $('#numDiv2').hide();
 
             });
+
             $("#non").click(function() {
                 $("#no_emp_wrapper").hide();
             });
             $("#oui").click(function() {
                 $("#no_emp_wrapper").show();
             });
-        });
 
-        $(function() {
-            $("#date_rendezvous").datepicker({
-                minDate: -20,
-                maxDate: "+1M +10D"
-            });
+            var checked = $("#oui").prop("checked", true);
+            if (checked) {
+                $("#no_emp_wrapper").show();
+            }
         });
     </script>
 @endsection
