@@ -62,7 +62,7 @@
                                             <option value="Reversion">RTEVERSION</option>
                                         </select>
                                         <small class="form-text text-muted">
-                                            Vous n'etes ni pensioné ni immatruculé ? <a href="{{ route('rendezvous.index') }}" class="text-success">cliquez pour prendre un rendez-vous</a>
+                                            Si vous n'etes ni pensioné ni immatruculé ? <a href="{{ route('rendezvous.index') }}" class="text-success">cliquez ici pour prendre un rendez-vous</a>
                                         </small>
                                     </div>
                                 </div>
