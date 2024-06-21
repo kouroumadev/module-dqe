@@ -10,15 +10,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
+use Mews\Captcha\Facades\Captcha;
 
 class ReclamationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function back()
     {
-        //
+        return view('reclamation.back');
     }
 
     /**
@@ -34,7 +35,8 @@ class ReclamationController extends Controller
 
         $motifs = DB::table('motifs')->get();
         $prestations = DB::table('prestations')->get();
-        // dd($data);
+        // $captcha = Captcha::create();
+        // dd($captcha->image);
         return view('reclamation.create', compact('motifs', 'prestations'));
     }
 

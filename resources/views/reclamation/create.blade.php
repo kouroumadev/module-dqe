@@ -1,15 +1,17 @@
 @extends('app')
 @section('content')
 
+@include('header')
+
 <div class="main-container px-5">
-    <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
-        <div class="col-md-6">
+     <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
+        {{-- <div class="col-md-6">
             <div style="height: 109px; width: 286px;">
                 <img src="{{ asset('new logo.jpeg') }}" class="img-fluid" alt="here logo" srcset="">
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-6 bg-success">
-            <h1 class="text-white text-center mt-3">Formulaire de réclamation</h1>
+            <h1 class="text-white text-center mt-3 pb-4">Formulaire de réclamation</h1>
 
               <!-- Modal -->
               <div class="modal fade" id="small-modal-test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -186,6 +188,10 @@
                                     <div class="form-group">
                                         <textarea name="details" class="form-control"></textarea>
                                     </div>
+                                    {{-- <div class="form-group">
+                                        <img src="{{ $captcha['image'] }}" alt="CAPTCHA">
+                                        <input type="text" name="captcha">
+                                    </div> --}}
                                 </div>
 
                             </div>
@@ -311,8 +317,7 @@
                 var type = $("#type").val();
 
                 $.ajax({
-                    url: '/reclamation/getInfo',
-                    type: 'GET',
+                    url: "{{ route('reclamation.getInfo') }}",                    type: 'GET',
                     dataType: 'json',
                     data: {
                         num: num,
