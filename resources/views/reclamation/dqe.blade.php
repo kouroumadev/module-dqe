@@ -77,7 +77,11 @@
                                                 <td>{{ $rec->details }}</td> --}}
                                                 <td>
                                                     <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-procla-{{ $rec->id }}" type="button">
-                                                        Traitement
+                                                        {{-- <span class="badge"> --}}
+                                                            Traitement
+                                                            <span class="spinner-grow text-danger spinner-grow-sm" role="status" aria-hidden="true">
+                                                            </span>
+                                                        {{-- </span> --}}
                                                     </a>
                                                 </td>
                                                 <div class="modal fade bs-example-modal-lg" id="modal-procla-{{ $rec->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

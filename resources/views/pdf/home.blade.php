@@ -206,7 +206,7 @@
             <table style="width:100%;">
                <tr>
                 <td style="width:50%">Le chef de service</td>
-                <td style="width:50%; text-align: right">Conakry, le {{ $date }}</td>
+                <td style="width:50%; text-align: right">Reçu, le {{ $date }}</td>
                </tr>
             </table>
         </div>
