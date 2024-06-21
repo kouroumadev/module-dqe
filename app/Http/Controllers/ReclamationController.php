@@ -34,6 +34,7 @@ class ReclamationController extends Controller
         //  dd($pensionne);
 
         $motifs = DB::table('motifs')->get();
+        // dd($motifs);
         $prestations = DB::table('prestations')->get();
         // $captcha = Captcha::create();
         // dd($captcha->image);

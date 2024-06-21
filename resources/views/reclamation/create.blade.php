@@ -62,7 +62,7 @@
                                             <option value="Reversion">RTEVERSION</option>
                                         </select>
                                         <small class="form-text text-muted">
-                                            Vous n'etes ni pensioné ni immatruculé ? <a href="{{ route('rendezvous.index') }}" class="text-success">cliquez pour prendre un rendez-vous</a>
+                                            Si vous n'etes ni pensioné ni immatruculé ? <a href="{{ route('rendezvous.index') }}" class="text-success">cliquez ici pour prendre un rendez-vous</a>
                                         </small>
                                     </div>
                                 </div>
@@ -171,8 +171,8 @@
                                     @foreach ($motifs as $m)
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="motifs[]" value="{{ $m->id }}" class="custom-control-input" id="{{ $m->id }}">
-                                            <label class="custom-control-label" for="{{ $m->id }}">{{ $m->value }}</label>
+                                            <input type="checkbox" name="motifs[]" value="{{ $m->id }}" class="custom-control-input" id="{{ $m->value }}">
+                                            <label class="custom-control-label" for="{{ $m->value }}">{{ $m->value }}</label>
                                         </div>
                                     </div>
                                     @endforeach
