@@ -1,9 +1,10 @@
 <x-mail::message>
 
+    Bonjour Mme/Mr, {{ $prenom }} {{ $nom }},
 
-    <p>{{ $code }}</p>
-    <p>{{ $nom }}</p>
-    <p>{{ $prenom }}</p>
+    votre code de confirmation est : {{ $code }}. Veillez gardez ce code.
+
+
 
 
 </x-mail::message>

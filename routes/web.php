@@ -19,6 +19,11 @@ RewriteRule ^(.*)$ public/$1 [L]
 
 |
 */
+/*<span class="badge " style="background-color: rgb(229, 67, 42); text-align:center">
+En retard
+<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
+</span>
+</span>*/
 
 Route::get('/', function () {
     return view('rendezvous.index');

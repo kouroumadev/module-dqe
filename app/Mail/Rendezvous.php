@@ -29,7 +29,7 @@ class Rendezvous extends Mailable
         $this->code = $code;
         $this->email = $email;
         $this->prenom = $prenom;
-        $this->prenom = $nom;
+        $this->nom = $nom;
     }
 
     /**
