@@ -6,17 +6,17 @@
 
 <div class="row justify-content-center">
     <div class="col-md-10 shadow-lg p-3 mb-5 bg-white rounded">
-        <h2 class="text-center">GESTION DES RECLAMMATIONS</h2>
+        <h2 class="text-center bg-success text-white p-2">GESTION DES RECLAMMATIONS</h2>
 
         <div class="pd-20 card-box">
             {{-- <h5 class="h4 text-blue mb-20">Nav Pills Tabs</h5> --}}
             <div class="tab">
-                <ul class="nav nav-pills" role="tablist">
+                <ul class="nav nav-tabs customtab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active text-blue" data-toggle="tab" href="#home5" role="tab" aria-selected="true">Dossiers non traité(s): {{ count($reclamations_process) }}</a>
+                        <a class="nav-link active text-success text-uppercase" data-toggle="tab" href="#home5" role="tab" aria-selected="true">Dossiers non traité(s): {{ count($reclamations_process) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-blue" data-toggle="tab" href="#profile5" role="tab" aria-selected="false">Dossiers traité(s): {{ count($reclamations_done) }}</a>
+                        <a class="nav-link text-success text-uppercase" data-toggle="tab" href="#profile5" role="tab" aria-selected="false">Dossiers traité(s): {{ count($reclamations_done) }}</a>
                     </li>
                 </ul>
                 <div class="tab-content">
