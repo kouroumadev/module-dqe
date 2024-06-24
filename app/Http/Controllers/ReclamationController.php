@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReclaDoneMail;
+use App\Mail\ReclamationMail;
 use App\Models\Cloture;
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
@@ -114,9 +116,10 @@ class ReclamationController extends Controller
     public function store(Request $request)
     {
         // dd(json_encode($request->motifs));
+        $code = $this->generate_rand();
 
         $recla = new Reclamation();
-        $recla->num_dossier = $this->generate_rand();
+        $recla->num_dossier = $code;
         $recla->type = $request->type;
         $recla->numero = $request->numero;
         $recla->nom = $request->nom;
@@ -131,6 +134,20 @@ class ReclamationController extends Controller
         $recla->is_done = '0';
         $recla->save();
         // Alert::success('', "Reclamation effectué avec succès");
+
+        if ($request->type == 'Employeur') {
+            $head = 'Bonjour ' . $request->nom;
+        } else {
+            $head = 'Bonjour Mme/M ' . $request->nom . ' ' . $request->prenom;
+        }
+
+        $data = [
+            'head' => $head,
+            'code' => $code,
+        ];
+
+        Mail::to('kouroumadev@gmail.com')->send(new ReclamationMail($data));
+
         return redirect()
             ->back()
             ->with('showModal', true);
@@ -164,6 +181,49 @@ class ReclamationController extends Controller
         $cloture->reclamation_id = $request->reclamation_id;
         $cloture->details = $request->details;
         $cloture->save();
+
+        //MAIL
+        $prestation = DB::table('prestations')
+            ->where('id', $rec->prestation_id)
+            ->value('value');
+
+        $motifs = json_decode($rec->motifs_id);
+
+        if ($rec->type == 'Employeur') {
+            $date_text = 'Date de création';
+            $num = 'N° Immatriculation';
+        } elseif ($rec->type == 'Assure') {
+            $date_text = 'Date de naissance';
+            $num = 'N° Immatriculation';
+        } else {
+            $date_text = 'Date de naissance';
+            $num = 'N° Pension';
+        }
+
+        $data = [
+            'date' => $rec->clotures[0]->created_at,
+            'reclamation' => $rec,
+            'prestation' => $prestation,
+            'date_tex' => $date_text,
+            'num' => $num,
+            'motifs' => $motifs,
+        ];
+        $pdf = PDF::loadView('pdf.doneClient', $data);
+
+        if ($rec->type == 'Employeur') {
+            $head = 'Bonjour ' . $rec->nom;
+        } else {
+            $head = 'Bonjour Mme/M ' . $rec->nom . ' ' . $rec->prenom;
+        }
+
+        $dataMail = [
+            'head' => $head,
+            'code' => $rec->num_dossier,
+        ];
+
+        Mail::to($rec->add_email)->send(
+            new ReclaDoneMail($dataMail, $pdf->output())
+        );
 
         Alert::success('Succès', 'Dossier traité et cloturé avec succès !!');
         return redirect(route('reclamation.dqe'));
@@ -280,5 +340,50 @@ class ReclamationController extends Controller
         $pdf = PDF::loadView('pdf.done', $data);
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream('fetat-Payement.pdf');
+    }
+
+    public function confMail()
+    {
+        $reclamation = Reclamation::find(1);
+        // dd($reclamation->clotures);
+        // $reclamation = Reclamation::find($id);
+        $prestation = DB::table('prestations')
+            ->where('id', $reclamation->prestation_id)
+            ->value('value');
+
+        $motifs = json_decode($reclamation->motifs_id);
+
+        if ($reclamation->type == 'Employeur') {
+            $date_text = 'Date de création';
+            $num = 'N° Immatriculation';
+        } elseif ($reclamation->type == 'Assure') {
+            $date_text = 'Date de naissance';
+            $num = 'N° Immatriculation';
+        } else {
+            $date_text = 'Date de naissance';
+            $num = 'N° Pension';
+        }
+
+        $data = [
+            'date' => $reclamation->clotures[0]->created_at,
+            'reclamation' => $reclamation,
+            'prestation' => $prestation,
+            'date_tex' => $date_text,
+            'num' => $num,
+            'motifs' => $motifs,
+        ];
+
+        $pdf = PDF::loadView('pdf.done', $data);
+
+        $dataMail = [
+            'head' => 'Bonjour kourouma karim',
+            'code' => date('d-m-Y'),
+        ];
+
+        Mail::to('kouroumadev@gmail.com')->send(
+            new ReclamationMail($dataMail, $pdf->output())
+        );
+        // Mail::to($user->email)->send(new SendCredentialsToUserMail($details, $pdf->output()));
+        dd('sent');
     }
 }

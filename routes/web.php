@@ -75,6 +75,11 @@ Route::post('/reclamation/home/done', [
     'done',
 ])->name('reclamation.home.done');
 
+Route::get('/reclamation/mail/conf', [
+    App\Http\Controllers\ReclamationController::class,
+    'confMail',
+])->name('reclamation.mail.conf');
+
 //// Routes rendez-vous //////////
 Route::get('/index', [
     App\Http\Controllers\RendezvousController::class,

@@ -216,6 +216,7 @@
                     <h3 class="mb-20">Réclamation effectué!</h3>
                     <div class="mb-30 text-center"><img src="{{ asset('theme/vendors/images/success.png') }}"></div>
                     Votre réclatation a été reçu avec succès à la CNSS.
+                    Un e-mail de confirmation vous a été envoyé.
                     Vous pouvez eventuellement predre rendez-vous en cliqant sur
                     <a href="{{ route('rendezvous.index') }}" class="text-danger">Prendre un rendez-vous</a>
                 </div>
