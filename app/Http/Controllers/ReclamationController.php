@@ -19,7 +19,8 @@ class ReclamationController extends Controller
      */
     public function back()
     {
-        return view('reclamation.back');
+        $recla = Reclamation::where('is_done', '0')->count();
+        return view('reclamation.back', compact('recla'));
     }
 
     /**
@@ -140,8 +141,13 @@ class ReclamationController extends Controller
      */
     public function dqe()
     {
-        $reclamations_process = Reclamation::where('is_done', '0')->get();
-        $reclamations_done = Reclamation::where('is_done', '1')->get();
+        $reclamations_process = Reclamation::where('is_done', '0')
+            ->orderBy('created_at', 'ASC')
+            ->get();
+
+        $reclamations_done = Reclamation::where('is_done', '1')
+            ->orderBy('created_at', 'ASC')
+            ->get();
         return view(
             'reclamation.dqe',
             compact('reclamations_process', 'reclamations_done')

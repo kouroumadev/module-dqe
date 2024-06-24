@@ -16,8 +16,9 @@
                                     <div class="progress-data">
                                         <i class="icon-copy fa fa-edit fa-3x text-white" aria-hidden="true"></i>
                                     </div>
-                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+
                                 </div>
+                                <small class="text-danger">({{ $recla }} Dossiers en attentes)</small>
                             </div>
                         </a>
                     </div>
@@ -45,7 +46,7 @@
 
         </div>
 
-        <div class="card-box m-auto" style="font-size: 14px; width:70%">
+        <div class="card-box m-auto shadow-lg p-3 mb-5 bg-white rounded" style="font-size: 14px; width:70%">
             <div class="row align-items-center">
                 <div class="col-md-4">
                     <img src="{{ asset('logos/main-logo.png') }}" alt="img" width="400px" height="400px">
@@ -68,19 +69,7 @@
                         disponibilités et préférences. </p>
                 </div>
 
-                {{-- <div class="modal-footer m-auto" style="border-top: none">
-                    <a href="{{ route('rendezvous.prendre') }}" type="button" class="btn btn-success" data-dismiss="modal">
-                        <i class="icon-copy fa fa-calendar"></i> Prise de rendez-vous</a>
 
-                    <a href="{{ route('rendezvous.gestion') }}" type="button" class="btn btn-success" data-dismiss="modal"
-                        style="margin-left:30px">
-                        <i class="icon-copy fa fa-edit" aria-hidden="true"></i> Gérer mes
-                        rendez-vous</a>
-
-                    <a href="{{ route('reclamation.create') }}" type="button" class="btn btn-danger" data-dismiss="modal"
-                        style="margin-left:30px">
-                        Faire une Réclamation</a>
-                </div> --}}
             </div>
         </div>
     </div>
