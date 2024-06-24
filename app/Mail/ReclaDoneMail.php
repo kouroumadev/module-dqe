@@ -11,18 +11,20 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Attachment;
 
-class ReclamationMail extends Mailable
+class ReclaDoneMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $data;
+    public $pdf;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($data, $pdf)
     {
         $this->data = $data;
+        $this->pdf = $pdf;
     }
 
     /**
@@ -31,7 +33,7 @@ class ReclamationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail de confirmation de la reclamation',
+            subject: 'Reclamation traité',
             from: new Address('reclamation@cnss.gov.gn'),
         );
     }
@@ -43,7 +45,7 @@ class ReclamationMail extends Mailable
     {
         return new Content(
             // view: 'mail.reclamation.reclaConfirm',
-            markdown: 'mail.reclamation.reclaConfirm',
+            markdown: 'mail.reclamation.doneClient',
         );
     }
 
@@ -55,7 +57,8 @@ class ReclamationMail extends Mailable
     public function attachments(): array
     {
         return [
-
+            Attachment::fromData(fn () => $this->pdf, 'Détails-reclamation.pdf')
+                ->withMime('application/pdf'),
         ];
     }
 }

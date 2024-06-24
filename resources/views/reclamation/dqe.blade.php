@@ -55,19 +55,22 @@
                                             if($rec->type == 'Employeur'){
                                                 $date = "Date de création";
                                                 $num = "N° Immatriculation";
+                                                $name = $rec->prenom;
                                             } else if($rec->type == 'Assure'){
                                                 $date = "Date de naissance";
                                                 $num = "N° Immatriculation";
+                                                $name = $rec->prenom." ".$rec->nom;
                                             } else {
                                                 $date = "Date de naissance";
                                                 $num = "N° Pension";
+                                                $name = $rec->prenom." ".$rec->nom;
                                             }
 
                                         @endphp
                                             <tr>
                                                 <td class="font-weight-bold">{{ $rec->num_dossier }}</td>
                                                 <td class="">{{ $rec->numero }}</td>
-                                                <td class="">{{ $rec->prenom }} <span class="text-uppercase">{{ $rec->nom }}</span></td>
+                                                <td class=""><span class="text-uppercase">{{ $name }}</span></td>
                                                 {{-- <td>{{ $data[0] }}</td>
                                                 <td>{{ $rec->add_email }}</td>
                                                 <td>{{ $rec->adresse }}</td>
@@ -229,19 +232,22 @@
                                             if($rec->type == 'Employeur'){
                                                 $date = "Date de création";
                                                 $num = "N° Immatriculation";
+                                                $name = $rec->prenom;
                                             } else if($rec->type == 'Assure'){
                                                 $date = "Date de naissance";
                                                 $num = "N° Immatriculation";
+                                                $name = $rec->prenom." ".$rec->nom;
                                             } else {
                                                 $date = "Date de naissance";
                                                 $num = "N° Pension";
+                                                $name = $rec->prenom." ".$rec->nom;
                                             }
 
                                         @endphp
                                             <tr>
                                                 <td class="font-weight-bold">{{ $rec->num_dossier }}</td>
                                                 <td class="">{{ $rec->numero }}</td>
-                                                <td class="">{{ $rec->prenom }} <span class="text-uppercase">{{ $rec->nom }}</span></td>
+                                                <td class=""><span class="text-uppercase">{{ $name }}</span></td>
                                                 {{-- <td>{{ $data[0] }}</td>
                                                 <td>{{ $rec->add_email }}</td>
                                                 <td>{{ $rec->adresse }}</td>
