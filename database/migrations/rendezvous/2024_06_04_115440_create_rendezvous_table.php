@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('date_rendezvous');
             $table->string('heure_rendezvous');
             $table->string('telephone');
+            $table->string('valider');
+            $table->string('date_validation');
             $table->timestamps();
         });
     }

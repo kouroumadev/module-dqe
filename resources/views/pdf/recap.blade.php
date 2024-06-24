@@ -89,44 +89,33 @@
                 </tr>
             </tbody>
         </table>
-        {{-- <div style="display: flex; flex-direction:row">
-            <div style="width: 35%">
-                <img src="{{ public_path('logo.svg') }}" width="200" height="100">
-            </div>
-            <div style="width: 40%; margin-top:15px; text-align:center">
-                <span style="font-size: 20px">RÉPUBLIQUE DE GUINNÉE</span>
-                <table style="width:100%">
-                    <tr style="width: 100%">
-                        <td style="width: 100%">Travail - Justice - Solidarité</td>
-                    </tr>
-                    <tr style="width: 100%">
-                        <td style="width: 100%">Caisse Nationale de Sécurité Sociale</td>
-                    </tr>
-
-                </table>
-                <table style="width:100%">
-                    <tr>
-                        <td style="background-color: red; width:15%; height:2px"></td>
-                        <td style="background-color: yellow; width:15%"></td>
-                        <td style="background-color: green; width:15%"></td>
-                    </tr>
-                </table>
-
-            </div>
-            <div style="width: 35%">
-                <img src="{{ public_path('branding.png') }}" width="100" height="50"
-                    style="float: right; padding:10px">
-            </div>
-        </div> --}}
 
     </header>
     <main style="font-size: 14px">
         <div
             style="width: 50%; margin:auto; font-size:10px; text-align:center; padding:2px; margin-top:30px; background-color: rgb(108, 216, 108)">
-            <h1>Reçu pour le Rendez-vous</h1>
+            <h1>Resumé Rendez-vous</h1>
         </div>
 
-        <table style="width: 100%; margin-top:30px">
+        <div>
+            <table style="width:100%; margin-bottom:20px;">
+                <tr>
+                    <td style="">
+                        <p style="font-weight:bold;"> NATURE PRESTATION:</p>
+                    </td>
+                    <td style="">
+                        <p style="font-weight:bold;">{{ $rendezvous[0]->nature }}</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;font-weight:bold;">N° DOSSIER:</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;font-weight:bold;">{{ $rendezvous[0]->no_conf }}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{-- <table style="width: 100%; margin-top:30px">
             <tbody>
                 <tr>
                     <td style="padding-bottom:10px; ">Référence:</td>
@@ -219,8 +208,113 @@
                         {{ $rendezvous[0]->date_rendezvous }} à {{ $rendezvous[0]->heure_rendezvous }}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> --}}
+        <div>
+            <table style="width:100%; margin-bottom:10px;">
 
+                <tr>
+                    <td colspan="4"
+                        style="width:100%;text-align:center;font-weight:bold;font-size:18px;background-color:rgb(193, 190, 190);text-transform: uppercase">
+                        Détails sur l'applicant(e)</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="">
+                        <p style="font-weight:bold;">Type d'Applicant(e):</p>
+                    </td>
+                    @if ($rendezvous[0]->no_immatriculation == null)
+                        <td style="">
+                            <p style="text-color: red">-</p>
+                        </td>
+                    @else
+                        <td style="">
+                            <p style="">{{ $rendezvous[0]->no_immatriculation }}</p>
+                        </td>
+                    @endif
+
+                    <td style="">
+                        <p style="text-align: right;font-weight:bold;">Nom:</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;">{{ $rendezvous[0]->nom }}</p>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="">
+                        <p style="font-weight:bold;">Prenom:</p>
+                    </td>
+                    <td style="">
+                        <p style="">{{ $rendezvous[0]->prenom }}</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;font-weight:bold;">E-mail:</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;">{{ $rendezvous[0]->email }}</p>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="">
+                        <p style="font-weight:bold;">Adresse:</p>
+                    </td>
+                    <td style="">
+                        <p style="">{{ $rendezvous[0]->adresse }}</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;font-weight:bold;">Téléphone:</p>
+                    </td>
+                    <td style="">
+                        <p style="text-align: right;">{{ $rendezvous[0]->telephone }}</p>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td colspan="4"
+                        style="width:100%;text-align:center;font-weight:bold;font-size:18px;background-color:rgb(193, 190, 190);text-transform: uppercase">
+                        Détails sur le Rendez-vous</td>
+                </tr>
+
+            </table>
+        </div>
+        <div>
+            <table style="width:100%;">
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td style="width:50%" colspan="">
+                        <p style="font-weight:bold;">Date: {{ $rendezvous[0]->date_rendezvous }}</p>
+
+
+
+                    </td>
+                    <td style="width:50%" colspan="">
+                        <p style="font-weight:bold;">Heure: {{ $rendezvous[0]->heure_rendezvous }}</p>
+
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr style="width:50%" colspan="">
+                    <p style="font-weight:bold;">Prestation: {{ $rendezvous[0]->prestation }}</p>
+
+
+
+                </tr>
+
+            </table>
+        </div>
         <br>
         <br>
         <br>
@@ -231,10 +325,7 @@
             <div style="text-align: left; width: 75%; ">
                 <img src="{{ public_path('qrcode.svg') }}" width="100" height="100">
             </div>
-            {{-- <div style="text-align: right">
-                <p>Conakry 03 mai, 2024.</p>
-                <p>Le Directeur Général</p>
-            </div> --}}
+
         </div>
 
     </main>

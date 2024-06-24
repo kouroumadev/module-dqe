@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Rdv_valide;
 use App\Mail\Rendezvous;
 use App\Models\NatureRendevou;
 use App\Models\PrestaRendevou;
 use App\Models\Rendezvou;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use PDF;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RendezvousController extends Controller
@@ -238,6 +239,64 @@ class RendezvousController extends Controller
         $pdf = PDF::loadView('pdf.recap', $data);
 
         return $pdf->stream('document.pdf');
+
+    }
+
+    // ////// Back office //////////
+    public function RendezvousListe()
+    {
+        $rendezvous_process = Rendezvou::where('valider', '0')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $rendezvous_done = Rendezvou::where('valider', '1')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('rendezvous.back.liste', compact('rendezvous_process', 'rendezvous_done')
+        );
+    }
+
+    public function ValidePdf($id)
+    {
+        $data = [];
+        $data['rendezvous'] = Rendezvou::find($id);
+
+        $pdf = PDF::loadView('pdf.valide-rdv', $data);
+
+        return $pdf->stream('document.pdf');
+
+    }
+
+    public function BackValidation(int $id)
+    {
+
+        $rendezvous = Rendezvou::find($id);
+        $rendezvous->valider = 1;
+        $rendezvous->date_validation = Carbon::now()->format('Y-m-d');
+        $rendezvous->save();
+
+        $nom = $rendezvous->nom;
+        $prenom = $rendezvous->prenom;
+        $date_rendezvous = $rendezvous->date_rendezvous;
+        $heure_rendezvous = $rendezvous->heure_rendezvous;
+        $agence = $rendezvous->agence;
+        $code = $rendezvous->no_conf;
+        $email = $rendezvous->email;
+
+        Alert::success('Succès', 'Rendez-vous validé avec succès !!');
+
+        $rendezvous_process = Rendezvou::where('valider', '0')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $rendezvous_done = Rendezvou::where('valider', '1')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        Mail::to($email)->send(new Rdv_valide($code, $date_rendezvous, $heure_rendezvous, $prenom, $nom, $agence));
+
+        return redirect()->route('rendezvous.liste', ['rendezvous_process' => $rendezvous_process, 'rendezvous_done' => $rendezvous_done]);
 
     }
 }

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cloture;
 use App\Models\Reclamation;
+use App\Models\Rendezvou;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Mail;
 use Mews\Captcha\Facades\Captcha;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReclamationController extends Controller
 {
@@ -20,7 +20,9 @@ class ReclamationController extends Controller
     public function back()
     {
         $recla = Reclamation::where('is_done', '0')->count();
-        return view('reclamation.back', compact('recla'));
+        $rendezvous = Rendezvou::where('valider', '0')->count();
+
+        return view('reclamation.back', compact('recla', 'rendezvous'));
     }
 
     /**
@@ -37,6 +39,7 @@ class ReclamationController extends Controller
         $motifs = DB::table('motifs')->get();
         // dd($motifs);
         $prestations = DB::table('prestations')->get();
+
         // $captcha = Captcha::create();
         // dd($captcha->image);
         return view('reclamation.create', compact('motifs', 'prestations'));
@@ -52,11 +55,12 @@ class ReclamationController extends Controller
             $data = DB::connection('metier')
                 ->table('employe')
                 ->where('no_employe', $value)
-                ->get(); #130030000771 #2004054840400
+                ->get(); //130030000771 #2004054840400
             if (count($data) <= 0) {
                 $rep[] = 'non';
                 $rep[] =
                     "Ce N° d'immatriculation n'est pas associé à un employé de la CNSS, veuillez entrer le bon numéro d'immatriculation.";
+
                 return response()->json($rep);
             }
 
@@ -70,11 +74,12 @@ class ReclamationController extends Controller
             $data = DB::connection('metier')
                 ->table('employeur')
                 ->where('no_employeur', $value)
-                ->get(); #8204000010400 #6104000050400
+                ->get(); //8204000010400 #6104000050400
             if (count($data) <= 0) {
                 $rep[] = 'non';
                 $rep[] =
                     "Ce N° d'immatriculation n'est pas associé à un employeur de la CNSS, veuillez entrer le bon numéro d'immatriculation.";
+
                 return response()->json($rep);
             }
 
@@ -88,11 +93,12 @@ class ReclamationController extends Controller
             $data = DB::connection('metier')
                 ->table('pensionne')
                 ->where('no_pensionne', $value)
-                ->get(); #PI-0001/010 #I-0001/2008
+                ->get(); //PI-0001/010 #I-0001/2008
             if (count($data) <= 0) {
                 $rep[] = 'non';
                 $rep[] =
                     "Ce N° de pension n'est pas associé à un pensionnaire de la CNSS, veuillez entrer le bon numéro de pension.";
+
                 return response()->json($rep);
             }
             foreach ($data as $d) {
@@ -130,6 +136,7 @@ class ReclamationController extends Controller
         $recla->details = $request->details;
         $recla->is_done = '0';
         $recla->save();
+
         // Alert::success('', "Reclamation effectué avec succès");
         return redirect()
             ->back()
@@ -148,11 +155,13 @@ class ReclamationController extends Controller
         $reclamations_done = Reclamation::where('is_done', '1')
             ->orderBy('created_at', 'ASC')
             ->get();
+
         return view(
             'reclamation.dqe',
             compact('reclamations_process', 'reclamations_done')
         );
     }
+
     public function done(Request $request)
     {
         // dd($request->all());
@@ -166,6 +175,7 @@ class ReclamationController extends Controller
         $cloture->save();
 
         Alert::success('Succès', 'Dossier traité et cloturé avec succès !!');
+
         return redirect(route('reclamation.dqe'));
     }
 
@@ -195,15 +205,13 @@ class ReclamationController extends Controller
 
     /**
      * Generates a unique Radon number.
-     *
-     * @return string
      */
     public function generate_rand(): string
     {
         $prefix = now()->format('Ymd'); // Using current timestamp as prefix
         $suffix = Str::random(4); // Generating a 6-character suffix
 
-        $radonNumber = $prefix . $suffix;
+        $radonNumber = $prefix.$suffix;
 
         // Check if the generated Radon number already exists in the database
         // if ($this->radonNumberExists($radonNumber)) {
@@ -245,8 +253,10 @@ class ReclamationController extends Controller
 
         $pdf = PDF::loadView('pdf.home', $data);
         $pdf->setPaper('A4', 'portrait');
+
         return $pdf->stream('fetat-Payement.pdf');
     }
+
     public function donePdf(int $id)
     {
         $reclamation = Reclamation::find($id);
@@ -279,6 +289,7 @@ class ReclamationController extends Controller
 
         $pdf = PDF::loadView('pdf.done', $data);
         $pdf->setPaper('A4', 'portrait');
+
         return $pdf->stream('fetat-Payement.pdf');
     }
 }

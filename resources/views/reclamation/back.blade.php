@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="col-xl-4 mb-30">
-                        <a href="#" class="btn btn-block">
+                        <a href="{{ route('rendezvous.liste') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">
                                     <div class="widget-data text-white text-uppercase font-weight-bold text-left">
@@ -35,6 +35,7 @@
                                     </div>
                                     {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
                                 </div>
+                                <small class="text-warning">({{ $rendezvous }} Dossiers en attentes)</small>
                             </div>
                         </a>
                     </div>

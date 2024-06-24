@@ -38,6 +38,18 @@ Route::get('/back', [
     App\Http\Controllers\ReclamationController::class,
     'back',
 ])->name('reclamation.back');
+Route::get('/rendezvous-liste', [
+    App\Http\Controllers\RendezvousController::class,
+    'RendezvousListe',
+])->name('rendezvous.liste');
+Route::get('/rendezvous/valide/{id}', [
+    App\Http\Controllers\RendezvousController::class,
+    'ValidePdf',
+])->name('valide.pdf');
+Route::get('/rendezvous/back/valide/{id}', [
+    App\Http\Controllers\RendezvousController::class,
+    'BackValidation',
+])->name('rendezvous.back.validation');
 
 //// Routes reclamations //////////
 Route::get('/reclamation/create', [
