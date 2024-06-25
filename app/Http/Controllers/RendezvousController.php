@@ -228,10 +228,12 @@ class RendezvousController extends Controller
         $date = $request->date_rendezvous;
         $heure = $request->heure_rendezvous;
         $exist = Rendezvou::where('date_rendezvous', $date)->where('heure_rendezvous', $heure)->get();
-        if (count($exist) == 1) {
-            return response()->json('error', 200);
-        } else {
+        // dd(count($exist));
+        if (count($exist) == 0) {
             return response()->json('success', 200);
+        } else {
+
+            return response()->json('error', 200);
         }
 
     }

@@ -450,10 +450,18 @@
                                 <h2 class="text-center" style="margin-bottom: 35px"> Identification</h2>
                                 <hr>
                                 <div class="row" style="margin-top:20px">
-                                    <div class="col-6 col-md-6 col-sm-12">
+                                    <div class="col-4 col-md-6 col-sm-12">
 
-                                        <div class="row">
-                                            <div class="col-ms-6" style="margin-left:15px;">
+                                        <div class="row" style=" margin-left:15px">
+                                            <label>Etes-vous ? <span class="text-danger">*</span></label>
+                                            <select name="typerdv" required id="type-rdv" class="custom-select col-12">
+                                                <option selected value="null">-- Aucune selecion --</option>
+                                                <option value="Assure">ASSURE</option>
+                                                <option value="Employeur">EMPLOYEUR</option>
+                                                <option value="Retraite">RETRAITE</option>
+                                                <option value="Reversion">REVERSION</option>
+                                            </select>
+                                            {{-- <div class="col-ms-6" style="margin-left:15px;">
                                                 <p>Etes vous ? un(e) assuré(e) ou employeur</p>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions"
@@ -465,46 +473,52 @@
                                                         id="non" value="non">
                                                     <label class="form-check-label" for="non">NON</label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
 
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">
-
+                                        <div class="form-group  ml-2" id="raison_sociale_wrapper" style="display:none">
+                                            <label>Raison Sociale</label>
+                                            <input type="text" name="raison_sociale" id="raison_sociale"
+                                                class="form-control" disabled>
+                                        </div>
 
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group" id="no_emp_wrapper" style=" margin-left:15px">
+                                            <label id="title">No employe/employeur</label>
+                                            <input type="text" name="no_employe" id="no_employe" value=""
+                                                placeholder="n° assuré(e)" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+
+
                                         <div class="form-group  ml-2">
                                             <label>Nom</label>
                                             <input type="text" name="nom" id="nom" class="form-control"
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-sm-12">
-                                        <div class="form-group" id="no_emp_wrapper" style="display: none; margin-left:15px">
-                                            <label>No employe/employeur</label>
-                                            <input type="text" name="no_employe" id="no_employe" value=""
-                                                placeholder="n° assuré(e)" class="form-control">
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group  ml-2">
+                                            <label>Telephone</label>
+                                            <input type="text" name="telephone" id="telephone" class="form-control"
+                                                required>
+                                        </div>
+
+                                    </div>
                                     <div class="col-6 col-md-6 col-sm-12">
 
                                         <div class="form-group  ml-2">
                                             <label>Prenom</label>
                                             <input type="text" name="prenom" id="prenom" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-6 col-sm-12">
-
-                                        <div class="form-group  ml-2">
-                                            <label>Telephone</label>
-                                            <input type="text" name="telephone" id="telephone" class="form-control"
                                                 required>
                                         </div>
                                     </div>
@@ -739,10 +753,17 @@
                         });
                         // $('.form-control').addClass("form-control-danger");
                     } else {
-                        var date_submit = $("#date_rendezvous").val();
-                        var current_date = Date();
-                        alert(formatDate(current_date))
-                        if (Date.parse(date_submit) < Date.parse(current_date)) {
+                        let date_submit = $("#date_rendezvous").val();
+                        let current_date = new Date();
+                        let year = current_date.getFullYear();
+                        let month = current_date.getMonth() + 1;
+                        let day = current_date.getDate();
+
+                        let up_date = year +
+                            '-' + month +
+                            '-' + day;
+
+                        if (Date.parse(date_submit) < Date.parse(up_date)) {
                             swal({
                                 title: "Oops!",
                                 text: "La date choisie ne doit pas etre inferieure à la date du jour !!",
@@ -750,10 +771,33 @@
                                 button: "OK",
                             });
 
-                        } else if (Date.parse(date_submit) === Date.parse(current_date)) {
-                            alert("valid")
                         } else {
-                            alert("valid")
+                            var date_rendezvous = $("#date_rendezvous").val();
+                            var heure_rendezvous = $("#heure_rendezvous").val();
+                            $.ajax({
+                                type: 'GET',
+                                url: "{{ route('horaire.ajax') }}",
+                                dataType: 'json',
+                                data: {
+                                    date_rendezvous: date_rendezvous,
+                                    heure_rendezvous: heure_rendezvous,
+                                },
+                                success: function(data) {
+                                    //console.log(data);
+                                    if (data == 'error') {
+                                        swal({
+                                            title: "Incorrect !",
+                                            text: "Ce creneau à été déjà réservé",
+                                            icon: "error",
+                                            button: "OK",
+                                        });
+
+                                    } else {
+                                        $('#rendezvous-form').submit();
+                                    }
+
+                                }
+                            })
                         }
 
 
@@ -877,6 +921,8 @@
                             });
                             // $("#date_rendezvous").addClass('error');
                             $('#date_rendezvous').addClass("form-control-danger");
+                        } else {
+                            $('#date_rendezvous').removeClass("form-control-danger");
                         }
 
                     }
@@ -923,15 +969,53 @@
 
             $("#non").click(function() {
                 $("#no_emp_wrapper").hide();
+                $("#nom").prop("disabled", false);
+                $("#prenom").prop("disabled", false);
             });
             $("#oui").click(function() {
                 $("#no_emp_wrapper").show();
+                $("#nom").prop("disabled", true);
+                $("#prenom").prop("disabled", true);
             });
+            // let selected_type = $("#type-rdv option:selected").val();
 
-            var checked = $("#oui").prop("checked", true);
-            if (checked) {
-                $("#no_emp_wrapper").show();
-            }
+            // if (selected_type == "null") {
+            //     $("#nom").prop("disabled", false);
+            //     $("#prenom").prop("disabled", false);
+            // }
+            $('#type-rdv').change(function() {
+                var type_rdv = $(this).val();
+                // console.log(type);
+                if (type_rdv == 'Employeur') {
+
+                    $('#title').text('N° Immatriculation');
+                    $("#raison_sociale_wrapper").show();
+                    $("#nom").prop("disabled", false);
+                    $("#prenom").prop("disabled", false);
+                } else if (type_rdv == 'Assure') {
+
+                    $('#title').text('N° Immatriculation');
+                    $("#nom").prop("disabled", true);
+                    $("#prenom").prop("disabled", true);
+                    $("#raison_sociale_wrapper").hide();
+                } else {
+
+                    $('#title').text('N° Pension');
+                    $("#raison_sociale_wrapper").hide();
+                    $("#nom").prop("disabled", true);
+                    $("#prenom").prop("disabled", true);
+                }
+
+            });
+            // var checked = $("#oui").prop("checked", true);
+            // if (checked) {
+            //     $("#no_emp_wrapper").show();
+            //     $("#nom").prop("disabled", true);
+            //     $("#prenom").prop("disabled", true);
+            // } else {
+            //     $("#nom").prop("disabled", false);
+            //     $("#prenom").prop("disabled", false);
+            // }
 
             // $("#rendezvous-form").submit(function(e) {
             //     e.preventDefault();

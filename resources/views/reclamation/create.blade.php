@@ -61,7 +61,7 @@
                                                 <option value="Assure">ASSURE</option>
                                                 <option value="Employeur">EMPLOYEUR</option>
                                                 <option value="Retraite">RETRAITE</option>
-                                                <option value="Reversion">RTEVERSION</option>
+                                                <option value="Reversion">REVERSION</option>
                                             </select>
                                             <small class="form-text text-muted">
                                                 Si vous n'etes ni pensioné ni immatruculé ? <a
