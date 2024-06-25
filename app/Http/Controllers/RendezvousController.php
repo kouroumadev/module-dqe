@@ -166,7 +166,7 @@ class RendezvousController extends Controller
             $nom = $request->nom;
             $prenom = $request->prenom;
             $code = $conf_id;
-            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+            // Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
 
             return view('rendezvous.confirmation', compact('conf_id'));
         } else {
@@ -190,7 +190,7 @@ class RendezvousController extends Controller
             $nom = $request->nom;
             $prenom = $request->prenom;
             $code = $conf_id;
-            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+            // Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
 
             return view('rendezvous.confirmation', compact('conf_id'));
         }
@@ -216,6 +216,8 @@ class RendezvousController extends Controller
         $date = $request->date_val;
         if ($date < $current_date) {
             return response()->json('error', 200);
+        } else {
+            return response()->json('success', 200);
         }
 
     }
@@ -228,6 +230,8 @@ class RendezvousController extends Controller
         $exist = Rendezvou::where('date_rendezvous', $date)->where('heure_rendezvous', $heure)->get();
         if (count($exist) == 1) {
             return response()->json('error', 200);
+        } else {
+            return response()->json('success', 200);
         }
 
     }
@@ -294,7 +298,7 @@ class RendezvousController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        Mail::to($email)->send(new Rdv_valide($code, $date_rendezvous, $heure_rendezvous, $prenom, $nom, $agence));
+        // Mail::to($email)->send(new Rdv_valide($code, $date_rendezvous, $heure_rendezvous, $prenom, $nom, $agence));
 
         return redirect()->route('rendezvous.liste', ['rendezvous_process' => $rendezvous_process, 'rendezvous_done' => $rendezvous_done]);
 

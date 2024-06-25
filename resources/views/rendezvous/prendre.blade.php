@@ -680,7 +680,7 @@
 
                                 <div class="row justify-content-start">
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success" id="send-rdv">Valider le
+                                        <button type="button" class="btn btn-success" id="send-rdv">Valider le
                                             RDV</button>
                                     </div>
                                 </div>
@@ -703,27 +703,62 @@
     <script>
         $(document).ready(function() {
 
+            var flag = 0;
 
-
-            $('#send-rdv').prop('disabled', true);
-            $('.form-control').on('change', function() {
-                var region = $("#region").val();
-                var nature = $("#nature").val();
-                var prestation = $("#prestation").val();
-                var date_rendezvous = $("#date_rendezvous").val();
-                var heure_rendezvous = $("#heure_rendezvous").val();
-                var no_employe = $("#no_employe").val();
-                var nom = $("#nom").val();
-                var prenom = $("#prenom").val();
-                var telephone = $("#telephone").val();
-                var email = $("#email").val();
-                var adresse = $('#adresse').val();
-                if (region != '' && nature != '' && prestation != '' && date_rendezvous != '' &&
-                    heure_rendezvous != '' && nom != '' && prenom != '' && telephone != '' && email != '' &&
-                    adresse != '') {
-                    $('#send-rdv').prop('disabled', false);
+            //$('#send-rdv').prop('disabled', true);
+            $('#send-rdv').on('click', function() {
+                if (flag == 1) {
+                    swal({
+                        title: "Oops!",
+                        text: title,
+                        icon: "error",
+                        button: "OK",
+                    });
                 } else {
-                    $('#send-rdv').prop('disabled', true);
+                    var region = $("#region").val();
+                    var nature = $("#nature").val();
+                    var prestation = $("#prestation").val();
+                    var date_rendezvous = $("#date_rendezvous").val();
+                    var heure_rendezvous = $("#heure_rendezvous").val();
+                    var no_employe = $("#no_employe").val();
+                    var nom = $("#nom").val();
+                    var prenom = $("#prenom").val();
+                    var telephone = $("#telephone").val();
+                    var email = $("#email").val();
+                    var adresse = $('#adresse').val();
+
+                    if (region == '' || nature == '' || prestation == '' || date_rendezvous == '' ||
+                        heure_rendezvous == '' || nom == '' || prenom == '' || telephone == '' || email ==
+                        '' ||
+                        adresse == '') {
+                        swal({
+                            title: "Oops!",
+                            text: "Veuillez remplir tous les champs obligatoires !!",
+                            icon: "error",
+                            button: "OK",
+                        });
+                        // $('.form-control').addClass("form-control-danger");
+                    } else {
+                        var date_submit = $("#date_rendezvous").val();
+                        var current_date = Date();
+                        alert(formatDate(current_date))
+                        if (Date.parse(date_submit) < Date.parse(current_date)) {
+                            swal({
+                                title: "Oops!",
+                                text: "La date choisie ne doit pas etre inferieure à la date du jour !!",
+                                icon: "error",
+                                button: "OK",
+                            });
+
+                        } else if (Date.parse(date_submit) === Date.parse(current_date)) {
+                            alert("valid")
+                        } else {
+                            alert("valid")
+                        }
+
+
+                        //$('#rendezvous-form').submit();
+                    }
                 }
             });
 
@@ -790,6 +825,11 @@
                                 button: "OK",
                             });
                             // $("#date_rendezvous").addClass('error');
+                            $('#date_rendezvous').addClass("form-control-danger");
+
+                        } else {
+                            $('#date_rendezvous').removeClass("form-control-danger");
+
                         }
 
                     }
@@ -836,6 +876,7 @@
                                 button: "OK",
                             });
                             // $("#date_rendezvous").addClass('error');
+                            $('#date_rendezvous').addClass("form-control-danger");
                         }
 
                     }
