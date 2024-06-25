@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="brand-logo" style="border-bottom: none; max-width:350px">
-                        <a href="http://">
+                        <a href="{{ url('/') }}">
                             <img src="{{ asset('logos/logo.svg') }}" alt="" srcset="" width="350">
                         </a>
                     </div>

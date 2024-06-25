@@ -63,7 +63,7 @@
 
                 <div class="d-flex">
                     <div class="form-group" style="margin-top: 30px; margin-right:5px">
-                        <a href="{{ route('rendezvous.prendre') }}" class="btn btn-info"> <i class="icon-copy fa fa-home"
+                        <a href="{{ url('/') }}" class="btn btn-info"> <i class="icon-copy fa fa-home"
                                 aria-hidden="true"></i> Retour à l'acceuil</a>
 
                     </div>

@@ -16,7 +16,7 @@
 
 <body>
     <p>
-        <img src="{{ $message->embed(public_path('new logo.jpeg')) }}" alt="here logo">
+        <img src="{{ $message->embed(public_path('new logo.jpeg')) }}" alt="here logo" style="width: 500" height="100">
     </p>
     <h3>Bonjour Mme/Mr, {{ $prenom }} {{ $nom }},</h3>
     <p>Votre Rendez-vous a bien été reçu à la Caisse Nationale de Sécurité Sociale (CNSS)</p>

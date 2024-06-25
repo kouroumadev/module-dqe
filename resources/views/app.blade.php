@@ -63,6 +63,15 @@
             transform: translate(-50%, -50%);
             z-index: 9999;
         }
+
+        footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 2cm;
+            display: flex !important;
+        }
     </style>
 
     {{-- sweetAlert --}}
@@ -92,7 +101,9 @@
     @yield('content')
 
 
-
+    <footer>
+        @include('footer')
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>

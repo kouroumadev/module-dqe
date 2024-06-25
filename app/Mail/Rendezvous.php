@@ -39,7 +39,7 @@ class Rendezvous extends Mailable
     {
         return new Envelope(
             subject: 'Rendezvous',
-            from: new Address('notification@cnssgn.com'),
+            from: new Address('reclamation@cnss.gov.gn'),
         );
     }
 

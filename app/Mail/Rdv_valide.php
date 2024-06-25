@@ -42,7 +42,7 @@ class Rdv_valide extends Mailable
     {
         return new Envelope(
             subject: 'Rdv Valide',
-            from: new Address('notification@cnssgn.com'),
+            from: new Address('reclamation@cnss.gov.gn'),
         );
     }
 

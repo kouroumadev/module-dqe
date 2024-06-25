@@ -10,6 +10,7 @@ use App\Models\Rendezvou;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -129,7 +130,7 @@ class RendezvousController extends Controller
     public function Conf(Request $request)
     {
 
-        //dd($request->nature);
+        // dd($request->nom);
         // $date = $request->date_rendezvous;
         // $heure = $request->heure_rendezvous;
         $nature = NatureRendevou::find($request->nature);
@@ -166,7 +167,7 @@ class RendezvousController extends Controller
             $nom = $request->nom;
             $prenom = $request->prenom;
             $code = $conf_id;
-            // Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
 
             return view('rendezvous.confirmation', compact('conf_id'));
         } else {
@@ -190,7 +191,7 @@ class RendezvousController extends Controller
             $nom = $request->nom;
             $prenom = $request->prenom;
             $code = $conf_id;
-            // Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
+            Mail::to($email)->send(new Rendezvous($code, $email, $prenom, $nom));
 
             return view('rendezvous.confirmation', compact('conf_id'));
         }
@@ -220,6 +221,60 @@ class RendezvousController extends Controller
             return response()->json('success', 200);
         }
 
+    }
+
+    public function InfoAjax(Request $request)
+    {
+        $num = $request->no_employe;
+        $type = $request->typerdv;
+        if ($type == 'Assure') {
+            if ($num == '') {
+                return response()->json('null', 200);
+            } else {
+                $data = DB::connection('metier')
+                    ->table('employe')
+                    ->where('no_employe', $num)
+                    ->get(); //130030000771 #2004054840400
+                if (count($data) == 0) {
+                    return response()->json('not exist', 200);
+                } else {
+                    return response()->json($data, 200);
+                }
+
+            }
+
+        } elseif ($type == 'Employeur') {
+            if ($num == '') {
+                return response()->json('null', 200);
+            } else {
+                $data = DB::connection('metier')
+                    ->table('employeur')
+                    ->where('no_employeur', $num)
+                    ->get();
+                if (count($data) == 0) {
+                    return response()->json('not exist', 200);
+                } else {
+                    return response()->json($data, 200);
+                }
+
+            }
+        } else {
+            if ($num == '') {
+                return response()->json('null', 200);
+            } else {
+                $data = DB::connection('metier')
+                    ->table('pensionne')
+                    ->where('no_pensionne', $num)
+                    ->get(); //PI-0001/010 #I-0001/2008
+                if (count($data) == 0) {
+                    return response()->json('not exist', 200);
+                } else {
+                    return response()->json($data, 200);
+                }
+
+            }
+        }
+        // dd($request->all());
     }
 
     public function GetHoraire(Request $request)
@@ -277,6 +332,7 @@ class RendezvousController extends Controller
     public function BackValidation(int $id)
     {
 
+        dd(FacadesAuth::user());
         $rendezvous = Rendezvou::find($id);
         $rendezvous->valider = 1;
         $rendezvous->date_validation = Carbon::now()->format('Y-m-d');
@@ -300,7 +356,7 @@ class RendezvousController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        // Mail::to($email)->send(new Rdv_valide($code, $date_rendezvous, $heure_rendezvous, $prenom, $nom, $agence));
+        Mail::to($email)->send(new Rdv_valide($code, $date_rendezvous, $heure_rendezvous, $prenom, $nom, $agence));
 
         return redirect()->route('rendezvous.liste', ['rendezvous_process' => $rendezvous_process, 'rendezvous_done' => $rendezvous_done]);
 

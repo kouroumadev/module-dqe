@@ -179,6 +179,10 @@ Route::get('/rendezvous/get-date', [
     App\Http\Controllers\RendezvousController::class,
     'GetDate',
 ])->name('date.ajax');
+Route::get('/info/ajax', [
+    App\Http\Controllers\RendezvousController::class,
+    'InfoAjax',
+])->name('info.ajax');
 Route::get('/rendezvous/get-horaire', [
     App\Http\Controllers\RendezvousController::class,
     'GetHoraire',

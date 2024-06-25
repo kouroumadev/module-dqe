@@ -450,13 +450,13 @@
                                 <h2 class="text-center" style="margin-bottom: 35px"> Identification</h2>
                                 <hr>
                                 <div class="row" style="margin-top:20px">
-                                    <div class="col-4 col-md-6 col-sm-12">
+                                    <div class="col-4 col-md-6 col-sm-12 form-group">
 
                                         <div class="row" style=" margin-left:15px">
                                             <label>Etes-vous ? <span class="text-danger">*</span></label>
-                                            <select name="typerdv" required id="type-rdv" class="custom-select col-12">
-                                                <option selected value="null">-- Aucune selecion --</option>
-                                                <option value="Assure">ASSURE</option>
+                                            <select name="typerdv" required id="type-rdv" class="custom-select">
+                                                <option value="Autre">-- Autre --</option>
+                                                <option selected value="Assure">ASSURE</option>
                                                 <option value="Employeur">EMPLOYEUR</option>
                                                 <option value="Retraite">RETRAITE</option>
                                                 <option value="Reversion">REVERSION</option>
@@ -482,7 +482,7 @@
                                         <div class="form-group  ml-2" id="raison_sociale_wrapper" style="display:none">
                                             <label>Raison Sociale</label>
                                             <input type="text" name="raison_sociale" id="raison_sociale"
-                                                class="form-control" disabled>
+                                                class="form-control" readonly>
                                         </div>
 
                                     </div>
@@ -969,20 +969,20 @@
 
             $("#non").click(function() {
                 $("#no_emp_wrapper").hide();
-                $("#nom").prop("disabled", false);
-                $("#prenom").prop("disabled", false);
+                $("#nom").prop("readonly", false);
+                $("#prenom").prop("readonly", false);
             });
             $("#oui").click(function() {
                 $("#no_emp_wrapper").show();
-                $("#nom").prop("disabled", true);
-                $("#prenom").prop("disabled", true);
+                $("#nom").prop("readonly", true);
+                $("#prenom").prop("readonly", true);
             });
-            // let selected_type = $("#type-rdv option:selected").val();
-
-            // if (selected_type == "null") {
-            //     $("#nom").prop("disabled", false);
-            //     $("#prenom").prop("disabled", false);
-            // }
+            let selected_type = $("#type-rdv option:selected").val();
+            //alert(selected_type)
+            if (selected_type == "Assure") {
+                $("#nom").prop("readonly", true);
+                $("#prenom").prop("readonly", true);
+            }
             $('#type-rdv').change(function() {
                 var type_rdv = $(this).val();
                 // console.log(type);
@@ -990,22 +990,74 @@
 
                     $('#title').text('N° Immatriculation');
                     $("#raison_sociale_wrapper").show();
-                    $("#nom").prop("disabled", false);
-                    $("#prenom").prop("disabled", false);
+                    $("#nom").prop("readonly", false);
+                    $("#prenom").prop("readonly", false);
                 } else if (type_rdv == 'Assure') {
 
                     $('#title').text('N° Immatriculation');
-                    $("#nom").prop("disabled", true);
-                    $("#prenom").prop("disabled", true);
+                    $("#nom").prop("readonly", true);
+                    $("#prenom").prop("readonly", true);
                     $("#raison_sociale_wrapper").hide();
-                } else {
+                    $("#no_emp_wrapper").show();
+                } else if (type_rdv == 'Retraite' || type_rdv == 'Reversion') {
 
                     $('#title').text('N° Pension');
                     $("#raison_sociale_wrapper").hide();
-                    $("#nom").prop("disabled", true);
-                    $("#prenom").prop("disabled", true);
+                    $("#nom").prop("readonly", true);
+                    $("#prenom").prop("readonly", true);
+                } else {
+                    $("#no_emp_wrapper").hide();
+                    $("#nom").prop("readonly", false);
+                    $("#prenom").prop("readonly", false);
+                    $("#raison_sociale_wrapper").hide();
                 }
 
+            });
+            $('#no_employe').blur(function() {
+                var no_employe = $(this).val();
+                var typerdv = $("#type-rdv").val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('info.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        no_employe: no_employe,
+                        typerdv: typerdv,
+                    },
+                    success: function(data) {
+                        //console.log(data);
+                        if (data == 'null') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "Le champs est vide.",
+                                icon: "error",
+                                button: "OK",
+                            });
+                            // $("#date_rendezvous").addClass('error');
+                            $('#no_employe').addClass("form-control-danger");
+
+                        } else if (data == 'not exist') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "Le Numero n'existe pas.",
+                                icon: "error",
+                                button: "OK",
+                            });
+                            // $("#date_rendezvous").addClass('error');
+                            $('#no_employe').addClass("form-control-danger");
+                        } else {
+                            //console.log(data[0].nom)
+                            $('#no_employe').removeClass("form-control-danger");
+                            $('#no_employe').addClass("form-control-success");
+
+                            $("#nom").val(data[0].nom);
+                            $("#prenom").val(data[0].prenoms);
+                            $("#raison_sociale").val(data[0].raison_sociale);
+                        }
+
+                    }
+                })
             });
             // var checked = $("#oui").prop("checked", true);
             // if (checked) {
