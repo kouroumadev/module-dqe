@@ -8,6 +8,7 @@
     <div class="col-md-10 shadow-lg p-3 mb-5 bg-white rounded">
         <h2 class="text-center bg-success text-white p-2">GESTION DES RECLAMMATIONS</h2>
 
+
         <div class="pd-20 card-box">
             {{-- <h5 class="h4 text-blue mb-20">Nav Pills Tabs</h5> --}}
             <div class="tab">

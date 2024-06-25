@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('clotures', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reclamation_id')->constrained('reclamations');
+            $table->foreignId('user_id')->constrained('users');
             $table->text('details');
             $table->timestamps();
         });

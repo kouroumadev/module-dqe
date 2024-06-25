@@ -7,20 +7,37 @@ use App\Mail\ReclamationMail;
 use App\Models\Cloture;
 use App\Models\Reclamation;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Mews\Captcha\Facades\Captcha;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class ReclamationController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // $this->middleware('auth');
+    //       if (!Session::has('loginId')) {
+    //          return redirect('login');
+    //      }
+    // }
     /**
      * Display a listing of the resource.
      */
     public function back()
     {
+        // dd(User::find(session('loginId'))->id);
+        // dd(Auth::user()->id);
+        // if (!Session::has('loginId')) {
+        //     return redirect('login');
+        // }
+
         $recla = Reclamation::where('is_done', '0')->count();
         $rendezvous = Rendezvou::where('valider', '0')->count();
 
@@ -187,6 +204,7 @@ class ReclamationController extends Controller
         $rec->save();
 
         $cloture = new Cloture();
+        $cloture->user_id = User::find(session('loginId'))->id;
         $cloture->reclamation_id = $request->reclamation_id;
         $cloture->details = $request->details;
         $cloture->save();
@@ -271,7 +289,7 @@ class ReclamationController extends Controller
         $prefix = now()->format('Ymd'); // Using current timestamp as prefix
         $suffix = Str::random(4); // Generating a 6-character suffix
 
-        $radonNumber = $prefix.$suffix;
+        $radonNumber = $prefix . $suffix;
 
         // Check if the generated Radon number already exists in the database
         // if ($this->radonNumberExists($radonNumber)) {
@@ -391,9 +409,9 @@ class ReclamationController extends Controller
             'code' => date('d-m-Y'),
         ];
 
-        Mail::to('kouroumadev@gmail.com')->send(
-            new ReclamationMail($dataMail, $pdf->output())
-        );
+        // Mail::to('kouroumadev@gmail.com')->send(
+        //     new ReclamationMail($dataMail, $pdf->output())
+        // );
         // Mail::to($user->email)->send(new SendCredentialsToUserMail($details, $pdf->output()));
         dd('sent');
     }
