@@ -25,6 +25,35 @@ En retard
 </span>
 </span>*/
 
+//AUTHENTICATION ROUTES
+Route::get('/registration', [
+    App\Http\Controllers\AuthenController::class,
+    'registration',
+])->middleware('guest');
+
+Route::post('/registration-user', [
+    App\Http\Controllers\AuthenController::class,
+    'registerUser',
+])
+    ->name('user.registration')
+    ->middleware('guest');
+
+Route::get('/login', [App\Http\Controllers\AuthenController::class, 'login'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('/login-user', [
+    App\Http\Controllers\AuthenController::class,
+    'loginUser',
+])
+    ->name('user.store')
+    ->middleware('guest');
+
+Route::get('/logout', [
+    App\Http\Controllers\AuthenController::class,
+    'logout',
+])->middleware('authCheck');
+
 Route::get('/', function () {
     return view('rendezvous.index');
 });
@@ -34,18 +63,20 @@ Route::get('/', function () {
 // });
 
 ////ROUTES BACK OFFICE
-Route::get('/back', [
-    App\Http\Controllers\ReclamationController::class,
-    'back',
-])->name('reclamation.back');
+Route::get('/back', [App\Http\Controllers\ReclamationController::class, 'back'])
+    ->name('reclamation.back')
+    ->middleware('authCheck');
+
 Route::get('/rendezvous-liste', [
     App\Http\Controllers\RendezvousController::class,
     'RendezvousListe',
 ])->name('rendezvous.liste');
+
 Route::get('/rendezvous/valide/{id}', [
     App\Http\Controllers\RendezvousController::class,
     'ValidePdf',
 ])->name('valide.pdf');
+
 Route::get('/rendezvous/back/valide/{id}', [
     App\Http\Controllers\RendezvousController::class,
     'BackValidation',
@@ -70,7 +101,9 @@ Route::get('/reclamation/getInfo', [
 Route::get('/reclamation/dqe', [
     App\Http\Controllers\ReclamationController::class,
     'dqe',
-])->name('reclamation.dqe');
+])
+    ->name('reclamation.dqe')
+    ->middleware('authCheck');
 
 Route::get('/reclamation/home/pdf/{id}', [
     App\Http\Controllers\ReclamationController::class,
@@ -80,12 +113,16 @@ Route::get('/reclamation/home/pdf/{id}', [
 Route::get('/reclamation/home/pdfDone/{id}', [
     App\Http\Controllers\ReclamationController::class,
     'donePdf',
-])->name('reclamation.home.pdfDone');
+])
+    ->name('reclamation.home.pdfDone')
+    ->middleware('authCheck');
 
 Route::post('/reclamation/home/done', [
     App\Http\Controllers\ReclamationController::class,
     'done',
-])->name('reclamation.home.done');
+])
+    ->name('reclamation.home.done')
+    ->middleware('authCheck');
 
 Route::get('/reclamation/mail/conf', [
     App\Http\Controllers\ReclamationController::class,
@@ -97,6 +134,7 @@ Route::get('/index', [
     App\Http\Controllers\RendezvousController::class,
     'Index',
 ])->name('rendezvous.index');
+
 Route::get('/rendezvous/prendre', [
     App\Http\Controllers\RendezvousController::class,
     'Prendre',

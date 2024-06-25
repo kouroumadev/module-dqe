@@ -13,14 +13,27 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Mews\Captcha\Facades\Captcha;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 class ReclamationController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // $this->middleware('auth');
+    //       if (!Session::has('loginId')) {
+    //          return redirect('login');
+    //      }
+    // }
     /**
      * Display a listing of the resource.
      */
     public function back()
     {
+        // if (!Session::has('loginId')) {
+        //     return redirect('login');
+        // }
+
         $recla = Reclamation::where('is_done', '0')->count();
         $rendezvous = Rendezvou::where('valider', '0')->count();
 
@@ -271,7 +284,7 @@ class ReclamationController extends Controller
         $prefix = now()->format('Ymd'); // Using current timestamp as prefix
         $suffix = Str::random(4); // Generating a 6-character suffix
 
-        $radonNumber = $prefix.$suffix;
+        $radonNumber = $prefix . $suffix;
 
         // Check if the generated Radon number already exists in the database
         // if ($this->radonNumberExists($radonNumber)) {
