@@ -308,20 +308,24 @@
                 <tr></tr>
                 <tr style="width:50%" colspan="">
                     <p style="font-weight:bold;">Prestation: {{ $rendezvous[0]->prestation }}</p>
-
-
-
                 </tr>
-
+                <tr>
+                    <td colspan="2"
+                        style="width:100%;text-align:center;font-weight:bold;font-size:18px;background-color:rgb(193, 190, 190);text-transform: uppercase">
+                        Détails Rendez-vous</td>
+                </tr>
+                <tr>
+                    <td class="gray-bordered-div" colspan="2"
+                        style="width:100%; height: 150px;vertical-align: text-top">
+                        {{ $rendezvous[0]->detail }}
+                    </td>
+                </tr>
             </table>
         </div>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div style="display: flex;margin-top:60px">
+
+        <div style="display: flex;margin-top:20px">
             <div style="text-align: left; width: 75%; ">
                 <img src="{{ public_path('qrcode.svg') }}" width="100" height="100">
             </div>

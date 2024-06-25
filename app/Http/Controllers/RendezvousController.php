@@ -7,10 +7,10 @@ use App\Mail\Rendezvous;
 use App\Models\NatureRendevou;
 use App\Models\PrestaRendevou;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -130,7 +130,7 @@ class RendezvousController extends Controller
     public function Conf(Request $request)
     {
 
-        // dd($request->nom);
+        //dd($request->all());
         // $date = $request->date_rendezvous;
         // $heure = $request->heure_rendezvous;
         $nature = NatureRendevou::find($request->nature);
@@ -161,6 +161,7 @@ class RendezvousController extends Controller
             $rendezvous->heure_rendezvous = $request->heure_rendezvous;
             $rendezvous->telephone = $request->telephone;
             $rendezvous->email = $request->email;
+            $rendezvous->detail = $request->detail;
             $rendezvous->save();
 
             $email = $request->email;
@@ -185,6 +186,7 @@ class RendezvousController extends Controller
             $rendezvous->heure_rendezvous = $request->heure_rendezvous;
             $rendezvous->telephone = $request->telephone;
             $rendezvous->email = $request->email;
+            $rendezvous->detail = $request->detail;
             $rendezvous->save();
 
             $email = $request->email;
@@ -313,6 +315,7 @@ class RendezvousController extends Controller
         $rendezvous_done = Rendezvou::where('valider', '1')
             ->orderBy('created_at', 'DESC')
             ->get();
+        // dd($rendezvous_done);
 
         return view('rendezvous.back.liste', compact('rendezvous_process', 'rendezvous_done')
         );
@@ -331,10 +334,11 @@ class RendezvousController extends Controller
 
     public function BackValidation(int $id)
     {
+        $user_id = User::find(session('loginId'))->id;
 
-        dd(FacadesAuth::user());
         $rendezvous = Rendezvou::find($id);
         $rendezvous->valider = 1;
+        $rendezvous->user_id = $user_id;
         $rendezvous->date_validation = Carbon::now()->format('Y-m-d');
         $rendezvous->save();
 

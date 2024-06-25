@@ -399,18 +399,42 @@
 
                 <div class="page-header">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="title">
-                                <h4>GESTION DES RENDEZ-VOUS</h4>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="title">
+                                        <h4>GESTION DES RENDEZ-VOUS</h4>
+                                    </div>
+                                    <nav aria-label="breadcrumb" role="navigation">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a
+                                                    href="{{ route('reclamation.back') }}">Accueil</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Rendez-vous</li>
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{ route('reclamation.back') }}">Accueil</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Rendez-vous</li>
-                                </ol>
-                            </nav>
                         </div>
+                        <div class="col-2">
+
+                            <div>
+                                <p>DECONNEXION</p>
+                                <a href="{{ route('logout') }}" class="btn btn-block">
+                                    <div class="card-box height-100-p widget-style1 bg-danger shadow-lg" style="width: 50%">
+                                        <div class="d-flex flex-wrap align-items-center">
+
+                                            <div class="progress-data">
+                                                <i class="icon-copy fa fa-power-off fa-2x text-white"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
                 <div class="row">
 
@@ -474,8 +498,9 @@
                                                                         </a>
                                                                     </td>
                                                                     <div class="modal fade bs-example-modal-lg"
-                                                                        id="modal-procla-{{ $rec->id }}" tabindex="-1"
-                                                                        role="dialog" aria-labelledby="myLargeModalLabel"
+                                                                        id="modal-procla-{{ $rec->id }}"
+                                                                        tabindex="-1" role="dialog"
+                                                                        aria-labelledby="myLargeModalLabel"
                                                                         aria-hidden="true">
                                                                         <div
                                                                             class="modal-dialog modal-lg modal-dialog-centered">
@@ -523,13 +548,13 @@
                                                                                             <span
                                                                                                 class="font-weight-bold">N°
                                                                                                 Immatriculation:</span>
-                                                                                            @if ($rec->no_immatriculation == null)
+                                                                                            @if ($rec->no_employe == null)
                                                                                                 <span
                                                                                                     class="float-right text-danger">-</span>
                                                                                                 <br>
                                                                                             @else
                                                                                                 <span
-                                                                                                    class="float-right">{{ $rec->no_immatriculation }}</span>
+                                                                                                    class="float-right">{{ $rec->no_employe }}</span>
                                                                                                 <br>
                                                                                             @endif
 
@@ -664,12 +689,19 @@
                                                                 <th>Nature RDV</th>
                                                                 <th>Prestation</th>
                                                                 <th>Date validation</th>
-                                                                <th>Action</th>
+                                                                <th>valide par</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
 
                                                             @foreach ($rendezvous_done as $rec)
+                                                                @php
+                                                                    $user = App\Models\Rendezvou::where(
+                                                                        'user_id',
+                                                                        $rec->user_id,
+                                                                    )->get();
+                                                                    //dd($user);
+                                                                @endphp
                                                                 <tr>
                                                                     <td>{{ $rec->no_conf }}</td>
                                                                     <td>{{ $rec->date_rendezvous }} à
@@ -678,11 +710,10 @@
                                                                     <td>{{ $rec->prestation }}</td>
                                                                     <td>{{ $rec->date_validation }}</td>
                                                                     <td>
-                                                                        <a href="#" class="btn btn-success"
+                                                                        <a href="#" class=""
                                                                             data-toggle="modal"
-                                                                            data-target="#modal-procla-{{ $rec->id }}"
-                                                                            type="button">
-                                                                            Validé
+                                                                            data-target="#modal-procla-{{ $rec->id }}">
+                                                                            {{ $user[0]->nom }}
                                                                         </a>
                                                                     </td>
                                                                     <div class="modal fade bs-example-modal-lg"

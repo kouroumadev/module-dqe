@@ -538,7 +538,8 @@
 
                                         <div class="form-group  ml-2">
                                             <label>adresse</label>
-                                            <textarea type="text" name="adresse" id="adresse" class="form-control" required></textarea>
+                                            <input type="text" name="adresse" id="adresse" class="form-control"
+                                                required></input>
                                         </div>
 
                                     </div>
@@ -604,10 +605,23 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <div class="form-group  ml-2" id="autre_wrapper" style="display: none">
-                                            <label>Autre choix</label>
-                                            <textarea type="text" name="autre" id="autre" class="form-control"></textarea>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group  ml-2" id="autre_wrapper" style="display: none">
+                                                    <label>Autre choix</label>
+                                                    <textarea type="text" name="autre" id="autre" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group  ml-2" id="detail_wrapper" style="">
+                                                    <label>Details</label>
+                                                    <textarea type="text" name="detail" id="detail" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
+
+
                                     </div>
                                 </div>
                             </section>
@@ -692,7 +706,7 @@
 
 
 
-                                <div class="row justify-content-start">
+                                <div class="row justify-content-start" style="margin-top: 10px">
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-success" id="send-rdv">Valider le
                                             RDV</button>
@@ -805,7 +819,27 @@
                     }
                 }
             });
-
+            var nature_val = $("#nature option:selected").val();
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('prestation.ajax') }}",
+                dataType: 'json',
+                data: {
+                    nature_val: nature_val
+                },
+                success: function(data) {
+                    // console.log(data);
+                    $('select[name="prestation"]').html('');
+                    var d = $('select[name="prestation"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="prestation"]').append(
+                            '<option value="' +
+                            value.libelle + '">' +
+                            value.libelle + '</option>')
+                    })
+                }
+            })
+            // alert(nature_init);
             $('#nature').change(function() {
 
                 //alert(prestation)
@@ -1005,6 +1039,7 @@
                     $("#raison_sociale_wrapper").hide();
                     $("#nom").prop("readonly", true);
                     $("#prenom").prop("readonly", true);
+                    $("#no_emp_wrapper").show();
                 } else {
                     $("#no_emp_wrapper").hide();
                     $("#nom").prop("readonly", false);
