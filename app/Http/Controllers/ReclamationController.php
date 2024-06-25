@@ -7,6 +7,7 @@ use App\Mail\ReclamationMail;
 use App\Models\Cloture;
 use App\Models\Reclamation;
 use App\Models\Rendezvou;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ use Mews\Captcha\Facades\Captcha;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class ReclamationController extends Controller
 {
@@ -30,6 +32,8 @@ class ReclamationController extends Controller
      */
     public function back()
     {
+        // dd(User::find(session('loginId'))->id);
+        // dd(Auth::user()->id);
         // if (!Session::has('loginId')) {
         //     return redirect('login');
         // }
@@ -200,6 +204,7 @@ class ReclamationController extends Controller
         $rec->save();
 
         $cloture = new Cloture();
+        $cloture->user_id = User::find(session('loginId'))->id;
         $cloture->reclamation_id = $request->reclamation_id;
         $cloture->details = $request->details;
         $cloture->save();
@@ -404,9 +409,9 @@ class ReclamationController extends Controller
             'code' => date('d-m-Y'),
         ];
 
-        Mail::to('kouroumadev@gmail.com')->send(
-            new ReclamationMail($dataMail, $pdf->output())
-        );
+        // Mail::to('kouroumadev@gmail.com')->send(
+        //     new ReclamationMail($dataMail, $pdf->output())
+        // );
         // Mail::to($user->email)->send(new SendCredentialsToUserMail($details, $pdf->output()));
         dd('sent');
     }

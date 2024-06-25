@@ -49,10 +49,9 @@ Route::post('/login-user', [
     ->name('user.store')
     ->middleware('guest');
 
-Route::get('/logout', [
-    App\Http\Controllers\AuthenController::class,
-    'logout',
-])->middleware('authCheck');
+Route::get('/logout', [App\Http\Controllers\AuthenController::class, 'logout'])
+    ->name('logout')
+    ->middleware('authCheck');
 
 Route::get('/', function () {
     return view('rendezvous.index');

@@ -40,6 +40,23 @@
                         </a>
                     </div>
 
+                    <div class="col-xl-4 mb-30">
+                        <a href="{{ route('logout') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-danger shadow-lg">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        DECONNEXION
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-power-off fa-3x text-white" aria-hidden="true"></i>
+                                    </div>
+                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+                                </div>
+                                <small class="text-white">(Deconnexion de la platforme)</small>
+                            </div>
+                        </a>
+                    </div>
+
 
                 </div>
 
