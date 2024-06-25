@@ -17,6 +17,15 @@ RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
 
+// MAIL_MAILER=smtp
+// MAIL_HOST=mail.cnss.gov.gn
+// MAIL_PORT=465
+// MAIL_USERNAME=reclamation@cnss.gov.gn
+// MAIL_PASSWORD=5JP&3]-zUgzR
+
+// mail.reclamation.doneClient
+
+
 |
 */
 /*<span class="badge " style="background-color: rgb(229, 67, 42); text-align:center">
