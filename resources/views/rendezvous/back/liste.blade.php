@@ -9,7 +9,7 @@
             <h2 class="text-center bg-success text-white p-2">GESTION DES RENDEZ-VOUS</h2>
 
             <div class="pd-20 card-box">
-                
+
                 <div class="tab">
                     <ul class="nav nav-tabs customtab" role="tablist">
                         <li class="nav-item">
@@ -57,7 +57,7 @@
                                                             <span class="spinner-grow text-danger spinner-grow-sm"
                                                                 role="status" aria-hidden="true">
                                                             </span>
-                                                           
+
                                                         </a>
                                                     </td>
                                                     <div class="modal fade bs-example-modal-lg"
@@ -108,7 +108,7 @@
                                                                                     class="float-right">{{ $rec->no_immatriculation }}</span>
                                                                                 <br>
                                                                             @endif
-                                                                           
+
 
                                                                             <span class="font-weight-bold">Nom:</span>
                                                                             <span
@@ -229,7 +229,7 @@
                                         <tbody>
 
                                             @foreach ($rendezvous_done as $rec)
-                                               
+
                                                 <tr>
                                                     <td>{{ $rec->no_conf }}</td>
                                                     <td>{{ $rec->date_rendezvous }} à {{ $rec->heure_rendezvous }} </td>
@@ -341,7 +341,7 @@
                                                                             <div class="pd-20 card-box height-100-p">
                                                                                 <h4 class="mb-20 h6 font-weight-bold">
                                                                                     Date:</h4>
-                                                                                
+
                                                                                 <div>
                                                                                     <span>{{ $rec->date_rendezvous }}</span>
                                                                                 </div>
@@ -351,7 +351,7 @@
                                                                             <div class="pd-20 card-box height-100-p">
                                                                                 <h4 class="mb-20 h6 font-weight-bold">
                                                                                     Heure:</h4>
-                                                                               
+
                                                                                 <div>
                                                                                     <span>{{ $rec->heure_rendezvous }}</span>
                                                                                 </div>

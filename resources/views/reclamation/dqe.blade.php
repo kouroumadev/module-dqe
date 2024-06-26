@@ -4,9 +4,52 @@
 
 
 
+
+
+
 <div class="row justify-content-center">
     <div class="col-md-10 shadow-lg p-3 mb-5 bg-white rounded">
-        <h2 class="text-center bg-success text-white p-2">GESTION DES RECLAMMATIONS</h2>
+        {{-- <h2 class="text-center bg-success text-white p-2">GESTION DES RECLAMMATIONS</h2> --}}
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="title">
+                                <h4>GESTION DES RECLAMATIONS</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a
+                                            href="{{ route('reclamation.back') }}">Accueil</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Reclamations</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+
+                    <div>
+                        <p>DECONNEXION</p>
+                        <a href="{{ route('logout') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-danger shadow-lg" style="width: 50%">
+                                <div class="d-flex flex-wrap align-items-center">
+
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-power-off fa-2x text-white"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
 
         <div class="pd-20 card-box">
