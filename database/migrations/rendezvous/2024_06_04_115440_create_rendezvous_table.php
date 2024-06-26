@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -25,7 +24,7 @@ return new class extends Migration
             $table->string('date_rendezvous');
             $table->string('heure_rendezvous');
             $table->string('telephone');
-            $table->string('valider');
+            $table->string('valider')->nullable();
             $table->string('user_id');
             $table->text('detail');
             $table->string('date_validation');

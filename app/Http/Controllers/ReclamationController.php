@@ -170,7 +170,7 @@ class ReclamationController extends Controller
             'code' => $code,
         ];
 
-        Mail::to('kouroumadev@gmail.com')->send(new ReclamationMail($data));
+        Mail::to($request->add_email)->send(new ReclamationMail($data));
 
         return redirect()
             ->back()
