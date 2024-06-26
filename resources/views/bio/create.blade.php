@@ -13,7 +13,7 @@
                 <h3 class="text-white text-center mt-3 pb-4">Formulaire de demande d'enrollement</h3>
 
                 <!-- Modal -->
-                <div class="modal fade" id="small-modal-test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                {{-- <div class="modal fade" id="small-modal-test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-sm modal-dialog-centered">
                         <div class="modal-content">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -53,23 +53,7 @@
                             <h5>Verification</h5>
                             <section>
                                 <div class="row">
-                                    {{-- <div class="col-md-6">
-                                         <div class="form-group">
-                                            <label>Etes-vous ? <span class="text-danger">*</span></label>
-                                            <select name="type" required id="type" class="custom-select col-12">
-                                                <option selected value="null">-- Aucune selecion --</option>
-                                                <option value="Assure">ASSURE</option>
-                                                <option value="Employeur">EMPLOYEUR</option>
-                                                <option value="Retraite">RETRAITE</option>
-                                                <option value="Reversion">REVERSION</option>
-                                            </select>
-                                            <small class="form-text text-muted">
-                                                Si vous n'etes ni pensioné ni immatruculé ? <a
-                                                    href="{{ route('rendezvous.index') }}" class="text-success">cliquez ici
-                                                    pour prendre un rendez-vous</a>
-                                            </small>
-                                        </div>
-                                    </div> --}}
+
                                     <div class="col-md-6">
                                         <div class="form-group" id="numDiv" >
                                             <label id="num">N° Matricule<span class="text-danger">*</span></label>
@@ -96,7 +80,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group" id="div_code" style="display:none;">
                                             <label>Code de validation<span class="text-danger">*</span></label>
                                             <input id="telephone" required type="text" class="form-control">
                                         </div>
@@ -342,10 +326,7 @@
 
 
             $('#mail').blur(function() {
-                var tel = $("#telephone").val();
-                var mail = $("#mail").val();
-                $('#tel').val(tel);
-                $('#add_email').val(mail);
+                $('#div_code').show();
             });
 
             $('#type').change(function() {
