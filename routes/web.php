@@ -191,3 +191,9 @@ Route::get('/rendezvous/recap-pdf/{id}', [
     App\Http\Controllers\RendezvousController::class,
     'RecapPdf',
 ])->name('recap.pdf');
+
+//ROUTES FOR BIO
+Route::get('/bio/create', [
+    App\Http\Controllers\BioController::class,
+    'create',
+])->name('bio.create');

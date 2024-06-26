@@ -4,9 +4,26 @@
     <div style="margin-top: 100px;">
 
         <div class="row m-auto">
-            <div class="col-10 m-auto">
+            <div class="col-12 m-auto">
                 <div class="row">
-                    <div class="col-xl-4 mb-30">
+
+                    <div class="col-xl-3 mb-30">
+                        <a href="{{ route('bio.create') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        Enrollement Bio
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-address-book fa-3x text-white" aria-hidden="true"></i>
+                                    </div>
+                                    <small class="pl-1 text-white mt-2">Faire une démande d'enrollement biométrique</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('reclamation.create') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -16,13 +33,13 @@
                                     <div class="progress-data">
                                         <i class="icon-copy fa fa-wheelchair fa-3x text-white" aria-hidden="true"></i>
                                     </div>
-                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+                                    <small class="pl-1 text-white mt-2">Faire une réclamation</small>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-xl-4 mb-30">
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('rendezvous.prendre') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -32,13 +49,12 @@
                                     <div class="progress-data">
                                         <i class="icon-copy fa fa-calendar fa-3x text-white"></i>
                                     </div>
-                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
-                                </div>
+                                    <small class="pl-1 text-white mt-2">Prendre un rendez-vous</small>                                </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-xl-4 mb-30">
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('rendezvous.gestion') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -48,7 +64,7 @@
                                     <div class="progress-data">
                                         <i class="icon-copy fa fa-edit fa-3x text-white"></i>
                                     </div>
-                                    {{-- <small class="pl-1 text-white">Gestion des Reisques Professionels</small> --}}
+                                    <small class="pl-1 text-white mt-2">Gerer mes rendez-vous</small>                                </div>
                                 </div>
                             </div>
                         </a>
