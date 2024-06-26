@@ -6,7 +6,22 @@
         <div class="row m-auto">
             <div class="col-10 m-auto">
                 <div class="row">
-                    <div class="col-xl-4 mb-30">
+                    <div class="col-xl-3 mb-30">
+                        <a href="{{ route('biometrie.index') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        Enroulement Biométrique
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-vcard-o fa-3x text-white" aria-hidden="true"></i>
+                                    </div>
+                                    {{-- <small class="pl-1 text-white">Gestion de la situation des pensionnés</small> --}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('reclamation.create') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -22,7 +37,7 @@
                         </a>
                     </div>
 
-                    <div class="col-xl-4 mb-30">
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('rendezvous.prendre') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -38,7 +53,7 @@
                         </a>
                     </div>
 
-                    <div class="col-xl-4 mb-30">
+                    <div class="col-xl-3 mb-30">
                         <a href="{{ route('rendezvous.gestion') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">

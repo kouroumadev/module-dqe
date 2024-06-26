@@ -191,3 +191,18 @@ Route::get('/rendezvous/recap-pdf/{id}', [
     App\Http\Controllers\RendezvousController::class,
     'RecapPdf',
 ])->name('recap.pdf');
+
+////// BIOMETRIE ROUTES ////////
+Route::get('/biometrie/index', [
+    App\Http\Controllers\BiometrieController::class,
+    'BiometrieIndex',
+])->name('biometrie.index');
+Route::get('/employeur/info/ajax', [
+    App\Http\Controllers\BiometrieController::class,
+    'EmployeurInfoAjax',
+])->name('employeur.info.ajax');
+
+Route::get('/send/otp/ajax', [
+    App\Http\Controllers\BiometrieController::class,
+    'SendOtpAjax',
+])->name('send.otp.ajax');
