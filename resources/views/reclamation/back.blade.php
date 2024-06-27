@@ -7,7 +7,30 @@
             <div class="col-10 m-auto">
                 <div class="row justify-content-center">
 
-                    <div class="col-xl-5 mb-30">
+                    <div class="col-xl-4 mb-30">
+                        <a href="{{ route('biometrie.back') }}" class="btn btn-block">
+                            <div class="card-box height-100-p widget-style1 bg-success shadow">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="widget-data text-white text-uppercase font-weight-bold text-left">
+                                        GESTION DES DES DEMANDES DE LA BIOMÉTRIE
+                                    </div>
+                                    <div class="progress-data">
+                                        <i class="icon-copy fa fa-edit fa-3x text-white" aria-hidden="true"></i>
+                                    </div>
+                                    <small class="text-white text-justify my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat enim possimus dolores facilis recusandae dignissimos, voluptatum omnis mollitia tempora voluptates, tempore officia impedit, eligendi officiis explicabo. Fugit est eos illum!
+                                    </small>
+
+                                </div>
+                                <div class="alert alert-primary" role="alert">
+                                    <span class="badge badge-warning font-weight-bold">{{ $recla }}</span> Dossiers en attentes
+                                </div>
+                                {{-- <small class="text-danger">({{ $recla }} Dossiers en attentes)</small> --}}
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 mb-30">
                         <a href="{{ route('reclamation.dqe') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow">
                                 <div class="d-flex flex-wrap align-items-center">
@@ -30,7 +53,7 @@
                         </a>
                     </div>
 
-                    <div class="col-xl-5 mb-30">
+                    <div class="col-xl-4 mb-30">
                         <a href="{{ route('rendezvous.liste') }}" class="btn btn-block">
                             <div class="card-box height-100-p widget-style1 bg-success shadow-lg">
                                 <div class="d-flex flex-wrap align-items-center">

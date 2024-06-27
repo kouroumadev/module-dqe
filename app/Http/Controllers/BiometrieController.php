@@ -12,13 +12,11 @@ class BiometrieController extends Controller
 {
     public function BiometrieIndex()
     {
-
         return view('biometrie.index');
     }
 
     public function EmployeurInfoAjax(Request $request)
     {
-
         $num = $request->no_employeur;
 
         if ($num == '') {
@@ -33,9 +31,7 @@ class BiometrieController extends Controller
             } else {
                 return response()->json($data, 200);
             }
-
         }
-
     }
 
     public function SendOtpAjax(Request $request)
@@ -62,9 +58,7 @@ class BiometrieController extends Controller
 
                 return response()->json('success', 200);
             }
-
         }
-
     }
 
     public function VerifOtpAjax(Request $request)
@@ -81,5 +75,12 @@ class BiometrieController extends Controller
         }
 
         dd($code_db);
+    }
+
+    ///BACKEND
+
+    public function back()
+    {
+        return view('biometrie.back');
     }
 }
