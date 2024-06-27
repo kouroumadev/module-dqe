@@ -118,7 +118,7 @@
                                 <ul class="custom-progress-bar">
                                     <li id="step1" class="active">Identification</li>
                                     <li id="step2">OTP</li>
-                                    <li id="step3">Comments</li>
+                                    <li id="step3">Info</li>
                                 </ul>
 
                                 <!-- =========== Step Group 1 =============== -->
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="col-2 col-md-2 col-sm-12 m-auto">
                                             <button type="button" class="btn btn-primary " id="verif">
-                                                verifié</button>
+                                                Verification</button>
 
                                         </div>
 
@@ -196,29 +196,22 @@
                                     <div class="mb-3 form-group">
                                         <button type="button" class="btn btn-primary " id="step-prev-1"> &#65513;
                                             Precedent</button>
-                                        <button type="button" class="btn btn-primary " id="step-next-2">Suivant
+                                        <button type="button" class="btn btn-primary " id="step-next-2" disabled>Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
 
                                 <!-- =========== Step Group 3 =============== -->
                                 <div class="step-group" id="step-group-3">
-                                    <h1 class="form-title">Step 3</h1>
-                                    <div class="mb-3 form-group">
-                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="name@example.com">
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
-                                    <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary " id="step-prev-2"> &#65513;
-                                            Precedent</button>
-                                        <button type="submit" class="btn btn-primary " id="step-next-3">Envoye
-                                            &#65515;</button>
-                                    </div>
+                                    <h1 class="form-title">Info Employeur</h1>
+                                    <table class="table table-bordered">
+
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" colspan="2">1.IDENTIFICATION DE L'ENTREPRISE</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </form>
@@ -323,8 +316,10 @@
                     }
                 })
             });
+
             $('#email').blur(function() {
                 var email = $(this).val();
+                var no_employeur = $("#no_employeur").val();
 
                 $.ajax({
                     type: 'GET',
@@ -332,26 +327,90 @@
                     dataType: 'json',
                     data: {
                         email: email,
+                        no_employeur: no_employeur,
+                    },
+                    beforeSend: function() {
+                        $('#loading-spinner').show(); // Show the loading spinner
+                    },
+                    success: function(data) {
+                        if (data == 'null') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "Le champs est vide.",
+                                icon: "error",
+                                button: "OK",
+                            });
+
+                            $("#step-next-1").prop("disabled", true);
+                            $('#loading-spinner').hide();
+
+
+                        } else if (data == 'not exist') {
+                            swal({
+                                title: "Incorrect !",
+                                text: "Le Numero n'existe pas.",
+                                icon: "error",
+                                button: "OK",
+                            });
+
+                            $("#step-next-1").prop("disabled", true);
+                            $('#loading-spinner').hide();
+
+                        } else {
+                            swal({
+                                title: "Succès!",
+                                text: "Un OTP à été envoyé à l'email." + email,
+                                icon: "success",
+                                button: "OK",
+                            });
+                            $('#loading-spinner').hide();
+                            $("#step-next-1").prop("disabled", false);
+                        }
+
+
+                    }
+                })
+            });
+
+            $("#verif").click(function() {
+
+                var otp = $("#otp").val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('verif.otp.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        otp: otp,
                     },
                     beforeSend: function() {
                         $('#loading-spinner').show(); // Show the loading spinner
                     },
                     success: function(data) {
                         if (data == 'success') {
+
+
+                            $("#step-next-2").prop("disabled", false);
+                            $('#loading-spinner').hide();
+                            $('#otp').addClass("form-control-success");
+
+
+                        } else {
                             swal({
                                 title: "Incorrect !",
-                                text: "Un OTP à été envoyé à l'email." + email,
-                                icon: "success",
+                                text: "Le Numero n'existe pas.",
+                                icon: "error",
                                 button: "OK",
                             });
 
-
+                            $("#step-next-2").prop("disabled", true);
+                            $('#loading-spinner').hide();
                         }
-                        $('#loading-spinner').hide();
-                        $("#step-next-1").prop("disabled", false);
+
+
                     }
                 })
-            })
+            });
         })
     </script>
 @endsection

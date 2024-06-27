@@ -192,7 +192,6 @@ Route::get('/rendezvous/recap-pdf/{id}', [
     'RecapPdf',
 ])->name('recap.pdf');
 
-
 ////// BIOMETRIE ROUTES ////////
 Route::get('/biometrie/index', [
     App\Http\Controllers\BiometrieController::class,
@@ -207,3 +206,7 @@ Route::get('/send/otp/ajax', [
     App\Http\Controllers\BiometrieController::class,
     'SendOtpAjax',
 ])->name('send.otp.ajax');
+Route::get('/verif/otp/ajax', [
+    App\Http\Controllers\BiometrieController::class,
+    'VerifOtpAjax',
+])->name('verif.otp.ajax');
