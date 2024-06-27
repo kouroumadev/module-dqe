@@ -75,6 +75,13 @@ Route::get('/back', [App\Http\Controllers\ReclamationController::class, 'back'])
     ->name('reclamation.back')
     ->middleware('authCheck');
 
+Route::get('/back/bio', [
+    App\Http\Controllers\BiometrieController::class,
+    'back',
+])
+    ->name('biometrie.back')
+    ->middleware('authCheck');
+
 Route::get('/rendezvous-liste', [
     App\Http\Controllers\RendezvousController::class,
     'RendezvousListe',
