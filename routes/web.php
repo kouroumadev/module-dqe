@@ -192,6 +192,7 @@ Route::get('/rendezvous/recap-pdf/{id}', [
     'RecapPdf',
 ])->name('recap.pdf');
 
+
 ////// BIOMETRIE ROUTES ////////
 Route::get('/biometrie/index', [
     App\Http\Controllers\BiometrieController::class,
