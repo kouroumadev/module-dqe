@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('biometries', function (Blueprint $table) {
             $table->id();
             $table->string('no_employeur');
+            $table->string('no_dossier');
             $table->string('email');
             $table->string('telephone');
             $table->text('adresse');
             $table->string('fichier');
+            $table->string('nombre_employe');
             $table->timestamps();
         });
     }

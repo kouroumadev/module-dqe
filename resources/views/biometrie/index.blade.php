@@ -98,7 +98,9 @@
         }
 
         #step-group-2,
-        #step-group-3 {
+        #step-group-3,
+        #step-group-4,
+        #step-group-5 {
             display: none;
         }
 
@@ -119,6 +121,8 @@
                                     <li id="step1" class="active">Identification</li>
                                     <li id="step2">OTP</li>
                                     <li id="step3">Info</li>
+                                    <li id="step4">Téléchargement</li>
+                                    <li id="step5">Recap</li>
                                 </ul>
 
                                 <!-- =========== Step Group 1 =============== -->
@@ -154,6 +158,19 @@
 
                                         </div>
                                         <div class="col-6 col-md-6 col-sm-12">
+
+                                            <div class="form-group  ml-2">
+                                                <label>Adresse</label>
+                                                <input type="text" name="adresse" id="adresse" class="form-control"
+                                                    required>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 col-md-6 col-sm-12">
                                             <div class="form-group  ml-2">
                                                 <label>Email</label>
                                                 <input type="text" name="email" id="email" class="form-control"
@@ -164,12 +181,11 @@
                                                     prochaine étape.
                                                 </small>
                                             </div>
-
                                         </div>
                                     </div>
 
                                     <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary" id="step-next-1"> Suivant
+                                        <button type="button" class="btn btn-primary" id="step-next-1" disabled> Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -196,7 +212,7 @@
                                     <div class="mb-3 form-group">
                                         <button type="button" class="btn btn-primary " id="step-prev-1"> &#65513;
                                             Precedent</button>
-                                        <button type="button" class="btn btn-primary " id="step-next-2">Suivant
+                                        <button type="button" class="btn btn-primary " id="step-next-2" disabled>Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -220,31 +236,28 @@
                                             </tr>
                                             <tr>
                                                 <td scope="row">Categorie</td>
-                                                <td scope="row" id="categorie_disp">E+20</td>
+                                                <td scope="row" id="categorie_disp"></td>
                                             </tr>
-                                            <tr>
-                                                <td scope="row">Activite</td>
-                                                <td scope="row" id="">Entreprise publique de prestation</td>
-                                            </tr>
+
                                             <tr>
                                                 <td scope="row">Ville</td>
-                                                <td scope="row" id="ville_disp">Conakry</td>
+                                                <td scope="row" id="ville_disp"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row">Quartier</td>
-                                                <td scope="row" id="quartier_disp">Koulewondy</td>
+                                                <td scope="row" id="quartier_disp"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row">Telephone</td>
-                                                <td scope="row" id="tel_disp">654324567</td>
+                                                <td scope="row" id="tel_disp"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row">E-mail</td>
-                                                <td scope="row" id="email_disp">ibrahimadiane87@gmail.com</td>
+                                                <td scope="row" id="email_disp"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row">Adresse</td>
-                                                <td scope="row" id="adresse_disp">Kaloum</td>
+                                                <td scope="row" id="adresse_disp"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -252,6 +265,89 @@
                                         <button type="button" class="btn btn-primary " id="step-prev-2"> &#65513;
                                             Precedent</button>
                                         <button type="button" class="btn btn-primary " id="step-next-3">Suivant
+                                            &#65515;</button>
+                                    </div>
+                                </div>
+
+                                <!-- =========== Step Group 4 =============== -->
+                                <div class="step-group" id="step-group-4">
+                                    <h1 class="form-title">Télécharger le fichier</h1>
+                                    <div class="row">
+                                        <div class="col-6 col-md-6 col-sm-12 m-auto">
+                                            <div class="form-group">
+
+                                                <div class="form-group">
+                                                    <label>Fichier à télécharger </label>
+                                                    <input type="file" name="fichier" id="fichier"
+                                                        class="form-control-file form-control height-auto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-3 col-sm-12 m-auto">
+                                            <div class="form-group ">
+                                                <label>Nombre d'employé(e)</label>
+                                                <input type="text" name="nombre_employe" id="nombre_employe"
+                                                    class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-3"> &#65513;
+                                            Precedent</button>
+                                        <button type="button" class="btn btn-primary " id="step-next-4">Suivant
+                                            &#65515;</button>
+                                    </div>
+                                </div>
+
+                                <!-- =========== Step Group 5 =============== -->
+                                <div class="step-group" id="step-group-5">
+                                    <h1 class="form-title">Recapitulatif</h1>
+                                    <table class="table table-bordered">
+
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" colspan="2">1.IDENTIFICATION DE L'ENTREPRISE</th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Numero Employeur</td>
+                                                <td scope="row" id="no_emp_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Raison Sociale</td>
+                                                <td scope="row" id="raison_sociale_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Categorie</td>
+                                                <td scope="row" id="categorie_disp"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td scope="row">Ville</td>
+                                                <td scope="row" id="ville_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Quartier</td>
+                                                <td scope="row" id="quartier_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Telephone</td>
+                                                <td scope="row" id="tel_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">E-mail</td>
+                                                <td scope="row" id="email_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Adresse</td>
+                                                <td scope="row" id="adresse_disp"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-4"> &#65513;
+                                            Precedent</button>
+                                        <button type="button" class="btn btn-primary " id="step-next-5">Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -272,14 +368,25 @@
             const formContainerBox = document.getElementById("form-container-box");
             const step2 = document.getElementById("step2");
             const step3 = document.getElementById("step3");
+            const step4 = document.getElementById("step4");
+            const step5 = document.getElementById("step5");
+
             const stepGroup1 = document.getElementById("step-group-1");
             const stepGroup2 = document.getElementById("step-group-2");
             const stepGroup3 = document.getElementById("step-group-3");
+            const stepGroup4 = document.getElementById("step-group-4");
+            const stepGroup5 = document.getElementById("step-group-5");
+
             const stepNext1 = document.getElementById("step-next-1");
             const stepNext2 = document.getElementById("step-next-2");
             const stepNext3 = document.getElementById("step-next-3");
+            const stepNext4 = document.getElementById("step-next-4");
+            const stepNext5 = document.getElementById("step-next-5");
+
             const stepPrev1 = document.getElementById("step-prev-1");
             const stepPrev2 = document.getElementById("step-prev-2");
+            const stepPrev3 = document.getElementById("step-prev-3");
+            const stepPrev4 = document.getElementById("step-prev-4");
             ////////////// input Fields /////////////
 
             stepNext1.addEventListener("click", () => {
@@ -295,6 +402,18 @@
                 step3.classList.add("active");
             })
 
+            stepNext3.addEventListener("click", () => {
+                stepGroup3.style.display = "none";
+                stepGroup4.style.display = "block";
+                step4.classList.add("active");
+            })
+
+            stepNext4.addEventListener("click", () => {
+                stepGroup4.style.display = "none";
+                stepGroup5.style.display = "block";
+                step5.classList.add("active");
+            })
+
             stepPrev1.addEventListener("click", () => {
                 stepGroup1.style.display = "block";
                 stepGroup2.style.display = "none";
@@ -304,6 +423,16 @@
                 stepGroup2.style.display = "block";
                 stepGroup3.style.display = "none";
                 step3.classList.remove("active");
+            })
+            stepPrev3.addEventListener("click", () => {
+                stepGroup3.style.display = "block";
+                stepGroup4.style.display = "none";
+                step4.classList.remove("active");
+            })
+            stepPrev4.addEventListener("click", () => {
+                stepGroup4.style.display = "block";
+                stepGroup5.style.display = "none";
+                step5.classList.remove("active");
             })
 
             $('#no_employeur').blur(function() {
@@ -318,7 +447,7 @@
                         no_employeur: no_employeur,
                     },
                     success: function(data) {
-                        //console.log(data);
+                        console.log(data[0].no_dni);
                         if (data == 'null') {
                             swal({
                                 title: "Incorrect !",
@@ -354,7 +483,15 @@
                             $("#raison_sociale_bio").val(data[0].raison_sociale);
                             $("#raison_sociale_disp").text(data[0].raison_sociale);
                             $("#no_emp_disp").text(data[0].no_employeur);
+                            $("#categorie_disp").text(data[0].categorie);
+                            $("#no_emp_disp").text(data[0].no_employeur);
+                            $("#ville_disp").text(data[0].ville);
+                            $("#quartier_disp").text(data[0].quartier);
+                            $("#email_disp").text(data[0].email);
+                            $("#adresse_disp").text(data[0].adresse);
+                            $("#tel_disp").text(data[0].telephone);
                             $("#raison_sociale_bio").attr("readonly", true);
+
                         }
 
                     }
@@ -455,6 +592,51 @@
                     }
                 })
             });
+
+            $("#nombre_employe").blur(function() {
+                let nombreEmploye = $("#nombre_employe").val();
+
+
+                if (nombreEmploye == '' || fichier == '') {
+                    swal({
+                        title: "Incorrect !",
+                        text: "Les champs ne doit pas etre vide",
+                        icon: "error",
+                        button: "OK",
+                    });
+                    $("#step-next-4").prop("disabled", true);
+                    $('#nombre_employe').addClass("form-control-danger");
+                    $('#fichier').addClass("form-control-danger");
+                } else {
+                    $("#step-next-4").prop("disabled", false);
+                    $('#nombre_employe').removeClass("form-control-danger");
+                    $('#fichier').removeClass("form-control-danger");
+
+                }
+
+            });
+            // $("#fichier").blur(function() {
+
+            //     let fichier = $("#fichier").val();
+
+            //     if (fichier == '') {
+            //         swal({
+            //             title: "Incorrect !",
+            //             text: "Les champs ne doit pas etre vide",
+            //             icon: "error",
+            //             button: "OK",
+            //         });
+            //         $("#step-next-4").prop("disabled", true);
+            //         $('#fichier').addClass("form-control-danger");
+            //     } else {
+            //         $("#step-next-4").prop("disabled", false);
+            //         $('#fichier').removeClass("form-control-danger");
+
+
+            //     }
+
+            // });
+
         })
     </script>
 @endsection
