@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('no_employeur');
             $table->string('email');
             $table->string('telephone');
+            $table->text('adresse');
             $table->string('fichier');
             $table->timestamps();
         });
