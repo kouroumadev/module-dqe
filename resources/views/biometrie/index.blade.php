@@ -169,7 +169,7 @@
                                     </div>
 
                                     <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary" id="step-next-1" disabled> Suivant
+                                        <button type="button" class="btn btn-primary" id="step-next-1"> Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                                     <div class="mb-3 form-group">
                                         <button type="button" class="btn btn-primary " id="step-prev-1"> &#65513;
                                             Precedent</button>
-                                        <button type="button" class="btn btn-primary " id="step-next-2" disabled>Suivant
+                                        <button type="button" class="btn btn-primary " id="step-next-2">Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -210,8 +210,50 @@
                                             <tr>
                                                 <th scope="row" colspan="2">1.IDENTIFICATION DE L'ENTREPRISE</th>
                                             </tr>
+                                            <tr>
+                                                <td scope="row">Numero Employeur</td>
+                                                <td scope="row" id="no_emp_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Raison Sociale</td>
+                                                <td scope="row" id="raison_sociale_disp"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Categorie</td>
+                                                <td scope="row" id="categorie_disp">E+20</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Activite</td>
+                                                <td scope="row" id="">Entreprise publique de prestation</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Ville</td>
+                                                <td scope="row" id="ville_disp">Conakry</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Quartier</td>
+                                                <td scope="row" id="quartier_disp">Koulewondy</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Telephone</td>
+                                                <td scope="row" id="tel_disp">654324567</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">E-mail</td>
+                                                <td scope="row" id="email_disp">ibrahimadiane87@gmail.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Adresse</td>
+                                                <td scope="row" id="adresse_disp">Kaloum</td>
+                                            </tr>
                                         </tbody>
                                     </table>
+                                    <div class="mb-3 form-group">
+                                        <button type="button" class="btn btn-primary " id="step-prev-2"> &#65513;
+                                            Precedent</button>
+                                        <button type="button" class="btn btn-primary " id="step-next-3">Suivant
+                                            &#65515;</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -310,6 +352,8 @@
                             // $("#nom").val(data[0].nom);
                             // $("#prenom").val(data[0].prenoms);
                             $("#raison_sociale_bio").val(data[0].raison_sociale);
+                            $("#raison_sociale_disp").text(data[0].raison_sociale);
+                            $("#no_emp_disp").text(data[0].no_employeur);
                             $("#raison_sociale_bio").attr("readonly", true);
                         }
 
