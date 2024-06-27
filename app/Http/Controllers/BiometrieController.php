@@ -81,6 +81,11 @@ class BiometrieController extends Controller
 
     public function back()
     {
-        return view('biometrie.back');
+        $data = DB::connection('metier')
+            ->table('employeur')
+            ->where('no_employeur', '6104000050400')
+            ->get();
+        // dd($data);
+        return view('biometrie.back', compact('data'));
     }
 }
