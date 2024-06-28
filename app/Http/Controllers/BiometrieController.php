@@ -90,6 +90,7 @@ class BiometrieController extends Controller
         $otp_db = Otp::where('code', $code)->get();
         //dd(count($otp_db));
         if (count($otp_db) == 1) {
+            $delete = DB::table('otps')->where('email', $otp_db->email)->delete();
 
             return response()->json('success', 200);
         } else {

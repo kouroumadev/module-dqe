@@ -619,8 +619,9 @@
                     }
                 })
             });
-            $("#resent-otp").click(function() {
+            $("#resent-otp").click(function(e) {
 
+                e.preventDefault();
                 var email = $("#email").val();
                 var no_employeur = $("#no_employeur").val();
                 $.ajax({
