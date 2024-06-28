@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->string('email');
             $table->timestamps();
         });
     }

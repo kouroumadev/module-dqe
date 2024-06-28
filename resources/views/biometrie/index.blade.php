@@ -185,7 +185,7 @@
                                     </div>
 
                                     <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary" id="step-next-1"> Suivant
+                                        <button type="button" class="btn btn-primary" id="step-next-1" disabled> Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -199,6 +199,11 @@
                                                 <label>OTP</label>
                                                 <input type="text" name="otp" id="otp" class="form-control"
                                                     required>
+
+                                                <small class="form-text text-danger">
+                                                    Cliquez sur ce lien pour rénvoyé OTP.
+                                                    <span id="resent-otp" class="text-info">cliquez ici.</span>
+                                                </small>
                                             </div>
 
                                         </div>
@@ -447,7 +452,7 @@
                         no_employeur: no_employeur,
                     },
                     success: function(data) {
-                        console.log(data[0].no_dni);
+                        // console.log(data[0].no_dni);
                         if (data == 'null') {
                             swal({
                                 title: "Incorrect !",
@@ -498,16 +503,104 @@
                 })
             });
 
-            // if ($("#no_employeur").val() == '') {
-            //     $("#step-next-1").prop("disabled", true);
-            // } else {
-            //     $("#step-next-1").prop("disabled", false);
-            // }
 
+            $('#telephone').blur(function() {
+                var email = $(this).val();
+                var no_employeur = $("#no_employeur").val();
+                var telephone = $("#telephone").val();
+                var adresse = $("#adresse").val();
+                if (email == '' || telephone == '' || adresse == '' || no_employeur == '') {
+                    $("#step-next-1").prop("disabled", true);
+                } else {
+
+                    $("#step-next-1").prop("disabled", false);
+                }
+
+
+            });
+            $('#adresse').blur(function() {
+                var email = $(this).val();
+                var no_employeur = $("#no_employeur").val();
+                var telephone = $("#telephone").val();
+                var adresse = $("#adresse").val();
+                if (email == '' || telephone == '' || adresse == '' || no_employeur == '') {
+                    $("#step-next-1").prop("disabled", true);
+                } else {
+
+                    $("#step-next-1").prop("disabled", false);
+                }
+
+
+            });
             $('#email').blur(function() {
                 var email = $(this).val();
                 var no_employeur = $("#no_employeur").val();
+                var telephone = $("#telephone").val();
+                var adresse = $("#adresse").val();
+                if (email == '' || telephone == '' || adresse == '') {
+                    $("#step-next-1").prop("disabled", true);
+                } else {
+                    // $.ajax({
+                    //     type: 'GET',
+                    //     url: "{{ route('send.otp.ajax') }}",
+                    //     dataType: 'json',
+                    //     data: {
+                    //         email: email,
+                    //         no_employeur: no_employeur,
+                    //     },
+                    //     // beforeSend: function() {
+                    //     //     $('#loading-spinner').show(); // Show the loading spinner
+                    //     // },
+                    //     success: function(data) {
+                    //         if (data == 'success') {
+                    //             $("#step-next-1").prop("disabled", false);
+                    //         }
+                    //         // if (data == 'null') {
+                    //         //     swal({
+                    //         //         title: "Incorrect !",
+                    //         //         text: "Le champs est vide.",
+                    //         //         icon: "error",
+                    //         //         button: "OK",
+                    //         //     });
 
+                    //         //     $("#step-next-1").prop("disabled", true);
+                    //         //     $('#loading-spinner').hide();
+
+
+                    //         // } else if (data == 'not exist') {
+                    //         //     swal({
+                    //         //         title: "Incorrect !",
+                    //         //         text: "Le Numero n'existe pas.",
+                    //         //         icon: "error",
+                    //         //         button: "OK",
+                    //         //     });
+
+                    //         //     $("#step-next-1").prop("disabled", true);
+                    //         //     $('#loading-spinner').hide();
+
+                    //         // } else {
+                    //         //     swal({
+                    //         //         title: "Succès!",
+                    //         //         text: "Un OTP à été envoyé à l'email." + email,
+                    //         //         icon: "success",
+                    //         //         button: "OK",
+                    //         //     });
+                    //         //     $('#loading-spinner').hide();
+                    //         //     $("#step-next-1").prop("disabled", false);
+                    //         // }
+
+
+                    //     }
+                    // })
+                    $("#step-next-1").prop("disabled", false);
+                }
+
+
+            });
+            $("#step-next-1").click(function() {
+
+                var email = $("#email").val();
+                var no_employeur = $("#no_employeur").val();
                 $.ajax({
                     type: 'GET',
                     url: "{{ route('send.otp.ajax') }}",
@@ -516,43 +609,33 @@
                         email: email,
                         no_employeur: no_employeur,
                     },
-                    beforeSend: function() {
-                        $('#loading-spinner').show(); // Show the loading spinner
-                    },
+                    // beforeSend: function() {
+                    //     $('#loading-spinner').show(); // Show the loading spinner
+                    // },
                     success: function(data) {
-                        if (data == 'null') {
-                            swal({
-                                title: "Incorrect !",
-                                text: "Le champs est vide.",
-                                icon: "error",
-                                button: "OK",
-                            });
-
-                            $("#step-next-1").prop("disabled", true);
-                            $('#loading-spinner').hide();
+                        console.log(data);
 
 
-                        } else if (data == 'not exist') {
-                            swal({
-                                title: "Incorrect !",
-                                text: "Le Numero n'existe pas.",
-                                icon: "error",
-                                button: "OK",
-                            });
+                    }
+                })
+            });
+            $("#resent-otp").click(function() {
 
-                            $("#step-next-1").prop("disabled", true);
-                            $('#loading-spinner').hide();
-
-                        } else {
-                            swal({
-                                title: "Succès!",
-                                text: "Un OTP à été envoyé à l'email." + email,
-                                icon: "success",
-                                button: "OK",
-                            });
-                            $('#loading-spinner').hide();
-                            $("#step-next-1").prop("disabled", false);
-                        }
+                var email = $("#email").val();
+                var no_employeur = $("#no_employeur").val();
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('send.otp.ajax') }}",
+                    dataType: 'json',
+                    data: {
+                        email: email,
+                        no_employeur: no_employeur,
+                    },
+                    // beforeSend: function() {
+                    //     $('#loading-spinner').show(); // Show the loading spinner
+                    // },
+                    success: function(data) {
+                        console.log(data);
 
 
                     }
