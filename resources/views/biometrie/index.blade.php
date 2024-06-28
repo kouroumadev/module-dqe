@@ -116,7 +116,7 @@
                     <div class="form-container">
                         <form action="" method="post" id="multi-step-form">
                             <div id="form-container-box">
-                                <h1 class="form-title">Démande d'enroulement Biometrie</h1>
+                                <h1 class="form-title">Démande d'enrollement Biometrie</h1>
                                 <ul class="custom-progress-bar">
                                     <li id="step1" class="active">Identification</li>
                                     <li id="step2">OTP</li>
@@ -185,7 +185,7 @@
                                     </div>
 
                                     <div class="mb-3 form-group">
-                                        <button type="button" class="btn btn-primary" id="step-next-1" disabled> Suivant
+                                        <button type="button" class="btn btn-primary" id="step-next-1"> Suivant
                                             &#65515;</button>
                                     </div>
                                 </div>
@@ -497,6 +497,12 @@
                     }
                 })
             });
+
+            // if ($("#no_employeur").val() == '') {
+            //     $("#step-next-1").prop("disabled", true);
+            // } else {
+            //     $("#step-next-1").prop("disabled", false);
+            // }
 
             $('#email').blur(function() {
                 var email = $(this).val();
