@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="brand-logo" style="border-bottom: none; max-width:350px">
-                        <a href="{{ url('/') }}">
+                        <a href="https://e.cnss.gov.gn/" target="_blank">
                             <img src="{{ asset('logos/logo.svg') }}" alt="" srcset="" width="350">
                         </a>
                     </div>
@@ -17,7 +17,7 @@
                         style="margin-left:10px; font-size:12px">Gestion rendez-vous</a>
 
 
-                    
+
                 </div>
                 <div class="col-md-3" style="margin-top: 15px">
                     <a href="{{ route('rendezvous.gestion') }}" type="button" class="btn btn-outline-success"

@@ -133,6 +133,12 @@
         <div class="row mt-3 justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
             <div class="col-md-10">
                 <div class="pd-20 mb-30">
+                    <div class="row">
+                        <div class="col-md-2"> <a href="{{ route('/') }}"><i class="icon-copy fa fa-arrow-circle-left fa-5x text-warning" aria-hidden="true"></i></a> </div>
+                        <div class="col-md-10  bg-success"><h1 class="text-white text-center mt-3 pb-4">Formulaire de Prise de rendez-vous</h1></div>
+                    </div>
+                    <hr>
+                    {{-- <a href="{{ route('/') }}"><i class="icon-copy fa fa-arrow-circle-left fa-5x text-warning" aria-hidden="true"></i></a> --}}
 
                     <div class="wizard-content">
                         <form class="tab-wizard wizard-circle wizard horizontal" action="{{ route('rendezvous.conf') }}"

@@ -95,7 +95,7 @@
 
                     Afin de vous assurer le meilleur accueil, la CNSS a mis à votre disposition une plateforme de
                     prise de rendez-vous et de réclamation en ligne sur le site <a
-                        href="https://www.reclamations.cnssgn.com/index" class="text-success">reclamations.cnssgn.com</a> .
+                        href="https://reclamations.cnss.gov.gn/public/index" class="text-success">reclamations.cnss.gov.gn</a> .
                     Vous pouvez choisir et planifier votre rendez-vous ou faire une réclamation avec nos services, selon
                     vos
                     propres

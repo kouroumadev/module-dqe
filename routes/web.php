@@ -64,7 +64,7 @@ Route::get('/logout', [App\Http\Controllers\AuthenController::class, 'logout'])
 
 Route::get('/', function () {
     return view('rendezvous.index');
-});
+})->name('/');
 
 // Route::get('/foo', function () {
 //     Artisan::call('storage:link');

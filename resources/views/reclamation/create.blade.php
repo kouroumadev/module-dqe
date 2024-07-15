@@ -9,8 +9,12 @@
                 <img src="{{ asset('new logo.jpeg') }}" class="img-fluid" alt="here logo" srcset="">
             </div>
         </div> --}}
-            <div class="col-md-6 bg-success">
-                <h1 class="text-white text-center mt-3 pb-4">Formulaire de réclamation</h1>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-2"> <a href="{{ route('/') }}"><i class="icon-copy fa fa-arrow-circle-left fa-5x text-warning" aria-hidden="true"></i></a> </div>
+                    <div class="col-md-10  bg-success"><h1 class="text-white text-center mt-3 pb-4">Formulaire de réclamation</h1></div>
+                </div>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="small-modal-test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
